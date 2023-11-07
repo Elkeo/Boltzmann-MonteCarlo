@@ -1,0 +1,120 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{tikz}
+\bibliographystyle{unsrt}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{siunitx}
+\usepackage{subcaption}
+\usepackage{fancyhdr}
+\usepackage[utf8]{inputenc}
+\usepackage{verbatim}
+\usepackage[T1]{fontenc}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{fontawesome5} % Pour les icônes (utilisées pour les logos)
+
+\definecolor{titleblue}{RGB}{0,38,76} % Couleur bleue pour le titre
+\definecolor{lineblue}{RGB}{0,28,56}  % Couleur bleue pour les lignes
+\definecolor{darkgray}{RGB}{80,80,80} % Couleur grise pour le texte
+\definecolor{lightblue}{RGB}{100,150,190}
+
+\begin{document}
+	
+	\subsection{The use of Monte Carlo methods to solve the linear Boltzmann equation.}
+	\textbf The transport equation in an infinite medium with its corresponding deterministic collisional component can be expressed as:
+	\begin{equation}
+		\partial _t u(x,t,\textbf{v}) + \textbf{v} \cdot \nabla u(x,t,\textbf{v}) + v\sigma_t (x,t,\textbf{v})u(x,t,\textbf{v})= v\sigma_s(x,t,\textbf{v})\int P (x,t,\textbf{v},\textbf{v}')u(x,t,\textbf{v}')d\textbf{v}'
+	\end{equation}
+	
+	Where 
+	\begin{equation*}
+		\sigma_s (x,t,\textbf{v})= \int \sigma_s (x,t,\textbf{v},\textbf{v}')d\textbf{v}', \quad  P (x,t,\textbf{v},\textbf{v}')=
+		\frac{\sigma_s (x,t,\textbf{v},\textbf{v}')}{\sigma_s (x,t,\textbf{v})}
+	\end{equation*}
+	
+	
+	
+	
+	We can express the equation in a recursive integral form by using the characteristic method. To achieve this, we multiply the equation by $e^{\int _0^t v \sigma_t (x + \textbf{v}\alpha,\alpha, v) d \alpha}$ and integrate the resulting expression from 0 to t, yielding:
+	
+	Starting with the left-hand side of the equation:
+	
+	\begin{equation*}
+		\int_0^t e^{\int _0^t v\sigma_t (x + \textbf{v}\alpha,\alpha, v) d\alpha} \left(\partial _t u(x,t,\textbf{v}) + \textbf{v} \cdot \nabla u(x,t,\textbf{v}) + v\sigma_t (x,t,\textbf{v})u(x,t,\textbf{v})\right) d\alpha 
+	\end{equation*}
+	
+	
+	Let's apply integration by parts to the first integral:
+	\begin{multline*}
+		\int_0^t e^{\int _0^t v\sigma_t (x + \textbf{v}\alpha,\alpha, v) d\alpha} \partial _t u(x,t,\textbf{v}) d\alpha = u(x, t, \textbf{v}) \exp\left( \int_{0}^{t} v\sigma_t\left(x - \textbf{v}(t - \alpha), \alpha, \textbf{v}\right) d\alpha\right) - u(x, 0, \textbf{v})\\
+		- \int_0^t u(x, \alpha, \textbf{v}) \frac{d}{d\alpha} \left(e^{\int _0^t v\sigma_t (x + \textbf{v}\alpha, \alpha, v) d\alpha}\right) d\alpha
+	\end{multline*}
+	
+	For the second integral, we have:
+	
+	\begin{equation*}
+		\int_0^t e^{\int _0^t v\sigma_t (x + \textbf{v}\alpha,\alpha v) d\alpha} (\textbf{v} \cdot \nabla u(x,t,\textbf{v})) d\alpha = \textbf{v} \cdot \nabla \left(\int_0^t u(x, \alpha,\alpha, \textbf{v}) e^{\int _0^t v\sigma_t (x + \textbf{v}\alpha,\alpha, v) d\alpha} d\alpha\right)  
+	\end{equation*}
+	
+	
+	Lastly, for the third integral:
+	\begin{equation*}
+		\int_0^t e^{\int _0^t v\sigma_t (x + \textbf{v}\alpha,\alpha, v) d\alpha} v\sigma_t (x,t,\textbf{v})u(x,t,\textbf{v}) d\alpha = \int_0^t u(x, \alpha, \textbf{v}) \frac{d}{d\alpha} \left(e^{\int _0^t v\sigma_t (x + \textbf{v}\alpha,\alpha, v) d\alpha}\right) d\alpha 
+	\end{equation*}
+	
+	
+	
+	
+	
+	
+	
+	We obtain:
+	
+	
+	
+	\begin{multline}
+		u(x,t,\textbf{v}) = u_0(x - \textbf{v}t, \textbf{v}) \exp\left(- \int_{0}^{t} v\sigma_t\left(x - \textbf{v}(t - \alpha), \alpha, \textbf{v}\right) d\alpha\right) \\
+		+ \int_{0}^{t} \int v\sigma_s\left(x - \textbf{v}(t - s), s, \textbf{v}\right) u\left(x - \textbf{v}(t - s), s, \textbf{v}'\right) e^{- \int_s^t v\sigma_t\left(x - \textbf{v}(t - \alpha), \textbf{v}\right) d\alpha} P\left(x - \textbf{v}(t - s), s, \textbf{v}, \textbf{v}'\right) d\textbf{v}'ds \label{ref1}
+	\end{multline}
+	Using a change of variable where $z_s = \{x- \textbf{v}s,t- s,\textbf{v}\}$ and $z_s' = \{x- \textbf{v}s,t- s,\textbf{v}'\}$
+	
+	Equation \ref{ref1} becomes:
+	\begin{equation}
+		u(z_0) = u_0(z_t) \exp\left(- \int_{0}^{t} v\sigma_t (z_{t-\alpha}) d\alpha\right) + 
+		\int_{0}^{t} \int v\sigma_s (z_{t-s}) u(z'_{t-s}) e^{-\int_s^t v\sigma_t (z_{t-\alpha})  d\alpha} P(z_{t-s},\textbf{v}')d\textbf{v}' ds \label{ref2}
+	\end{equation}
+	
+	we introduced the measure of probability as following:
+	\begin{equation*}
+		f (z_s)ds = 1_{[0,\infty[}(s)v\sigma_t (z_s )\exp\left(-\int_{0}^{s} v\sigma_t (z_\alpha)d\alpha\right)ds
+	\end{equation*}
+	
+	Equation \ref{ref2} becomes:
+	
+	\begin{equation*}
+		u(z_0)= \int (1_{[0,\infty[}(s)u_0(z_t) + \int 1_{[0,t[} (s)u(z_s')P(z_s,\textbf{v}')\frac{\sigma_s (z_s)}{\sigma_t (z_s)}d\textbf{v}') f (z_s)ds 
+	\end{equation*}
+	
+	Now, we will introduce $\tau$ and $V$, which are selected from the probability measures $\tau \sim f(z_s)ds$ and $V \sim P(z_s, v') dv'$', respectively. This will allow us to reformulate the integral equation (returning to the original variables x, t, v) as a recursive expectation involving these two random variables.
+	\begin{equation}
+		u(x,t,v) = E [1_{[0,\infty[}(\tau) u0(x - \textbf{v}t,\textbf{v}) + 1_{[0,t[}(\tau) u(x - \textbf{v}\tau,t - \tau,V)\frac{\sigma_s(x - \textbf{v}\tau,t - \tau,V)}{\sigma_t(x - \textbf{v}\tau,t - \tau,V)}] \label{ref3}
+	\end{equation}
+	
+	The next step involves introducing a Monte Carlo approximation. Essentially, the process of constructing a Monte Carlo scheme is based on searching for solutions of \ref{ref3} that possess this specific structures: 
+	\begin{equation*}
+		u_p(x,t,\textbf{v}) = w_p(t) \delta_x(x_p(t))\delta_\textbf{v}(\textbf{v}_p(t))
+	\end{equation*}
+	Replacing \(u_p\) in the equation yields:
+	
+%	\begin{cases} 
+		%w_p(t) = 1_{[0,\infty[}(s)w_p(0) + 1_{[0,t[}(s) \frac{\sigma_s}{\sigma_t}(x_p(t-s),t-s,\textbf{v}_p(t-s))w_p(t-s),\\
+	%	x_p(t) = 1_{[0,\infty[}(s)(x-\textbf{v}t) + 1_{[0,t[}(s)(x-\textbf{v}_s),\\
+		%v_p(t) = 1_{[0,\infty[}(s)\textbf{v} + 1_{[0,t[}(s)V. 
+	%\end{cases}
+	
+	
+	
+\end{document}
