@@ -1,7 +1,8 @@
 #include <iostream>
 #include <vector>
 
-#include "MonteCarlo.cpp"
+#include "fonctions_g.hpp"
+#include "fonctions_f.hpp"
 
 int main()
 {
@@ -15,7 +16,7 @@ int main()
 
   double res = fonction_sinus2.compute_g_x(x);
 
-  std::cout << "Le résultat de "<< x << "par la fonction est" << res << "!!" << std::endl;
+  std::cout << "Le résultat de "<< x << " par la fonction est " << res << " !! " << std::endl;
 
   return 0;
 }

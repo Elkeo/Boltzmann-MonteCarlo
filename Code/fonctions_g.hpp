@@ -20,3 +20,4 @@ class fonction_g_sin {
   const double& getPulsation() const {return _pulsation;};
 };
 
+
