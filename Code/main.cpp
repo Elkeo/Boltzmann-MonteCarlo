@@ -1,22 +1,34 @@
 #include <iostream>
 #include <vector>
 
-#include "fonctions_g.hpp"
-#include "fonctions_f.hpp"
+//#include "fonctions_g.hpp"
+//#include "fonctions_f.hpp"
+#include "integrale.hpp"
 
 int main()
 {
-  double amplitude = 25.0;
-  double pulsation = 3.0;
-  double x = 0.25;
+  double amplitude = 1.0;
+  double pulsation = 1.0;
+  double ordorig = 0.0;
+  double pente = 1.0;
+  double min = 0.0;
+  double max = 1.0;
 
-  fonction_g_sin fonction_sinus1(amplitude, pulsation);
+  double * param = (double*)malloc(2*sizeof(double));
 
-  fonction_g_sin fonction_sinus2(fonction_sinus1);
+  param[0] = amplitude;
+  param[1] = pulsation;
 
-  double res = fonction_sinus2.compute_g_x(x);
+  fonction_g * fonction_a_integrer = new fonction_g_sin(param);
 
-  std::cout << "Le résultat de "<< x << " par la fonction est " << res << " !! " << std::endl;
+  fonction_f_unif * fonction_f_unif_1 = new fonction_f_unif(min, max);
+
+  integrale integrale1(fonction_a_integrer, fonction_f_unif_1);
+
+  int nombre_tirages = 10000;
+  double res = integrale1.calc_int_n(nombre_tirages);
+  
+  std::cout << "L'intégrale de g calculée avec " << nombre_tirages << " donne la valeur  " << res << " !!" <<std::endl;
 
   return 0;
-}
+};

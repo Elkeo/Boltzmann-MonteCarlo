@@ -14,7 +14,9 @@ Importée avec ```#include "sys/random"```
 
 # ```getrandom```
 
-Fonction de Linux, apparemment bien meilleure que les deux précédentes, mais plus complexe à utiliser.
+Fonction de Linux, apparemment bien meilleure que les deux précédentes, mais plus complexe à utiliser. => En fait pas forcément très nécessaire puisque lent pour des propriétés cryptographiques dont on a pas besoin du tout. 
 
+Peut être plus partir sur ```/dev/random``` ou ```/dev/urandom```
 
+En fait c'est plus compliqué que ça, il va falloir que je pousse d'avantage les recherches hihi.
 

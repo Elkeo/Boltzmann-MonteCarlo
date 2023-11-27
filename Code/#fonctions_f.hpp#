@@ -12,7 +12,7 @@ class fonction_f_unif {
   //Constructeurs :
   fonction_f_unif(const double min, const double max);
   fonction_f_unif(const fonction_f_unif& fonction_f_unif);
-  //Evaluation:
+  //Evaluation:const
   double compute_f_x(const double var_x);
 
   //Fonctions d'accès :

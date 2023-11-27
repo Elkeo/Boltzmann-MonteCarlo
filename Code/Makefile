@@ -12,7 +12,7 @@ CXX_FLAGS = $(DEBUG_FLAG)
 PROG = run
 
 # Les fichiers source à compiler
-SRC = main.cpp fonctions_g.cpp fonctions_f.cpp
+SRC = main.cpp integrale.cpp fonctions_g.cpp fonctions_f.cpp
 
 # La commande complète : compile seulement si un fichier a été modifié
 $(PROG) : $(SRC)

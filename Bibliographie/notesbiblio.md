@@ -6,3 +6,5 @@ Le .bib servira pour la biblio présente dans le rapport en LateX
 # Allaire:2015
 
 Document fournit en introduction par M Poette, comporte des explications et des applications sur les équations de transport.
+
+

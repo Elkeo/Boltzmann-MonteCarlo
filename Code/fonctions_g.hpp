@@ -1,23 +1,41 @@
 #include <iostream>
 #include <vector>
 
-class fonction_g_sin {
- private:
-  //amplitude du sinus
-  const double _amplitude;
-  //pulsation du sinus
-  const double _pulsation;
-
+//Classe mère des fonctions g
+class fonction_g {
+ protected:
+  double * _vecteur_parametres;
  public:
-  //Constructeurs :
-  fonction_g_sin(const double amplitude, const double pulsation);
-  fonction_g_sin(const fonction_g_sin& fonction_g_sin);
-  //Evaluation:
-  double compute_g_x(const double var_x);
-
-  //Fonctions d'accès :
-  const double& getAmplitude() const {return _amplitude;};
-  const double& getPulsation() const {return _pulsation;};
+  //Constructeur 
+  fonction_g(double * vecteur_parametres);
+  //Constructeur par copie
+  fonction_g(fonction_g& fonction_g);
+  //Destructeur 
+  virtual ~fonction_g();
+  //Calcul de g(x) (fonction virtuelle pure)
+  virtual double calculer_g_x(double valeur_x)=0;
+  //Fonction d'accès
+  double * getParameters() {return  _vecteur_parametres;};
 };
 
+class fonction_g_sin : public fonction_g {
+  using fonction_g::fonction_g;
+  
+ public:
+  //Evaluation:
+  double calculer_g_x(double valeur_x);
+};
 
+//Classe fille linéaire
+//class fonction_lin {
+  //private:
+  //Pente
+  //const double _pente;
+  //Ordonée à l'origine
+  //const double _ordorig;
+
+  //public:
+  //Evaluation:
+  //double compute_g_x(const double var_x);
+
+  //};
