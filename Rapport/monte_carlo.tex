@@ -25,7 +25,7 @@
 	
 	\subsection{The use of Monte Carlo methods to solve the linear Boltzmann equation.}
 	\textbf The transport equation in an infinite medium with its corresponding deterministic collisional component can be expressed as:
-	\begin{equation}
+	\begin{equation} \label{ref11}
 		\partial _t u(x,t,\textbf{v}) + \textbf{v} \cdot \nabla u(x,t,\textbf{v}) + v\sigma_t (x,t,\textbf{v})u(x,t,\textbf{v})= v\sigma_s(x,t,\textbf{v})\int P (x,t,\textbf{v},\textbf{v}')u(x,t,\textbf{v}')d\textbf{v}'
 	\end{equation}
 	
@@ -38,7 +38,7 @@
 	
 	
 	
-The approach involves a series of variable changes. The initial step involves re-expressing the transport equation \ref{ref11} with respect to a characteristic $x + vt$. As a result, it transforms into:
+The approach involves a series of variable changes. The initial step involves re-expressing the transport equation \eqref{ref11} with respect to a characteristic $x + vt$. As a result, it transforms into:
 
 \begin{equation}
 	\partial _s u(x+\textbf{v}s,s,\textbf{v}) = -v\sigma_t (x+\textbf{v}s,s,\textbf{v})u(x+\textbf{v}s,s,\textbf{v}) + v\sigma_s(x+\textbf{v}s,s,\textbf{v})\int P (x+\textbf{v}s,s,\textbf{v},\textbf{v}')u(x+\textbf{v}s,s,\textbf{v}')d\textbf{v}'
@@ -49,10 +49,10 @@ Let's multiply both sides of the equation by:
 	e^{\int _0^s v\sigma_t (x + \textbf{v}\alpha,\alpha, v) d\alpha}
 \end{equation*}
 Following that, we obtain
-\begin{equation*}
-	\partial _s [u(x+\textbf{v}s,s,\textbf{v})e^{\int _0^s v\sigma_t (x + \textbf{v}\alpha,\alpha, v) d\alpha}] = e^{\int _0^s v\sigma_t (x + \textbf{v}\alpha,\alpha, v) d\alpha} v\sigma_s(x+\textbf{v}s,s,\textbf{v})\int P (x+\textbf{v}s,s,\textbf{v},\textbf{v}')u(x+\textbf{v}s,s,\textbf{v}')d\textbf{v}' \label{ref12}
+\begin{equation*}\label{ref12}
+	\partial _s [u(x+\textbf{v}s,s,\textbf{v})e^{\int _0^s v\sigma_t (x + \textbf{v}\alpha,\alpha, v) d\alpha}] = e^{\int _0^s v\sigma_t (x + \textbf{v}\alpha,\alpha, v) d\alpha} v\sigma_s(x+\textbf{v}s,s,\textbf{v})\int P (x+\textbf{v}s,s,\textbf{v},\textbf{v}')u(x+\textbf{v}s,s,\textbf{v}')d\textbf{v}' 
 \end{equation*}
-We get after integrating the equation \ref{ref12} between [0, t]:
+We get after integrating the equation \eqref{ref12} between [0, t]:
 
 \begin{multline}
 	u(x+\textbf{v}t,t,\textbf{v}) = u_0(x, \textbf{v}) \exp\left(- \int_{0}^{t} v\sigma_t\left(x + \textbf{v} \alpha, \alpha, \textbf{v}\right) d\alpha\right) \\
