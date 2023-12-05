@@ -1,4 +1,4 @@
-
+.vscode
 Rapport/.virtual_documents/Rapport.ipynb
 Rapport/.ipynb_checkpoints/Rapport-checkpoint.ipynb
 .DS_Store
@@ -7,3 +7,5 @@ Rapport/monte_carlo.out
 Rapport/monte_carlo.log
 *.aux
 *~
+*.o
+Code/MC/main
