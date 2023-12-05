@@ -2,7 +2,7 @@
 
 
 /* Constructeur par défaut de la classe Population */
-Population::Population(int nMC, const std::valarray<double>& x, const double& t, const std::valarray<double>& v, double& u) :
+Population::Population(int nMC, const Vecteur& x, const double& t, const Vecteur& v, double& u) :
    nbParticles(nMC),
    _u(u),
    _t(t),

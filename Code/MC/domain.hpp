@@ -6,16 +6,18 @@ class Domain
 {
 protected:
    int d;
-   std::valarray<std::valarray<double>> Omega;
+   std::valarray<Vecteur> Omega;
 
-   void applyBoundaryConditions(std::valarray<double>, double, std::valarray<double>);
+   void applyBoundaryConditions(const Vecteur&, const double&, const Vecteur&);
    void applyInitialCondition();
-   double u0(std::valarray<double>, std::valarray<double>);
-   double sigmaS(std::valarray<double>, double, std::valarray<double>);
-   double sigmaT(std::valarray<double>, double, std::valarray<double>);
+   double u0(const Vecteur&, const Vecteur&);
+   double sigmaS(const Vecteur&, const double&, const Vecteur&);
+   double sigmaT(const Vecteur&, const double&, const Vecteur&);
+   double sampleTau(const Vecteur&, const double&, const Vecteur&);
+   Vecteur sampleVprime(const Vecteur&, const double&, const double&, const Vecteur&);
 
 public:
-   Domain(const int& nbDim, const std::valarray<std::valarray<double>>& Om);
+   Domain(const int& nbDim, const std::valarray<Vecteur>& Om);
    Domain();
    ~Domain();
 };

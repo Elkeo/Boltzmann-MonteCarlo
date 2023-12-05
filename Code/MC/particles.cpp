@@ -2,7 +2,7 @@
 #include "particles.hpp"
 
 // Constructeur par défaut : on initialise les vecteurs avec leur nombre de dimensions.
-Particle::Particle(const int& nMC, const std::valarray<double>& x, const double& t, const std::valarray<double>& v) :
+Particle::Particle(const int& nMC, const Vecteur& x, const double& t, const Vecteur& v) :
    _sp(0.0),
    _wp(1.0 / nMC),
    _t(t),
@@ -71,19 +71,3 @@ void Particle::move(double& u)
 
    }
 }
-
-// Sample the velocity V′ of particle p from P_V'^s(xp, sp, τ, vp, v′)dv′
-std::valarray<double> Particle::sampleVprime(std::valarray<double> xp, double sp, double tau, std::valarray<double> vp)
-{
-   std::valarray<double> vprime(xp.size(), 1.0);
-
-   return vprime;
-};
-
-// Sample τ from the distribution having probability measure fτ(xp, sp, s, vp)ds
-double Particle::sampleTau(std::valarray<double> xp, double sp, std::valarray<double> vp)
-{
-   double tau(1.0);
-
-   return tau;
-};

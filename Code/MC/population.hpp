@@ -8,10 +8,10 @@ class Population : public Domain
 protected:
    const int nbParticles;
    double _u, _t;
-   const std::valarray<double> _x, _v;
+   const Vecteur _x, _v;
 
 public:
-   Population(int, const std::valarray<double>&, const double&, const std::valarray<double>&, double& u);
+   Population(int, const Vecteur&, const double&, const Vecteur&, double& u);
    ~Population();
 
    virtual void move();

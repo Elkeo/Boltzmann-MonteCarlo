@@ -2,7 +2,7 @@
 
 Domain::Domain() {};
 
-Domain::Domain(const int& nbDim, const std::valarray<std::valarray<double>>& Om) : d(nbDim), Omega(Om)
+Domain::Domain(const int& nbDim, const std::valarray<Vecteur>& Om) : d(nbDim), Omega(Om)
 {
 };
 
@@ -11,24 +11,41 @@ Domain::~Domain()
 };
 
 // Here a general function for the application of arbitrary boundary conditions
-void Domain::applyBoundaryConditions(std::valarray<double> xp, double sp, std::valarray<double> vp)
+void Domain::applyBoundaryConditions(const Vecteur& xp, const double& sp, const Vecteur& vp)
 {
 };
 
-double Domain::u0(std::valarray<double> xp, std::valarray<double> vp)
+double Domain::u0(const Vecteur& xp, const Vecteur& vp)
 {
    double u_0(0.0);
    return u_0;
 };
 
-double Domain::sigmaS(std::valarray<double>xp, double t, std::valarray<double> vp)
+double Domain::sigmaS(const Vecteur& xp, const double& t, const Vecteur& vp)
 {
    double sigmas(1.0);
    return sigmas;
 };
 
-double Domain::sigmaT(std::valarray<double> xp, double t, std::valarray<double> vp)
+double Domain::sigmaT(const Vecteur& xp, const double& t, const Vecteur& vp)
 {
    double sigmat(1.0);
    return sigmat;
+};
+
+
+// Sample the velocity V′ of particle p from P_V'^s(xp, sp, τ, vp, v′)dv′
+Vecteur Domain::sampleVprime(const Vecteur& xp, const double& sp, const double& tau, const Vecteur& vp)
+{
+   Vecteur vprime(xp.size(), 1.0);
+
+   return vprime;
+};
+
+// Sample τ from the distribution having probability measure fτ(xp, sp, s, vp)ds
+double Domain::sampleTau(const Vecteur& xp, const double& sp, const Vecteur& vp)
+{
+   double tau(1.0);
+
+   return tau;
 };
