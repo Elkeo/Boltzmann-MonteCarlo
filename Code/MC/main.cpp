@@ -43,11 +43,10 @@ void Domain::applyBoundaryConditions(std::valarray<double> xp, double sp, std::v
 
 
 // Objet Population de particules singulières (essentiellement un tableau de particules)
-class Population
+class Population : public Domain
 {
 protected:
    const int nbParticles;
-   std::valarray<Particle> particlePopulation;
    double u;
    std::valarray<double> x, v, t;
 
@@ -59,7 +58,29 @@ public:
    virtual void move(double);
 };
 
-Population::Population(int nbDim, int nMC) : nbParticles(nMC), particlePopulation(std::valarray<Particle>(nMC))
+// Objet Particule singulière
+class Particle : public Population
+{
+private:
+   double sp;
+   double wp;
+   std::valarray<double> xp;
+   std::valarray<double> vp;
+
+   std::valarray<double> sampleVprime(std::valarray<double>, double, double, std::valarray<double>);
+   double sampleTau(std::valarray<double>, double, std::valarray<double>);
+
+protected:
+
+   bool notInDomain();
+
+public:
+   Particle(int, int);
+   ~Particle();
+   virtual void move(double);
+};
+
+Population::Population(int nbDim, int nMC) : nbParticles(nMC)
 {
 };
 
@@ -69,33 +90,11 @@ Population::~Population()
 
 void Population::move(double t)
 {
-   for (size_t i = 0; i < nbParticles; i++)
+   for (int i = 0; i < nbParticles; i++)
    {
-      Particle particle = particlePopulation[i];
+      Particle particle(d, nbParticles);
       particle.move(t);
    }
-};
-
-
-// Objet Particule singulière
-class Particle : public Population, public Domain
-{
-private:
-   std::valarray<double> sampleVprime(std::valarray<double>, double, double, std::valarray<double>);
-   double sampleTau(std::valarray<double>, double, std::valarray<double>);
-
-protected:
-   double sp;
-   double wp;
-   std::valarray<double> xp;
-   std::valarray<double> vp;
-
-   bool notInDomain();
-
-public:
-   Particle(int, int);
-   ~Particle();
-   virtual void move(double);
 };
 
 // Constructeur par défaut : on initialise les vecteurs avec leur nombre de dimensions.
@@ -114,13 +113,14 @@ Particle::~Particle()
 
 bool Particle::notInDomain()
 {
-   for (size_t i = 0; i < d; i++)
+   for (int i = 0; i < d; i++)
    {
-      if (not (Omega[i][1] <= xp[i] <= Omega[i][2]))
+      if (not ((Omega[i][1] <= xp[i]) and (xp[i] <= Omega[i][2])))
       {
          return true;
       }
    }
+   return false;
 };
 
 void Particle::move(double t)
@@ -169,12 +169,16 @@ void Particle::move(double t)
 
 std::valarray<double> Particle::sampleVprime(std::valarray<double> xp, double sp, double tau, std::valarray<double> vp)
 {
+   std::valarray<double> vprime(xp.size(), 0.0);
 
+   return vprime;
 };
 
 // Sample τ from the distribution having probability measure fτ(xp, sp, s, vp)ds
 double Particle::sampleTau(std::valarray<double> xp, double sp, std::valarray<double> vp)
 {
+   double tau(0.0);
 
+   return tau;
 };
 
