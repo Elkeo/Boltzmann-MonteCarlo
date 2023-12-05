@@ -19,7 +19,6 @@ protected:
    double sigmaS(std::valarray<double>, double, std::valarray<double>);
    double sigmaT(std::valarray<double>, double, std::valarray<double>);
 
-
 public:
    Domain(const std::valarray<std::valarray<double>> Om, int nbDim);
    Domain();
@@ -38,7 +37,24 @@ Domain::~Domain()
 // Here a general function for the application of arbitrary boundary conditions
 void Domain::applyBoundaryConditions(std::valarray<double> xp, double sp, std::valarray<double> vp)
 {
+};
 
+double Domain::u0(std::valarray<double> xp, std::valarray<double> vp)
+{
+   double u_0(0.0);
+   return u_0;
+};
+
+double Domain::sigmaS(std::valarray<double>xp, double t, std::valarray<double> vp)
+{
+   double sigmas(0.0);
+   return sigmas;
+};
+
+double Domain::sigmaT(std::valarray<double> xp, double t, std::valarray<double> vp)
+{
+   double sigmat(0.0);
+   return sigmat;
 };
 
 
