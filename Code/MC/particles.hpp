@@ -9,7 +9,7 @@ private:
    Vecteur _xp;
    Vecteur _vp;
 
-protected:
+public:
    bool notInDomain();
 
 public:

@@ -1,6 +1,13 @@
 #include "main.hpp"
 #include "population.hpp"
 
+/*
+   Ce code résout l'équation intégro-différentielle de
+   Boltzmann par un schéma semi-analogue de Monte-Carlo.
+*/
+
+
+
 
 int main(int argc, char const* argv[])
 {
@@ -19,7 +26,8 @@ int main(int argc, char const* argv[])
    Domain Domaine(d, Omega);
 
    /* Création du temps, de la position et de la vitesse initiaux de la population de particules */
-   double t = 1.0;                              // Temps pour lequel on veut calculer la solution
+   // ATTENTION : on masque u0 en initialisant comme cela
+   double t = 1.0;                // Temps pour lequel on veut calculer la solution
    Vecteur x({ 0.0, 0.0, 0.0 });  // Position pour laquelle on veut calculer la solution (ici au centre)
    Vecteur v({ 1.0, 0.0, 0.0 });  // Vitesse initiale pour laquelle on veut calculer la solution
 
