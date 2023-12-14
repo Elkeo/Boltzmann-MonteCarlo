@@ -16,15 +16,14 @@ Population::~Population()
 {
 };
 
-/* Fonction qui fait évoluer une particule plein de fois */
+/* Fonction qui fait évoluer plein de particules */
 void Population::move()
 {
-   /* On créé une particule (pas besoin d'en faire plein, elles ont toutes les mêmes conditions initiales) */
-   Particle particle(nbParticles, _x, _t, _v);
-
-   /* La particule est "envoyée" évoluer plein de fois */
    for (int i = 0; i < nbParticles; i++)
    {
+      /* On créé une particule */
+      Particle particle(nbParticles, _x, _t, _v);
+      /* La particule est "envoyée" évoluer */
       particle.move(_u);
    }
 };
