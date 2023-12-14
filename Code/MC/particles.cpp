@@ -2,13 +2,13 @@
 #include "particles.hpp"
 
 // Constructeur par défaut : on initialise les vecteurs avec leur nombre de dimensions.
-Particle::Particle(const int& nMC, const Vecteur& x, const double& t, const Vecteur& v) :
+Particle::Particle(const GenericDomain* Domain, const int& nMC, const Vecteur& x, const double& t, const Vecteur& v) :
+   _Domain(Domain),
    _sp(t),
    _wp(1.0 / nMC),
    _xp(x),
    _vp(v)
 {
-   std::cout << _wp << std::endl;
 };
 
 // Destructeur par défaut
@@ -18,10 +18,9 @@ Particle::~Particle()
 
 bool Particle::notInDomain()
 {
-   for (int i = 0; i < d; i++)
+   for (int i = 0; i < _Domain->get_d(); i++)
    {
-      std::cout << Omega[i][0] << " " << _xp[i] << " " << Omega[i][1] << std::endl;
-      if (not ((Omega[i][0] <= _xp[i]) and (_xp[i] <= Omega[i][1])))
+      if (not ((_Domain->get_Omega()[i][0] <= _xp[i]) and (_xp[i] <= _Domain->get_Omega()[i][1])))
       {
          return true;
       }
@@ -34,14 +33,12 @@ void Particle::move(double& u)
    double tau;
    while ((_sp > 0) and (_wp > 0))
    {
-
-      std::cout << "test" << std::endl;
       if (Particle::notInDomain())
       {
-
-         Domain::applyBoundaryConditions(_xp, _sp, _vp);
+         // La condition de test est redondante
+         _Domain->applyBoundaryConditions(_xp, _sp, _vp);
       }
-      tau = sampleTau(_xp, _sp, _vp);
+      tau = _Domain->sampleTau(_xp, _sp, _vp);
       if (tau > _sp)
       {
          // See the treatment in factor of 1[t, ∞[(τ)in (9.24)
@@ -54,17 +51,16 @@ void Particle::move(double& u)
          // Do not change the velocity of particle
          // Do not change the weight of particle
          // Tally the contribution of particle
-         u += _wp * u0(_xp, _vp);
-
+         u += _wp * _Domain->initialCondition(_xp, _vp);
       }
       else
       {
          // See the recursive treatment in factor of 1[0, t](τ) in (9.24)
          // Change the particle weight
-         _wp *= sigmaS(_xp, _sp - tau, _vp) / sigmaT(_xp, _sp - tau, _vp);
+         _wp *= _Domain->sigmaS(_xp, _sp - tau, _vp) / _Domain->sigmaT(_xp, _sp - tau, _vp);
 
          // Sample the velocity V′ of particle p from P_V'^s(xp, sp, τ, vp, v′)dv′
-         _vp = sampleVprime(_xp, _sp, tau, _vp);
+         _vp = _Domain->sampleVprime(_xp, _sp, tau, _vp);
 
          // Move the particle
          _xp += _vp * tau;

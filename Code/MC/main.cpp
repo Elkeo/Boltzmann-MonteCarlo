@@ -20,13 +20,13 @@ int main(int argc, char const* argv[])
    {
       Vecteur dimDomain = { -1, 1 };
       Omega[i] = dimDomain;
-      std::cout << Omega[i][0] << " " << Omega[i][1] << std::endl;
    }
-   Domain Domaine(d, Omega);
+   GenericDomain* Domaine = NULL;
+   Domaine = new PeriodicDomain(d, Omega);
 
    /* Création du temps, de la position et de la vitesse initiaux de la population de particules */
    // ATTENTION : on masque u0 en initialisant comme cela
-   double t = 1.0;                // Temps pour lequel on veut calculer la solution
+   double t = 1.0;               // Temps pour lequel on veut calculer la solution
    Vecteur x = Vecteur(d, 0.0);  // Position pour laquelle on veut calculer la solution (ici au centre)
    Vecteur v = Vecteur(d, 1.0);  // Vitesse initiale pour laquelle on veut calculer la solution
 
@@ -34,7 +34,7 @@ int main(int argc, char const* argv[])
    double u(0.0);
 
    /* Création de la population de particules (fictives) */
-   Population packOfParticles(nMC, x, t, v, u);
+   Population packOfParticles(Domaine, nMC, x, t, v, u);
 
    /* Les particules (fictives) évoluent */
    packOfParticles.move();
@@ -42,9 +42,6 @@ int main(int argc, char const* argv[])
    /* On en déduit la solution u(x, t, v) */
    u = packOfParticles.get_u();
    std::cout << "Solution en x, t, v : " << u << std::endl;
-
-   // Affichage de la valeur de u
-   std::cout << "La solution u(x, t, v) = " << u << std::endl;
 
    return 0;
 }

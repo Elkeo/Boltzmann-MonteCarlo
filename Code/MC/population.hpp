@@ -3,17 +3,18 @@
 
 
 /* CLASSE DÉFINISSANT LES PAQUETS DE PARTICULES */
-class Population : public Domain
+class Population
 {
-protected:
-   const int nbParticles;
+private:
+   const GenericDomain* _Domain;
+   const int _nbParticles;
    double _u, _t;
    const Vecteur _x, _v;
 
 public:
-   Population(int, const Vecteur&, const double&, const Vecteur&, double& u);
+   Population(const GenericDomain*, const int, const Vecteur&, const double&, const Vecteur&, double& u);
    ~Population();
 
-   virtual void move();
+   void move();
    const double& get_u() const { return _u; };
 };
