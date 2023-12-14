@@ -1,4 +1,5 @@
 #include "main.hpp"
+#include <iostream>
 #include "population.hpp"
 
 /*
@@ -41,6 +42,9 @@ int main(int argc, char const* argv[])
    /* On en déduit la solution u(x, t, v) */
    u = packOfParticles.get_u();
    std::cout << "Solution en x, t, v : " << u << std::endl;
+
+   // Affichage de la valeur de u
+   std::cout << "La solution u(x, t, v) = " << u << std::endl;
 
    return 0;
 }
