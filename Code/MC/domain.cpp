@@ -112,7 +112,8 @@ Vecteur GenericDomain::sampleVprime(const Vecteur& xp, const double& sp, const d
 // Sample τ from the distribution having probability measure fτ(xp, sp, s, vp)ds
 double GenericDomain::sampleTau(const Vecteur& xp, const double& sp, const Vecteur& vp) const
 {
-   double tau(7);
+   std::default_random_engine generator;
+   std::uniform_real_distribution<double> distribution(0, 1);
 
-   return tau;
+   return -log(distribution(generator)) / sqrt((vp * vp).sum());
 };
