@@ -8,15 +8,16 @@
 
 int main(int argc, char const* argv[])
 {
-   /* Déclaration - initialisation des variables */
-   int
-      d = 2,      // Nombre de dimensions
-      nMC = 10;   // Nombre de particules dans les paquets (permet la bonne charge quand parallélisation)
 
+   /* Déclaration - initialisation des variables */
+
+   struct struct_parameters parameters;
+   init_parameters(parameters);
    /* Création du domaine où les particules se meuvent */
-   std::valarray<Vecteur> Omega(d);
-   Vecteur nbNodesInDimension(d);
-   for (int i = 0; i < d; i++)
+
+   std::valarray<Vecteur> Omega(parameters.nbDims);
+   for (int i = 0; i < parameters.nbDims; i++)
+
    {
       Vecteur dimDomain = { -1, 1 };
       Omega[i] = dimDomain;

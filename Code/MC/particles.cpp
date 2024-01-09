@@ -1,13 +1,16 @@
 #include "main.hpp"
 #include "particles.hpp"
+#include "parameters.hpp"
+
 
 // Constructeur par défaut : on initialise les vecteurs avec leur nombre de dimensions.
-Particle::Particle(const GenericDomain* Domain, const int& nMC, const Vecteur& x, const double& t, const Vecteur& v) :
+Particle::Particle(const GenericDomain* Domain, const struct_parameters &parameters) :
    _Domain(Domain),
-   _sp(t),
-   _wp(1.0 / nMC),
-   _xp(x),
-   _vp(v)
+   _parameters(parameters),
+   _sp(parameters.time),
+   _wp(1.0 / parameters.nbMC),
+   _xp(parameters.array_x),
+   _vp(parameters.array_v)
 {
 };
 
@@ -18,9 +21,9 @@ Particle::~Particle()
 
 bool Particle::notInDomain()
 {
-   for (int i = 0; i < _Domain->get_d(); i++)
+   for (int i = 0; i < this->_Domain->get_d(); i++)
    {
-      if (not ((_Domain->get_Omega()[i][0] <= _xp[i]) and (_xp[i] <= _Domain->get_Omega()[i][1])))
+      if (not ((this->_Domain->get_Omega()[i][0] <= _xp[i]) and (this->_xp[i] <= this->_Domain->get_Omega()[i][1])))
       {
          return true;
       }
@@ -31,42 +34,42 @@ bool Particle::notInDomain()
 void Particle::move(double& u)
 {
    double tau;
-   while ((_sp > 0) and (_wp > 0))
+   while ((this->_sp > 0) and (this->_wp > 0))
    {
       if (Particle::notInDomain())
       {
          // La condition de test est redondante
-         _Domain->applyBoundaryConditions(_xp, _sp, _vp);
+         this->_Domain->applyBoundaryConditions(this->_xp, this->_sp, this->_vp);
       }
-      tau = _Domain->sampleTau(_xp, _sp, _vp);
-      if (tau > _sp)
+      tau = this->_Domain->sampleTau(this->_xp, this->_sp, this->_vp);
+      if (tau > this->_sp)
       {
          // See the treatment in factor of 1[t, ∞[(τ)in (9.24)
          // Move the particle
-         _xp += _sp * _vp;
+         this->_xp += this->_sp * this->_vp;
 
          // Set the life time of particle p to zero
-         _sp = 0;
+         this->_sp = 0;
 
          // Do not change the velocity of particle
          // Do not change the weight of particle
          // Tally the contribution of particle
-         u += _wp * _Domain->initialCondition(_xp, _vp);
+         u += this->_wp * this->_Domain->initialCondition(this->_xp, this->_vp);
       }
       else
       {
          // See the recursive treatment in factor of 1[0, t](τ) in (9.24)
          // Change the particle weight
-         _wp *= _Domain->sigmaS(_xp, _sp - tau, _vp) / _Domain->sigmaT(_xp, _sp - tau, _vp);
+         this->_wp *= this->_Domain->sigmaS(this->_xp, this->_sp - tau, this->_vp) / this->_Domain->sigmaT(this->_xp, this->_sp - tau, this->_vp);
 
          // Sample the velocity V′ of particle p from P_V'^s(xp, sp, τ, vp, v′)dv′
-         _vp = _Domain->sampleVprime(_xp, _sp, tau, _vp);
+         this->_vp = this->_Domain->sampleVprime(this->_xp, this->_sp, tau, this->_vp);
 
          // Move the particle
-         _xp += _vp * tau;
+         this->_xp += this->_vp * tau;
 
          // Set the life time of particle
-         _sp -= tau;
+         this->_sp -= tau;
       }
 
    }
