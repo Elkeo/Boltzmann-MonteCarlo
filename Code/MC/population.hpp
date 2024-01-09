@@ -9,12 +9,12 @@ class Population
 {
 private:
    const GenericDomain* _Domain;
-   const struct struct_parameters* _parameters;
+   const struct_parameters _parameters;
    const int _nbParticles;
    double _u;
 
 public:
-   Population(const GenericDomain*, const struct struct_parameters *parameters, double& u);
+   Population(const GenericDomain*, const struct_parameters &parameters, double& u);
    ~Population();
 
    void move();
