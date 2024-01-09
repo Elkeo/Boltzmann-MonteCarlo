@@ -15,6 +15,7 @@ int main(int argc, char const* argv[])
 
    /* Création du domaine où les particules se meuvent */
    std::valarray<Vecteur> Omega(d);
+   Vecteur nbNodesInDimension(d);
    for (int i = 0; i < d; i++)
    {
       Vecteur dimDomain = { -1, 1 };
