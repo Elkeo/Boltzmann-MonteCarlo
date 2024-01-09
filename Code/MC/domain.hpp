@@ -6,13 +6,12 @@ class GenericDomain
 {
 protected:
    int _d;
-   const struct struct_parameters* _parameters;
    std::valarray<Vecteur> _Omega;
    std::valarray<Vecteur> _xCoords, _yCoords;
 
 public:
    /* Constructeurs et destructeurs par défaut */
-   GenericDomain(const struct struct_parameters *parameters, const std::valarray<Vecteur>& Om);
+   GenericDomain(const int& nbDim, const std::valarray<Vecteur>& Om);
    virtual ~GenericDomain();
 
    /* Fonctions membres */
@@ -34,7 +33,7 @@ class PeriodicDomain : public GenericDomain
 {
 public:
    /* Constructeurs et destructeurs par défaut */
-   PeriodicDomain(const struct struct_parameters *parameters, const std::valarray<Vecteur>& Om) : GenericDomain(parameters, Om) {};
+   PeriodicDomain(const int& nbDim, const std::valarray<Vecteur>& Om) : GenericDomain(nbDim, Om) {};
    virtual ~PeriodicDomain();
 
    virtual void applyBoundaryConditions(Vecteur&, double&, Vecteur&) const;
@@ -45,7 +44,7 @@ class ElasticDomain : public GenericDomain
 {
 public:
    /* Constructeurs et destructeurs par défaut */
-   ElasticDomain(const struct struct_parameters *parameters, const std::valarray<Vecteur>& Om) : GenericDomain(parameters, Om) {};
+   ElasticDomain(const int& nbDim, const std::valarray<Vecteur>& Om) : GenericDomain(nbDim, Om) {};
    virtual ~ElasticDomain();
 
    virtual void applyBoundaryConditions(Vecteur&, double&, Vecteur&) const;
