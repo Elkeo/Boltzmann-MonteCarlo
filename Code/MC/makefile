@@ -1,6 +1,6 @@
-OBJS	= particles.o population.o domain.o main.o parametres.o
-SOURCE	= particles.cpp population.cpp domain.cpp main.cpp parametres.cpp
-HEADER	= particles.hpp population.hpp domain.hpp main.hpp parametres.hpp
+OBJS	= particles.o population.o domain.o main.o parameters.o
+SOURCE	= particles.cpp population.cpp domain.cpp main.cpp parameters.cpp
+HEADER	= particles.hpp population.hpp domain.hpp main.hpp parameters.hpp
 OUT	= main
 CC	 = g++
 FLAGS	 = -g -c -Wall

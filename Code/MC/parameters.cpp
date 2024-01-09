@@ -13,18 +13,11 @@ void init_parameters(struct_parameters &parameters){
 
     //Simuation parameters
     const auto& simulation = toml::find(param_file, "simulation");
-    std::cout << "hop" << std::endl;
 
-    std::cout << toml::find<int>(simulation, "nbDims") << std::endl;
-    std::cout << parameters.nbDims << std::endl;
     parameters.nbDims = toml::find<int>(simulation, "nbDims");//Number of dimensions
-
-    std::cout << "hop" << std::endl;
-
     parameters.nbMC = toml::find<int>(simulation, "nbMC"); //Number of MC particles 
     parameters.time = toml::find<double>(simulation, "time"); //Time of the wanted result 
 
-    std::cout << "hop" << std::endl;
     double x1 = toml::find<double>(simulation, "x1"), x2 = toml::find<double>(simulation, "x2"), x3 = toml::find<double>(simulation, "x3"); //Position of the wanted result 
     double v1 = toml::find<double>(simulation, "v1"), v2 = toml::find<double>(simulation, "v2"), v3 = toml::find<double>(simulation, "v3"); //Speed of the wanted result
 
