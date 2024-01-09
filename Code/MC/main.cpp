@@ -12,6 +12,7 @@ int main(int argc, char const* argv[])
    struct struct_parameters *parameters;
    init_parameters(parameters);
    /* Création du domaine où les particules se meuvent */
+
    std::valarray<Vecteur> Omega(parameters->nbDims);
    for (int i = 0; i < parameters->nbDims; i++)
    {
