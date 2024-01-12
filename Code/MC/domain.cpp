@@ -1,7 +1,9 @@
 #include "domain.hpp"
-#include "parametres.hpp"
+#include "parameters.hpp"
 
-GenericDomain::GenericDomain(const int& nbDim, const std::valarray<Vecteur>& Om) : _d(nbDim), _Omega(Om)
+GenericDomain::GenericDomain(const struct_parameters &parameters, const std::valarray<Vecteur>& Om) : 
+_Omega(Om),
+_parameters(parameters)
 {
 };
 
@@ -21,16 +23,16 @@ PeriodicDomain::~PeriodicDomain()
 void ElasticDomain::applyBoundaryConditions(Vecteur& xp, double& sp, Vecteur& vp) const
 {
    // Choc élastique sur les parois
-   for (int i = 0; i < _d; i++)
+   for (int i = 0; i < this->_parameters.nbDims; i++)
    {
-      if (xp[i] < _Omega[i][0])
+      if (xp[i] < this->_Omega[i][0])
       {
-         xp[i] = _Omega[i][0];
+         xp[i] = this->_Omega[i][0];
          vp[i] *= -1;
       }
-      else if (xp[i] > _Omega[i][1])
+      else if (xp[i] > this->_Omega[i][1])
       {
-         xp[i] = _Omega[i][1];
+         xp[i] = this->_Omega[i][1];
          vp[i] *= -1;
       }
    }
@@ -38,15 +40,15 @@ void ElasticDomain::applyBoundaryConditions(Vecteur& xp, double& sp, Vecteur& vp
 
 void PeriodicDomain::applyBoundaryConditions(Vecteur& xp, double& sp, Vecteur& vp) const
 {
-   for (int i = 0; i < _d; i++)
+   for (int i = 0; i < this->_parameters.nbDims; i++)
    {
-      if (xp[i] < _Omega[i][0])
+      if (xp[i] < this->_Omega[i][0])
       {
-         xp[i] += (_Omega[i][1] - _Omega[i][0]);
+         xp[i] += (this->_Omega[i][1] - this->_Omega[i][0]);
       }
-      else if (xp[i] > _Omega[i][1])
+      else if (xp[i] > this->_Omega[i][1])
       {
-         xp[i] -= (_Omega[i][1] - _Omega[i][0]);
+         xp[i] -= (this->_Omega[i][1] - this->_Omega[i][0]);
       }
    }
 };
@@ -59,13 +61,13 @@ double GenericDomain::initialCondition(const Vecteur& x, const Vecteur& v) const
 
 double GenericDomain::sigmaS(const Vecteur& xp, const double& t, const Vecteur& vp) const
 {
-   double sigmas = Parametres::SigmaS;
+   double sigmas = this->_parameters.sigmaS;
    return sigmas;
 };
 
 double GenericDomain::sigmaT(const Vecteur& xp, const double& t, const Vecteur& vp) const
 {
-   double sigmat = Parametres::SigmaT;
+   double sigmat = this->_parameters.sigmaT;
    return sigmat;
 };
 
@@ -79,21 +81,21 @@ Vecteur GenericDomain::sampleVprime(const Vecteur& xp, const double& sp, const d
    // Création du générateur de nombre aléatoires
    std::default_random_engine generator;
 
-   if (_d == 1)
+   if (this->_parameters.nbDims == 1)
    {
       // tirage uniforme sur [-1, 1]
       std::uniform_real_distribution<double> distribution(-1, 1);
 
       vprime = { normV * distribution(generator) };
    }
-   else if (_d == 2)
+   else if (this->_parameters.nbDims == 2)
    {
       // tirage uniforme sur le cercle unité
       std::uniform_real_distribution<double> distribution(0, 2 * M_PI);
       double theta = distribution(generator);
       vprime = { normV * cos(theta), normV * sin(theta) };
    }
-   else if (_d == 3)
+   else if (this->_parameters.nbDims == 3)
    {
       // tirage uniforme sur la sphère unité (composition de loi normales)
       // voir Daniel Saada - lois uniformes sur la sphère
@@ -115,5 +117,6 @@ double GenericDomain::sampleTau(const Vecteur& xp, const double& sp, const Vecte
    std::default_random_engine generator;
    std::uniform_real_distribution<double> distribution(0, 1);
 
-   return -log(distribution(generator)) / (sigmaT(xp, sp, vp) * sqrt((vp * vp).sum()));
+   return -log(distribution(generator)) / this->_parameters.sigmaT*sqrt(((vp * vp).sum()));
+
 };
