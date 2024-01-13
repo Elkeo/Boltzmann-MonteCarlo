@@ -20,7 +20,7 @@ for (int i = 0; i < d; i++)
     Omega[i] = dimDomain;
 }
 GenericDomain* Domaine = NULL;
-Domaine = new PeriodicDomain(d, Omega);
+//Domaine = new PeriodicDomain(d, Omega);
 
 //temps, vitesse et position init
 double t=1.0;              // Tps pour lequel on calcule la solution
@@ -47,9 +47,9 @@ for (int i =0; i < nMC; i++)
 
     sum = sqrt(pow(rand[0],2) + pow(rand[1],2) + pow(rand[2],2));
 
-    sample[0] = rand[0] / sum;
-    sample[1] = rand[1] / sum; 
-    sample[2] = rand[2] / sum; 
+    sample[0] = normV * rand[0] / sum;
+    sample[1] = normV * rand[1] / sum; 
+    sample[2] = normV * rand[2] / sum; 
 
     /* for (int i = 0; i < sample.size(); ++i) {
         std::cout << sample[i] << " ";
