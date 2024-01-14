@@ -14,7 +14,6 @@ Groupe de :
 - Guillaume DOYEN.
 
 
-
 # Choix des paramètres
 
 Le fichier param.toml rassemble les différents paramètres d'entrée (nombre de dimension(s), nombre de particules, position, vitesse et temps auxquels on cherche la solution u).
@@ -23,10 +22,19 @@ Le fichier param.toml rassemble les différents paramètres d'entrée (nombre de
 
 Le code se compile en se plaçant dans le répertoire Boltzmann-Montecarlo/Code/MC et en utilisant la commande "make". 
 
-L'écution se fait ensuite par l'appel "./main" et donne la solution de u(x,t,v) en fonction des paramètres choisis.
+L'exécution se fait ensuite par l'appel "./main" et donne la solution de u(x,t,v) en fonction des paramètres choisis.
 
-NB : les fonctions SigmaS et SigmaT n'étant pas encore implémentées, la solution est constante.
+NB : les fonctions SigmaS et SigmaT sont constantes et retournent pour valeur celle écrite dans le fichier param.toml
 
+
+# Détails sur le code
+
+Le code résout l'équation intégro-différentielle de Boltzmann par un schéma de Monte-Carlo semi-analogue (aussi appelé implicite).
+Certains choix de simplification ont été faits sur la solution. En particulier :
+ - La solution est calculée pour des particules monocinétiques (|v| = cte) tirées uniformément sur la sphère unité ;
+ - Les opacités sont constantes ;
+ - Le temps d'intéraction est tiré selon une loi exponentielle de paramètre |v|σ.
+Le domaine de résolution peut-être avec plusieurs types de parois : élastiques ou périodiques
 
 # Cas tests
 

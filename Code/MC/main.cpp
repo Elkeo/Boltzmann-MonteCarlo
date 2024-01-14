@@ -13,17 +13,32 @@ int main(int argc, char const* argv[])
 
    struct struct_parameters parameters;
    init_parameters(parameters);
+
+
    /* Création du domaine où les particules se meuvent */
-
-
    std::valarray<Vecteur> Omega(parameters.nbDims);
-   for (int i = 0; i < parameters.nbDims; i++)
-   {
-      Vecteur dimDomain = { -1, 1 };
-      Omega[i] = dimDomain;
+   Omega[0] = parameters.array_x;
+   if (parameters.nbDims >= 2) {
+      Omega[1] = parameters.array_y;
+      if (parameters.nbDims == 3) {
+         Omega[2] = parameters.array_z;
+      }
    }
+
    GenericDomain* Domaine = NULL;
-   Domaine = new PeriodicDomain(parameters, Omega);
+   if (parameters.domainType == "elastic")
+   {
+      Domaine = new ElasticDomain(parameters, Omega);
+   }
+   else if (parameters.domainType == "periodic")
+   {
+      Domaine = new PeriodicDomain(parameters, Omega);
+   }
+   else
+   {
+      std::cout << "Domain type not recognized : choose \"elastic\" or \"periodic\"." << std::endl;
+      exit(1);
+   }
 
    /* Création de la solution u(x, t, v) */
    double u(0.0);

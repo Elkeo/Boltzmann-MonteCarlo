@@ -1,9 +1,9 @@
 #include "domain.hpp"
 #include "parameters.hpp"
 
-GenericDomain::GenericDomain(const struct_parameters &parameters, const std::valarray<Vecteur>& Om) : 
-_Omega(Om),
-_parameters(parameters)
+GenericDomain::GenericDomain(const struct_parameters& parameters, const std::valarray<Vecteur>& Om) :
+   _parameters(parameters),
+   _Omega(Om)
 {
 };
 
@@ -117,6 +117,6 @@ double GenericDomain::sampleTau(const Vecteur& xp, const double& sp, const Vecte
    std::default_random_engine generator;
    std::uniform_real_distribution<double> distribution(0, 1);
 
-   return -log(distribution(generator)) / this->_parameters.sigmaT*sqrt(((vp * vp).sum()));
+   return -log(distribution(generator)) / this->_parameters.sigmaT * sqrt(((vp * vp).sum()));
 
 };

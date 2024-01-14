@@ -1,19 +1,31 @@
 [simulation]
 #Number of dimensions
 nbDims = 2 
+
 #Number of MC particles 
 nbMC = 10
-#Time of the wanted result 
+
+#Final time of the simulation
 time = 1.0 
-#Position of the wanted result 
-x1 = 0.0
-x2 = 0.0
-x3 = 0.0
+
 #Speed of the wanted result
 v1 = 1.0
 v2 = 1.0
 v3 = 1.0
 
+# Sizes of the domain
+xmin = -1.0
+xmax = 1.0
+nbPtsX = 10
+ymin = -1.0
+ymax = 1.0
+nbPtsY = 10
+zmin = -1.0
+zmax = 1.0
+nbPtsZ = 10
+
+# Type of domain
+domainType = "elastic"
 
 [physics]
 sigmaS = 1.0
