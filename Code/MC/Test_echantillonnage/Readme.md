@@ -13,3 +13,8 @@ g++ -o run sampling_test.cpp ../domain.cpp ../particles.cpp ../population.cpp ..
 python3 treatment.py
 
 
+
+NB :
+Fichier sampling_test.cpp légèrement différent du main.cpp du répertoire parent
+Raison : ce dernier est encore en évolution
+Ce cas test sera mis à jour une fois le code de résolution achevé
