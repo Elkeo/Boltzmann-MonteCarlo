@@ -2,27 +2,26 @@ OBJS	= particles.o population.o domain.o main.o parameters.o
 SOURCE	= particles.cpp population.cpp domain.cpp main.cpp parameters.cpp
 HEADER	= particles.hpp population.hpp domain.hpp main.hpp parameters.hpp
 OUT	= main
-CC	 = g++
-FLAGS	 = -g -c -Wall
-LFLAGS	 = 
+CXX	 = g++
+FLAGS	 = -g -c -Wall -std=c++11
 
 all: $(OBJS)
-	$(CC) -g $(OBJS) -o $(OUT) $(LFLAGS)
+	$(CXX) -g $(OBJS) -o $(OUT) $(LFLAGS)
 
 parametres.o: parametres.cpp
-	$(CC) $(FLAGS) parametres.cpp 
+	$(CXX) $(FLAGS) parametres.cpp 
 
 particles.o: particles.cpp
-	$(CC) $(FLAGS) particles.cpp 
+	$(CXX) $(FLAGS) particles.cpp 
 
 population.o: population.cpp
-	$(CC) $(FLAGS) population.cpp 
+	$(CXX) $(FLAGS) population.cpp 
 
 domain.o: domain.cpp
-	$(CC) $(FLAGS) domain.cpp 
+	$(CXX) $(FLAGS) domain.cpp 
 
 main.o: main.cpp
-	$(CC) $(FLAGS) main.cpp 
+	$(CXX) $(FLAGS) main.cpp 
 
 
 clean:
