@@ -15,7 +15,7 @@ public:
    bool notInDomain();
 
 public:
-   Particle(const GenericDomain*, const struct_parameters &parameters);
+   Particle(const GenericDomain*, const struct_parameters& parameters, const Vecteur& x);
    ~Particle();
    virtual void move(double&);
 };

@@ -1,17 +1,17 @@
 [simulation]
 #Number of dimensions
-nbDims = 2 
+nbDims = 2
 
 #Number of MC particles 
-nbMC = 10
+nbMC = 1000000
 
 #Final time of the simulation
 time = 1.0 
 
 #Speed of the wanted result
 v1 = 1.0
-v2 = 1.0
-v3 = 1.0
+v2 = 0.0
+v3 = 0.0
 
 # Sizes of the domain
 xmin = -1.0
@@ -25,10 +25,10 @@ zmax = 1.0
 nbPtsZ = 10
 
 # Type of domain
-domainType = "elastic"
+domainType = "periodic"
 
 [physics]
-sigmaS = 1.0
+sigmaS = 0.0
 sigmaT = 1.0
 modV = 1.0
 

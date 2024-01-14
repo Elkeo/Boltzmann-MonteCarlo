@@ -4,12 +4,12 @@
 
 
 // Constructeur par défaut : on initialise les vecteurs avec leur nombre de dimensions.
-Particle::Particle(const GenericDomain* Domain, const struct_parameters &parameters) :
+Particle::Particle(const GenericDomain* Domain, const struct_parameters& parameters, const Vecteur& x) :
    _Domain(Domain),
    _parameters(parameters),
    _sp(parameters.time),
    _wp(1.0 / parameters.nbMC),
-   _xp(parameters.array_x),
+   _xp(x),
    _vp(parameters.array_v)
 {
 };

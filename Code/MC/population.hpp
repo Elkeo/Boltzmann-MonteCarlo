@@ -12,9 +12,10 @@ private:
    const struct_parameters _parameters;
    const int _nbParticles;
    double _u;
+   Vecteur _x;
 
 public:
-   Population(const GenericDomain*, const struct_parameters &parameters, double& u);
+   Population(const GenericDomain*, const struct_parameters& parameters, double& u, const Vecteur& x);
    ~Population();
 
    void move();

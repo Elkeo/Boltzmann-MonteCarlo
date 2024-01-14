@@ -9,10 +9,14 @@ struct struct_parameters {
     int nbMC = 0; //Number of MC particles 
     double time = 0; //Time of the wanted result 
 
-    std::valarray<double> array_x;
-    std::valarray<double> array_y;
-    std::valarray<double> array_z;
+    std::valarray<double> array_x = { 0, 0 };
+    std::valarray<double> array_y = { 0, 0 };
+    std::valarray<double> array_z = { 0, 0 };
     std::valarray<double> array_v;
+
+    int nbPtsX = 1,
+        nbPtsY = 1,
+        nbPtsZ = 1;
 
     std::string domainType = "";
 

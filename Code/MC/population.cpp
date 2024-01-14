@@ -2,11 +2,12 @@
 
 
 /* Constructeur par défaut de la classe Population */
-Population::Population(const GenericDomain* Domain, const struct_parameters &parameters, double& u) :
+Population::Population(const GenericDomain* Domain, const struct_parameters& parameters, double& u, const Vecteur& x) :
    _Domain(Domain),
    _parameters(parameters),
    _nbParticles(parameters.nbMC),
-   _u(u)
+   _u(u),
+   _x(x)
 {
 };
 
@@ -21,7 +22,7 @@ void Population::move()
    for (int i = 0; i < this->_parameters.nbMC; i++)
    {
       /* On créé une particule */
-      Particle particle(this->_Domain, this->_parameters);
+      Particle particle(this->_Domain, this->_parameters, this->_x);
       /* La particule est "envoyée" évoluer */
       particle.move(_u);
    }

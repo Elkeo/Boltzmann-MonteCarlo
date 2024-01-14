@@ -10,7 +10,6 @@ protected:
    int _d;
    const struct_parameters _parameters;
    std::valarray<Vecteur> _Omega;
-   std::valarray<Vecteur> _xCoords, _yCoords;
 
 public:
    /* Constructeurs et destructeurs par défaut */

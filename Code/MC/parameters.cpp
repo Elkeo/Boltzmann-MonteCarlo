@@ -23,13 +23,17 @@ void init_parameters(struct_parameters& parameters) {
     parameters.array_x = { toml::find<double>(simulation, "xmin"), toml::find<double>(simulation, "xmax") };
     // Vitesse initiale pour laquelle on veut calculer la solution
     parameters.array_v = std::valarray<double>(parameters.nbDims, toml::find<double>(simulation, "v1"));
+    // Nombre de points de calcul
+    parameters.nbPtsX = toml::find<int>(simulation, "nbPtsX");
 
     if (parameters.nbDims >= 2) {
         parameters.array_y = { toml::find<double>(simulation, "ymin"), toml::find<double>(simulation, "ymax") };
         parameters.array_v[1] = toml::find<double>(simulation, "v2");
+        parameters.nbPtsY = toml::find<int>(simulation, "nbPtsY");
         if (parameters.nbDims == 3) {
             parameters.array_z = { toml::find<double>(simulation, "zmin"), toml::find<double>(simulation, "zmax") };
             parameters.array_v[2] = toml::find<double>(simulation, "v3");
+            parameters.nbPtsZ = toml::find<int>(simulation, "nbPtsZ");
         }
     }
 
