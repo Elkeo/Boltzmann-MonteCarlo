@@ -1,7 +1,6 @@
-#ifndef DOMAIN_HPP
-#define DOMAIN_HPP
-
 #include "main.hpp"
+#include "parameters.hpp"
+
 
 
 /* CLASSE DÉFINISSANT LE DOMAINE DANS LEQUEL LE PAQUET DE PARTICULE ÉVOLUE */
@@ -9,12 +8,13 @@ class GenericDomain
 {
 protected:
    int _d;
+   const struct_parameters _parameters;
    std::valarray<Vecteur> _Omega;
    std::valarray<Vecteur> _xCoords, _yCoords;
 
 public:
    /* Constructeurs et destructeurs par défaut */
-   GenericDomain(const int& nbDim, const std::valarray<Vecteur>& Om);
+   GenericDomain(const struct_parameters &parameters, const std::valarray<Vecteur>& Om);
    virtual ~GenericDomain();
 
    /* Fonctions membres */
@@ -36,7 +36,7 @@ class PeriodicDomain : public GenericDomain
 {
 public:
    /* Constructeurs et destructeurs par défaut */
-   PeriodicDomain(const int& nbDim, const std::valarray<Vecteur>& Om) : GenericDomain(nbDim, Om) {};
+   PeriodicDomain(const struct_parameters &parameters, const std::valarray<Vecteur>& Om) : GenericDomain(parameters, Om) {};
    virtual ~PeriodicDomain();
 
    virtual void applyBoundaryConditions(Vecteur&, double&, Vecteur&) const;
@@ -47,9 +47,8 @@ class ElasticDomain : public GenericDomain
 {
 public:
    /* Constructeurs et destructeurs par défaut */
-   ElasticDomain(const int& nbDim, const std::valarray<Vecteur>& Om) : GenericDomain(nbDim, Om) {};
+   ElasticDomain(const struct_parameters &parameters, const std::valarray<Vecteur>& Om) : GenericDomain(parameters, Om) {};
    virtual ~ElasticDomain();
 
    virtual void applyBoundaryConditions(Vecteur&, double&, Vecteur&) const;
 };
-#endif  // DOMAIN_HPP

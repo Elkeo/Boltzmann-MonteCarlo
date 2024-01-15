@@ -33,7 +33,7 @@ gtest.a : gtest-all.o
 gtest_main.a : gtest-all.o gtest_main.o
 	$(AR) $(ARFLAGS) $@ $^
 
-parametres.o: $(USER_DIR)/parametres.cpp
+parameters.o: $(USER_DIR)/parameters.cpp
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $<
 
 domain.o: $(USER_DIR)/domain.cpp
@@ -45,6 +45,6 @@ population.o: $(USER_DIR)/population.cpp
 sigmas_0.o: $(USER_DIR)/sigmas_0.cpp $(GTEST_HEADERS)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -I$(GTEST_DIR) -c $< -o $@
 
-sigmas_0: sigmas_0.o domain.o parametres.o population.o gtest_main.a
+sigmas_0: sigmas_0.o domain.o parameters.o population.o gtest_main.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
 
