@@ -7,8 +7,8 @@ CXXFLAGS += -g -Wall -Wextra -pthread
 
 TESTS = domain_test
 
-GTEST_HEADERS = ./googletest/googletest/include/gtest/*.h \
-				./googletest/googletest/include/gtest/internal/*.h
+GTEST_HEADERS = ../googletest/googletest/include/gtest/*.h \
+				../googletest/googletest/include/gtest/internal/*.h
 
 all : $(TESTS)
 
