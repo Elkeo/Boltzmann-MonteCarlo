@@ -1,9 +1,9 @@
 [simulation]
 #Number of dimensions
-nbDims = 2
+nbDims = 1
 
 #Number of MC particles 
-nbMC = 1000000
+nbMC = 1000
 
 #Final time of the simulation
 time = 1.0 

@@ -14,6 +14,9 @@ int main(int argc, char const* argv[])
    struct struct_parameters parameters;
    init_parameters(parameters);
 
+   /* Ouverture d'un fichier pour stocker la solution */
+   std::ofstream file("solution_t_" + std::to_string(parameters.time) + ".txt");
+
    /* Création du domaine où les particules se meuvent */
    std::valarray<Vecteur> Omega(parameters.nbDims);
    Omega[0] = parameters.array_x;
@@ -61,7 +64,7 @@ int main(int argc, char const* argv[])
 
             /* On en déduit la solution u(x, t, v) */
             u[i][j][k] = packOfParticles.get_u();
-            std::cout << "Solution en " << x << " " << y << " " << z << " : " << u[i][j][k] << std::endl;
+            file << x << "\t" << y << "\t" << z << "\t" << u[i][j][k] << std::endl;
          }
       }
    }
