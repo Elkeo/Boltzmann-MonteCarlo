@@ -3,6 +3,7 @@
 #include "parametres.hpp"
 #include "population.hpp"
 #include <cmath>
+#include <random>
 
 class BoltzmannSolver {
 public:
