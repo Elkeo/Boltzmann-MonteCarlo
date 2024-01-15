@@ -1,3 +1,5 @@
+#ifndef DOMAIN_HPP
+#define DOMAIN_HPP
 #include "main.hpp"
 #include "parameters.hpp"
 
@@ -52,3 +54,5 @@ public:
 
    virtual void applyBoundaryConditions(Vecteur&, double&, Vecteur&) const;
 };
+
+#endif // DOMAIN_HPP

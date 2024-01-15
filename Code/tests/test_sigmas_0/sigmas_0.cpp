@@ -1,9 +1,10 @@
 #include <gtest/gtest.h>
 #include "domain.hpp"
-#include "parametres.hpp"
+#include "parameters.hpp"
 #include "population.hpp"
 #include <cmath>
 #include <random>
+#include "particles.hpp"
 
 class BoltzmannSolver {
 public:
@@ -34,8 +35,9 @@ double BoltzmannSolver::solve(const Vecteur& x, const Vecteur& v, double t, int 
         Vecteur xCopy = x;
         double tCopy = t;
         Vecteur vCopy = v;
-        periodicDomain->applyBoundaryConditions(xCopy, tCopy, vCopy);
-    }
+        elasticDomain->applyBoundaryConditions(xCopy, tCopy, vCopy);  // Corrected line
+}
+
 
     // Common logic for both types
     Population packOfParticles(_domain, nMC, x, t, v, u);
@@ -61,8 +63,16 @@ TEST(BoltzmannSolverTest, UValueTest) {
     }
 
     // Create instances of PeriodicDomain and ElasticDomain
-    GenericDomain* periodicDomain = new PeriodicDomain(d, Omega);
-    GenericDomain* elasticDomain = new ElasticDomain(d, Omega);
+    //GenericDomain* periodicDomain = new PeriodicDomain(d, Omega);
+    //GenericDomain* elasticDomain = new ElasticDomain(d, Omega);
+
+    struct_parameters parameters;
+    init_parameters(parameters);
+
+    // 
+    GenericDomain* periodicDomain = new PeriodicDomain(parameters, Omega);
+    GenericDomain* elasticDomain = new ElasticDomain(parameters, Omega);
+
 
     // Create BoltzmannSolver instances
     BoltzmannSolver periodicSolver(periodicDomain);
