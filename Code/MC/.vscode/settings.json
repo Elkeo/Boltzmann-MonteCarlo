@@ -76,6 +76,9 @@
       "utility": "cpp",
       "format": "cpp",
       "stop_token": "cpp",
-      "valarray": "cpp"
+      "valarray": "cpp",
+      "codecvt": "cpp",
+      "fstream": "cpp",
+      "iostream": "cpp"
    }
 }

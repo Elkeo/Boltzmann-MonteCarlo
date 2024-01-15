@@ -1,6 +1,6 @@
-OBJS	= particles.o population.o domain.o main.o parameters.o
-SOURCE	= particles.cpp population.cpp domain.cpp main.cpp parameters.cpp
-HEADER	= particles.hpp population.hpp domain.hpp main.hpp parameters.hpp
+OBJS	= parameters.o particles.o population.o domain.o main.o
+SOURCE	= parameters.cpp particles.cpp population.cpp domain.cpp main.cpp
+HEADER	= parameters.hpp particles.hpp population.hpp domain.hpp main.hpp
 OUT	= main
 CXX	 = g++
 FLAGS	 = -g -c -Wall -std=c++11
@@ -25,4 +25,4 @@ main.o: main.cpp
 
 
 clean:
-	rm -f $(OBJS) $(OUT)
+	rm -f $(OBJS) $(OUT) solution*.txt

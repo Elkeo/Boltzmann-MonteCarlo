@@ -1,9 +1,9 @@
 #include "domain.hpp"
 #include "parameters.hpp"
 
-GenericDomain::GenericDomain(const struct_parameters &parameters, const std::valarray<Vecteur>& Om) : 
-_Omega(Om),
-_parameters(parameters)
+GenericDomain::GenericDomain(const struct_parameters& parameters, const std::valarray<Vecteur>& Om) :
+   _parameters(parameters),
+   _Omega(Om)
 {
 };
 
@@ -78,8 +78,9 @@ Vecteur GenericDomain::sampleVprime(const Vecteur& xp, const double& sp, const d
    double normV = 1.0;
    Vecteur vprime(vp.size(), 0.0);
 
-   // Création du générateur de nombre aléatoires
-   std::default_random_engine generator;
+   // Initialisation du générateur de nombres aléatoires
+   std::random_device rd;
+   std::default_random_engine generator(rd());
 
    if (this->_parameters.nbDims == 1)
    {
@@ -114,9 +115,10 @@ Vecteur GenericDomain::sampleVprime(const Vecteur& xp, const double& sp, const d
 // Sample τ from the distribution having probability measure fτ(xp, sp, s, vp)ds
 double GenericDomain::sampleTau(const Vecteur& xp, const double& sp, const Vecteur& vp) const
 {
-   std::default_random_engine generator;
+   // Initialisation du générateur de nombres aléatoires
+   std::random_device rd;
+   std::default_random_engine generator(rd());
    std::uniform_real_distribution<double> distribution(0, 1);
 
-   return -log(distribution(generator)) / this->_parameters.sigmaT*sqrt(((vp * vp).sum()));
-
+   return -log(distribution(generator)) / this->_parameters.sigmaT * sqrt(((vp * vp).sum()));
 };
