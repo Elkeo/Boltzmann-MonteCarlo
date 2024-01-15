@@ -1,5 +1,7 @@
 #include "domain.hpp"
 #include "parameters.hpp"
+#include <random>
+
 
 GenericDomain::GenericDomain(const struct_parameters &parameters, const std::valarray<Vecteur>& Om) : 
 _Omega(Om),
