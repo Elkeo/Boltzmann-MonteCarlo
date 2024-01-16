@@ -1,0 +1,145 @@
+\documentclass[a4paper, 11pt]{article}
+\usepackage{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[T1]{fontenc}
+\usepackage{babel}
+\usepackage{hyperref}    %pour indexer la table des matières 
+\hypersetup{pdfborder=1 1 1}
+\usepackage{float} 
+\usepackage{url}
+\usepackage{caption}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{listings}
+\usepackage{subcaption}
+\usepackage{empheq}
+\usepackage{fancyhdr}
+\usepackage{booktabs}
+\usepackage{amssymb}
+\usepackage{xcolor}
+\usepackage{setspace}
+\usepackage{enumitem}
+\setlength{\hoffset}{-18pt}         
+\setlength{\oddsidemargin}{0pt} % Marge gauche sur pages impaires
+\setlength{\evensidemargin}{9pt} % Marge gauche sur pages paires
+\setlength{\marginparwidth}{54pt} % Largeur de note dans la marge
+\setlength{\textwidth}{481pt} % Largeur de la zone de texte (17cm)
+\setlength{\voffset}{-18pt} % Bon pour DOS
+\setlength{\marginparsep}{7pt} % Séparation de la marge
+\setlength{\topmargin}{0pt} % Pas de marge en haut
+\setlength{\headheight}{13pt} % Haut de page
+\setlength{\headsep}{10pt} % Entre le haut de page et le texte
+\setlength{\footskip}{27pt} % Bas de page + séparation
+\setlength{\textheight}{708pt} % Hauteur de la zone de texte (25cm)
+%Traits en haut et en bas des pages
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead[L]{}
+\fancyhead[R]{}
+\renewcommand\footrulewidth{1pt}
+\renewcommand\footrulewidth{1pt}
+\fancyfoot[L]{\tiny Project Report}
+\usepackage{lastpage}
+\fancyfoot[R]{\tiny January 2024}
+\fancyfoot[C]{\textbf{Page \thepage/\pageref{LastPage}}}
+\lstnewenvironment{mathematicacode}[1][]
+{
+	\lstset{
+		language=Mathematica,
+		basicstyle=\small\ttfamily,
+		numbers=left,
+		numberstyle=\tiny,
+		numbersep=5pt,
+		frame=single,
+		frameround=tttt,
+		framexleftmargin=5pt,
+		#1
+	}
+}
+{}
+
+\begin{document} 
+	
+	%----------------------------------------------------------------------------------------
+	%	TITLE PAGE
+	%----------------------------------------------------------------------------------------
+	
+	\begin{titlepage} % Suppresses displaying the page number on the title page and the subsequent page counts as page 1
+		\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for horizontal lines, change thickness here
+		
+		\centering % Centre everything on the page
+		
+		%------------------------------------------------
+		%	Headings
+		%------------------------------------------------
+		
+		\textsc{\LARGE ENSEIRB-MATMECA}\\[1cm] % Main heading such as the name of your university/college
+		
+		
+		\begin{figure}[H]
+			\begin{center}
+				\includegraphics[scale=4]{logo ecole.jpg}
+			\end{center}
+		\end{figure}
+		
+		%\textsc{\large Minor Heading}\\[0.5cm] % Minor heading such as course title
+		
+		%------------------------------------------------
+		%	Title
+		%------------------------------------------------
+		
+		\vspace{1cm}
+		
+		\HRule\\[0.4cm]
+		
+		{\huge\bfseries Solving the linear Boltzmann equation using Monte Carlo methods }\\[0.4cm] % Title of your document
+		
+		\HRule\\[1.5cm]
+		
+		{\huge\bfseries }
+		
+		\bigskip
+		\bigskip
+		
+		\centering
+		\Large{Project lead by :} \\
+		\Large{C. Aumonnier, A. Boucher, G. Doyen, K. El Maddah, G. Rodiere}
+		
+		%------------------------------------------------
+		%	Date
+		%------------------------------------------------
+		
+		\vfill\vfill\vfill % Position the date 3/4 down the remaining page
+		{\Large  Project supervised by :}\\
+		\Large{G. Poëtte}
+		
+		\vspace{0,5cm}
+		
+		{\large January 2024} % Date, change the \today to a set date if you want to be precise
+		
+		%------------------------------------------------
+		%	Logo
+		%------------------------------------------------
+		
+		%\vfill\vfill
+		%\includegraphics[width=0.2\textwidth]{placeholder.jpg}\\[1cm] % Include a department/university logo - this will require the graphicx package
+		
+		%----------------------------------------------------------------------------------------
+		
+		\vfill % Push the date up 1/4 of the remaining page
+		
+	\end{titlepage}
+	
+\tableofcontents
+
+\newpage
+	
+\section{Introduction}
+
+\section{Section 1}
+
+\section{Section 2}
+	
+	
+\end{document}
