@@ -121,5 +121,6 @@ double GenericDomain::sampleTau(const Vecteur& xp, const double& sp, const Vecte
    std::default_random_engine generator(rd());
    std::uniform_real_distribution<double> distribution(0, 1);
 
-   return -log(distribution(generator)) / this->_parameters.sigmaT * sqrt(((vp * vp).sum()));
+   double sigma_t = this->sigmaT(xp, sp, vp);
+   return sigma_t > 0 ? -log(distribution(generator)) / sigma_t * sqrt(((vp * vp).sum())) : sp + 1;
 };
