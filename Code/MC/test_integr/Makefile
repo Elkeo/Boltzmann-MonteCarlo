@@ -1,28 +1,32 @@
-OBJS	= particles.o population.o domain.o test_integr.o parameters.o
-SOURCE	= ../particles.cpp ../population.cpp ../domain.cpp test_integr.cpp ../parameters.cpp
-HEADER	= ../particles.hpp ../population.hpp ../domain.hpp ../parameters.hpp
-OUT	= run
-CC	 = g++
-FLAGS	 = -g -c -Wall
-LFLAGS	 = 
+# Définir le compilateur
+CXX = g++ 
 
-all: $(OBJS)
-	$(CC) -g $(OBJS) -o $(OUT) $(LFLAGS)
+# Définir les options de compilation
+CXXFLAGS = -Wall -Wextra -std=c++11
 
-../particles.o: ../particles.cpp ../particles.hpp
-	$(CC) $(FLAGS) ../particles.cpp -o ../particles.o
+# Nom du fichier exécutable
+TARGET = run
 
-../population.o: ../population.cpp ../population.hpp
-	$(CC) $(FLAGS) ../population.cpp -o ../population.o
+# Définir les fichiers source
+SOURCES = test_integr.cpp ../domain.cpp ../particles.cpp ../population.cpp ../parameters.cpp
 
-../domain.o: ../domain.cpp ../domain.hpp
-	$(CC) $(FLAGS) ../domain.cpp -o ../domain.o
+# Définir les fichiers objets
+OBJECTS = $(SOURCES:.cpp=.o)
 
-../parameters.o: ../parameters.cpp ../parameters.hpp
-	$(CC) $(FLAGS) ../parameters.cpp -o ../parameters.o
+# Règle par défaut
+all: $(TARGET)
 
-test_integr.o: test_integr.cpp $(HEADER)
-	$(CC) $(FLAGS) test_integr.cpp -o test_integr.o
+# Règle pour créer l'exécutable
+$(TARGET): $(OBJECTS)
+	$(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJECTS)
 
+# Règle pour créer les fichiers objets
+%.o: %.cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+# Règle pour nettoyer les fichiers compilés
 clean:
-	rm -f $(OBJS) $(OUT)
+	rm -f $(OBJECTS) $(TARGET)
+
+# Règle pour empêcher les conflits avec des fichiers de même nom
+.PHONY: all clean

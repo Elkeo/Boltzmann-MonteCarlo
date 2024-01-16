@@ -19,7 +19,6 @@ int main(int argc, char const* argv[])
    init_parameters(parameters);
 
    /* Ouverture d'un fichier pour stocker la solution */
-   std::ofstream file("solution_t_" + std::to_string(parameters.time) + ".txt");
 
    /* Création du domaine où les particules se meuvent */
    std::valarray<Vecteur> Omega(parameters.nbDims);
@@ -47,43 +46,84 @@ int main(int argc, char const* argv[])
       exit(1);
    }
 
-   /* Création de la solution u(x, t, v) */
-   std::valarray<std::valarray<std::valarray<double>>> u(std::valarray<std::valarray<double>>(std::valarray<double>(0.0, parameters.nbPtsZ), parameters.nbPtsY), parameters.nbPtsX);
    double somme=0;
-   for (int i = 0; i < parameters.nbPtsX; i++)
-   {
-      for (int j = 0; j < parameters.nbPtsY; j++)
+   double dx,dy,dz;
+   dx=1.0/parameters.nbPtsX;
+   dy=1.0/parameters.nbPtsX;
+   dz=1.0/parameters.nbPtsZ;
+
+   if(parameters.nbDims==3){
+
+      /* Création de la solution u(x, t, v) */
+      std::valarray<std::valarray<std::valarray<double>>> u(std::valarray<std::valarray<double>>(std::valarray<double>(0.0, parameters.nbPtsZ), parameters.nbPtsY), parameters.nbPtsX);
+      for (int i = 0; i < parameters.nbPtsX; i++)
       {
-         for (int k = 0; k < parameters.nbPtsZ; k++)
+         for (int j = 0; j < parameters.nbPtsY; j++)
          {
-            double x = parameters.array_x[0] + (i + 0.5) * (parameters.array_x[1] - parameters.array_x[0]) / (parameters.nbPtsX);
-            double y = parameters.array_y[0] + (j + 0.5) * (parameters.array_y[1] - parameters.array_y[0]) / (parameters.nbPtsY);
-            double z = parameters.array_z[0] + (k + 0.5) * (parameters.array_z[1] - parameters.array_z[0]) / (parameters.nbPtsZ);
+            for (int k = 0; k < parameters.nbPtsZ; k++)
+            {
+               double x = parameters.array_x[0] + (i + 0.5) * (parameters.array_x[1] - parameters.array_x[0]) / (parameters.nbPtsX);
+               double y = parameters.array_y[0] + (j + 0.5) * (parameters.array_y[1] - parameters.array_y[0]) / (parameters.nbPtsY);
+               double z = parameters.array_z[0] + (k + 0.5) * (parameters.array_z[1] - parameters.array_z[0]) / (parameters.nbPtsZ);
 
-            /* Création de la population de particules (fictives) */
-            
-            Population packOfParticles(Domaine, parameters, u[i][j][k], { x, y, z });
+               /* Création de la population de particules (fictives) */
+               
+               Population packOfParticles(Domaine, parameters, u[i][j][k], { x, y, z });
 
-            /* Les particules (fictives) évoluent */
-            packOfParticles.move();
+               /* Les particules (fictives) évoluent */
+               packOfParticles.move();
 
-            /* On en déduit la solution u(x, t, v) */
-            u[i][j][k] = packOfParticles.get_u();
-            somme+=u[i][j][k];
+               /* On en déduit la solution u(x, t, v) */
+               u[i][j][k] = packOfParticles.get_u();
+               somme+=u[i][j][k]*dx*dy*dz;
+            }
          }
       }
    }
+   // if(parameters.nbDims==2){
+
+   //    /* Création de la solution u(x, t, v) */
+   //    std::valarray<std::valarray<std::valarray<double>>> u(std::valarray<std::valarray<double>>(std::valarray<double>(0.0, parameters.nbPtsZ), parameters.nbPtsY), parameters.nbPtsX);
+   //    double somme=0;
+   //    for (int i = 0; i < parameters.nbPtsX; i++)
+   //    {
+   //       for (int j = 0; j < parameters.nbPtsY; j++)
+   //       {
+   //          for (int k = 0; k < parameters.nbPtsZ; k++)
+   //          {
+   //             double x = parameters.array_x[0] + (i + 0.5) * (parameters.array_x[1] - parameters.array_x[0]) / (parameters.nbPtsX);
+   //             double y = parameters.array_y[0] + (j + 0.5) * (parameters.array_y[1] - parameters.array_y[0]) / (parameters.nbPtsY);
+   //             double z = parameters.array_z[0] + (k + 0.5) * (parameters.array_z[1] - parameters.array_z[0]) / (parameters.nbPtsZ);
+
+   //             /* Création de la population de particules (fictives) */
+               
+   //             Population packOfParticles(Domaine, parameters, u[i][j][k], { x, y, z });
+
+   //             /* Les particules (fictives) évoluent */
+   //             packOfParticles.move();
+
+   //             /* On en déduit la solution u(x, t, v) */
+   //             u[i][j][k] = packOfParticles.get_u();
+   //             somme+=u[i][j][k];
+   //          }
+   //       }
+   //    }
+
+
+   // }
 
    Vecteur x(3); 
    Vecteur v(3); 
 
    
-   double U0 = Domaine->initialCondition(x, v);
+   double U0;
+   U0=Domaine->initialCondition(x, v)*parameters.nbPtsX*parameters.nbPtsY*parameters.nbPtsZ;
+   U0=U0*dx*dy*dz/(parameters.array_x[1]-parameters.array_x[0])*(parameters.array_y[1]-parameters.array_y[0])*(parameters.array_z[1]-parameters.array_z[0]);
 
+   double U;
+   U=somme/(parameters.array_x[1]-parameters.array_x[0])*(parameters.array_y[1]-parameters.array_y[0])*(parameters.array_z[1]-parameters.array_z[0]);
 
-   double U=somme*(parameters.array_x[1]-parameters.array_x[0])*(parameters.array_y[1]-parameters.array_y[0])*(parameters.array_z[1]-parameters.array_z[0]);
-
-   cout << "erreur"<<U-(U0*exp(-parameters.modV*(parameters.sigmaS-parameters.sigmaT)*parameters.time))<< endl;
+   cout << "erreur"<<U-(U0*exp(-parameters.modV*(parameters.sigmaS-parameters.sigmaT)*parameters.time))<< "U="<< U<<endl;
    delete Domaine;
 
 
