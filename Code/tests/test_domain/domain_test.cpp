@@ -1,4 +1,4 @@
-#include "../googletest/googletest/include/gtest/gtest.h"
+#include <gtest/gtest.h>
 #include "domain.hpp"
 #include "parametres.hpp"
 
