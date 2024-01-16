@@ -3,7 +3,7 @@ USER_DIR = .
 USE = ../MC
 
 CPPFLAGS += -isystem $(GTEST_DIR)/include
-CXXFLAGS += -g -Wall -Wextra -pthread
+CXXFLAGS += -g -Wall -Wextra -pthread -std=c++17
 
 TESTS = domain_test
 
