@@ -10,7 +10,6 @@ int main(int argc, char const* argv[])
 {
 
    /* Déclaration - initialisation des variables */
-
    struct struct_parameters parameters;
    init_parameters(parameters);
 

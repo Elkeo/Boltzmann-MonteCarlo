@@ -76,7 +76,7 @@ double GenericDomain::sigmaT(const Vecteur& xp, const double& t, const Vecteur& 
 Vecteur GenericDomain::sampleVprime(const Vecteur& xp, const double& sp, const double& tau, const Vecteur& vp) const
 {
    double normV = 1.0;
-   Vecteur vprime(vp.size(), 0.0);
+   Vecteur vprime(0.0, 3);
 
    // Initialisation du générateur de nombres aléatoires
    std::random_device rd;
@@ -87,14 +87,15 @@ Vecteur GenericDomain::sampleVprime(const Vecteur& xp, const double& sp, const d
       // tirage uniforme sur [-1, 1]
       std::uniform_real_distribution<double> distribution(-1, 1);
 
-      vprime = { normV * distribution(generator) };
+      vprime[0] = normV * distribution(generator);
    }
    else if (this->_parameters.nbDims == 2)
    {
       // tirage uniforme sur le cercle unité
       std::uniform_real_distribution<double> distribution(0, 2 * M_PI);
       double theta = distribution(generator);
-      vprime = { normV * cos(theta), normV * sin(theta) };
+      vprime[0] = normV * cos(theta);
+      vprime[1] = normV * sin(theta);
    }
    else if (this->_parameters.nbDims == 3)
    {
