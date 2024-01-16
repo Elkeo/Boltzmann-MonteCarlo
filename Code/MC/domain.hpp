@@ -7,7 +7,6 @@
 class GenericDomain
 {
 protected:
-   int _d;
    const struct_parameters _parameters;
    std::valarray<Vecteur> _Omega;
 
@@ -26,7 +25,6 @@ public:
    Vecteur sampleVprime(const Vecteur&, const double&, const double&, const Vecteur&) const;
 
    /* Accesseurs */
-   const int& get_d() const { return _d; }
    const std::valarray<Vecteur>& get_Omega() const { return _Omega; }
 };
 

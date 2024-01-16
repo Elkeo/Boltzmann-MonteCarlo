@@ -21,7 +21,7 @@ Particle::~Particle()
 
 bool Particle::notInDomain()
 {
-   for (int i = 0; i < this->_Domain->get_d(); i++)
+   for (int i = 0; i < this->_parameters.nbDims; i++)
    {
       if (not ((this->_Domain->get_Omega()[i][0] <= _xp[i]) and (this->_xp[i] <= this->_Domain->get_Omega()[i][1])))
       {
