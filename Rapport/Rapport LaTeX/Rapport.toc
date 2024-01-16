@@ -1,4 +1,7 @@
 \babel@toc {nil}{}
 \contentsline {section}{\numberline {1}Introduction}{2}{section.1}%
-\contentsline {section}{\numberline {2}Section 1}{2}{section.2}%
-\contentsline {section}{\numberline {3}Section 2}{2}{section.3}%
+\contentsline {section}{\numberline {2}Transport equations}{2}{section.2}%
+\contentsline {section}{\numberline {3}The use of Monte Carlo methods to solve the linear Boltzmann equation}{2}{section.3}%
+\contentsline {section}{\numberline {4}Semi analog MC scheme}{2}{section.4}%
+\contentsline {section}{\numberline {5}Numerical tests/results}{2}{section.5}%
+\contentsline {section}{\numberline {6}Conclusion}{2}{section.6}%

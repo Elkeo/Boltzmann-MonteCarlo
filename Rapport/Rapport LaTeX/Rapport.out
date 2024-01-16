@@ -1,3 +1,6 @@
 \BOOKMARK [1][-]{section.1}{Introduction}{}% 1
-\BOOKMARK [1][-]{section.2}{Section 1}{}% 2
-\BOOKMARK [1][-]{section.3}{Section 2}{}% 3
+\BOOKMARK [1][-]{section.2}{Transport equations}{}% 2
+\BOOKMARK [1][-]{section.3}{The use of Monte Carlo methods to solve the linear Boltzmann equation}{}% 3
+\BOOKMARK [1][-]{section.4}{Semi analog MC scheme}{}% 4
+\BOOKMARK [1][-]{section.5}{Numerical tests/results}{}% 5
+\BOOKMARK [1][-]{section.6}{Conclusion}{}% 6
