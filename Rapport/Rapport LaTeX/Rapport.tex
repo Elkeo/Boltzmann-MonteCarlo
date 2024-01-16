@@ -146,12 +146,61 @@ insérer la partie écrite par Clément
 
 \section{The use of Monte Carlo methods to solve the linear Boltzmann equation}
 
-insérer la partie écrite par Khaoula
-**Khaoula
+The transport equation in an infinite medium with its corresponding deterministic collisional component can be expressed as:
+\begin{equation}
+	\partial _t u(x,t,\textbf{v}) + \textbf{v} \cdot \nabla u(x,t,\textbf{v}) + v\sigma_t (x,t,\textbf{v})u(x,t,\textbf{v})= v\sigma_s(x,t,\textbf{v})\int P (x,t,\textbf{v},\textbf{v}')u(x,t,\textbf{v}')d\textbf{v}' \label{ref11}
+\end{equation}
+
+Where 
+\begin{equation*}
+	\sigma_s (x,t,\textbf{v})= \int \sigma_s (x,t,\textbf{v},\textbf{v}')d\textbf{v}', \quad  P (x,t,\textbf{v},\textbf{v}')=
+	\frac{\sigma_s (x,t,\textbf{v},\textbf{v}')}{\sigma_s (x,t,\textbf{v})}
+\end{equation*}
+
+The approach involves a series of variable changes. The initial step involves re-expressing the transport equation \ref{ref11} with respect to a characteristic $x + vt$. As a result, it transforms into:
+
+\begin{equation}
+	\partial _s u(x+\textbf{v}s,s,\textbf{v}) = -v\sigma_t (x+\textbf{v}s,s,\textbf{v})u(x+\textbf{v}s,s,\textbf{v}) + v\sigma_s(x+\textbf{v}s,s,\textbf{v})\int P (x+\textbf{v}s,s,\textbf{v},\textbf{v}')u(x+\textbf{v}s,s,\textbf{v}')d\textbf{v}'
+\end{equation}
+
+Let's multiply both sides of the equation by:
+\begin{equation*}
+	e^{\int _0^s v\sigma_t (x + \textbf{v}\alpha,\alpha, v) d\alpha}
+\end{equation*}
+Following that, we obtain
+\begin{equation*}
+	\partial _s [u(x+\textbf{v}s,s,\textbf{v})e^{\int _0^s v\sigma_t (x + \textbf{v}\alpha,\alpha, v) d\alpha}] = e^{\int _0^s v\sigma_t (x + \textbf{v}\alpha,\alpha, v) d\alpha} v\sigma_s(x+\textbf{v}s,s,\textbf{v})\int P (x+\textbf{v}s,s,\textbf{v},\textbf{v}')u(x+\textbf{v}s,s,\textbf{v}')d\textbf{v}' \label{ref12}
+\end{equation*}
+We get after integrating the equation \ref{ref12} between [0, t]:
+
+\begin{multline}
+	u(x+\textbf{v}t,t,\textbf{v}) = u_0(x, \textbf{v}) \exp\left(- \int_{0}^{t} v\sigma_t\left(x + \textbf{v} \alpha, \alpha, \textbf{v}\right) d\alpha\right) \\
+	+ \int_{0}^{t} \int v\sigma_s\left(x + \textbf{v}s, s, \textbf{v}\right) u\left(x + \textbf{v}s, s, \textbf{v}'\right) e^{- \int_s^t v\sigma_t\left(x + \textbf{v} \alpha, \textbf{v}\right) d\alpha} P\left(x + \textbf{v} s, s, \textbf{v}, \textbf{v}'\right) d\textbf{v}'ds 
+\end{multline}
+
+We obtain:
+
+\begin{multline}
+	u(x,t,\textbf{v}) = u_0(x - \textbf{v}t, \textbf{v}) \exp\left(- \int_{0}^{t} v\sigma_t\left(x - \textbf{v}(t - \alpha), \alpha, \textbf{v}\right) d\alpha\right) \\
+	+ \int_{0}^{t} \int v\sigma_s\left(x - \textbf{v}(t - s), s, \textbf{v}\right) u\left(x - \textbf{v}(t - s), s, \textbf{v}'\right) e^{- \int_s^t v\sigma_t\left(x - \textbf{v}(t - \alpha), \textbf{v}\right) d\alpha} P\left(x - \textbf{v}(t - s), s, \textbf{v}, \textbf{v}'\right) d\textbf{v}'ds \label{ref1}
+\end{multline}
+We also have:
+\begin{multline}
+	\exp\left(- \int_{0}^{t} v\sigma_t\left(x - \textbf{v}(t - \alpha), \alpha, \textbf{v}\right) d\alpha\right) = \exp\left(- \int_{0}^{t} v\sigma_t\left(x - \textbf{v} \alpha,t- \alpha, \textbf{v}\right) d\alpha\right) \\ = \int _t^\infty  v\sigma_t\left(x - \textbf{v} s,t- s, \textbf{v}\right)
+	\exp\left(- \int_{0}^{s} v\sigma_t\left(x - \textbf{v} \alpha,t- \alpha, \textbf{v}\right) d\alpha\right) ds
+\end{multline}
+Then the integral representation of \ref{ref11} is provided by:
+
+\begin{multline}
+	u(x,t,\textbf{v}) =  \int _t^\infty  u_0(x - \textbf{v}t, \textbf{v}) v\sigma_t\left(x - \textbf{v} s,t- s, \textbf{v}\right)
+	\exp\left(- \int_{0}^{s} v\sigma_t\left(x - \textbf{v} \alpha,t- \alpha, \textbf{v}\right) d\alpha\right) ds\\
+	+ \int_{0}^{t} \int v\sigma_s\left(x - \textbf{v}(t - s), s, \textbf{v}\right) u\left(x - \textbf{v}(t - s), s, \textbf{v}'\right) e^{- \int_s^t v\sigma_t\left(x - \textbf{v}(t - \alpha), \textbf{v}\right) d\alpha} P\left(x - \textbf{v}(t - s), s, \textbf{v}, \textbf{v}'\right) d\textbf{v}'ds \label{ref13}
+\end{multline}
+
 
 \section{Semi analog MC scheme}
 
-**Khaoula
+Developing a Monte Carlo scheme involves introducing a group of random variables along with their associated probability measure to express \ref{ref13} as an expectation. The selection of this set of random variables is not unique, resulting in various Monte Carlo schemes with distinct properties.
 
 \section{Numerical tests/results}
 
