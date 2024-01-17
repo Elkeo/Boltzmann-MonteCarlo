@@ -25,4 +25,4 @@ main.o: main.cpp
 
 
 clean:
-	rm -f $(OBJS) $(OUT) solution*.txt
+	rm -f $(OBJS) $(OUT) solution*.txt *.png

@@ -10,7 +10,7 @@ set xlabel "Axe X"
 set ylabel "Axe Y"
 
 # Tracez la solution en 2D à partir du fichier de données
-plot "solution_t_1.000000.txt" using 1:2:4 with lines title "Solution t=1.000000"
+plot "solution_t_1.000000.txt" using 1:4 with lines title "Solution t=1.000000"
 
 # Quittez Gnuplot
 quit
