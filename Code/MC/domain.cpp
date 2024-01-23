@@ -61,7 +61,8 @@ double GenericDomain::initialCondition(const Vecteur& x, const Vecteur& v) const
    {
       if (this->_parameters.nbDims != 1)
       {
-         exit('Test case 2 is only available for 1D problems.');
+         std::cout << "Test case 2 is only available for 1D problems." << std::endl;
+         throw std::exception();
       }
       u_0 = (0.4 < x[0] and x[0] < 0.6) ? 1.0 : 0.0;
    }
