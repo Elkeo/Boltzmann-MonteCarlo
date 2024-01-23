@@ -1,6 +1,6 @@
 [simulation]
 #Number of dimensions
-nbDims = 3
+nbDims = 1
 
 #Number of MC particles 
 nbMC = 1000
