@@ -4,10 +4,12 @@
 #include <valarray>
 
 struct struct_parameters {
-    //Simuation parameters
+    //Simulation parameters
     int nbDims = 0; //Number of dimensions
     int nbMC = 0; //Number of MC particles 
-    double time = 0; //Time of the wanted result 
+    double time = 0; //Current time of the simulation
+    double finalTime = 0; //Final time of the simulation
+    double dt = 0; //Time step
 
     std::valarray<double> array_x = { 0, 0 };
     std::valarray<double> array_y = { 0, 0 };
@@ -19,6 +21,7 @@ struct struct_parameters {
         nbPtsZ = 1;
 
     std::string domainType = "";
+    std::string fileName = "";
 
     //Phisical parameters
     double sigmaS = 0;

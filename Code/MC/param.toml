@@ -6,7 +6,10 @@ nbDims = 2
 nbMC = 10
 
 #Final time of the simulation
-time = 1.0 
+finalTime = 1.0 
+
+# Time step of the simulation
+dt = 0.1
 
 #Speed of the wanted result
 v1 = 1.0

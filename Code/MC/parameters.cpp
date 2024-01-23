@@ -9,14 +9,15 @@
 void init_parameters(struct_parameters& parameters) {
 
     //Opening file
-    auto param_file = toml::parse("param.toml");
+    auto param_file = toml::parse(parameters.fileName);
 
     //Simuation parameters
     const auto& simulation = toml::find(param_file, "simulation");
 
     parameters.nbDims = toml::find<int>(simulation, "nbDims");//Number of dimensions
     parameters.nbMC = toml::find<int>(simulation, "nbMC"); //Number of MC particles 
-    parameters.time = toml::find<double>(simulation, "time"); //Final time of the simulation
+    parameters.finalTime = toml::find<double>(simulation, "finalTime"); //Final time of the simulation
+    parameters.dt = toml::find<double>(simulation, "dt"); //Time step
     parameters.domainType = toml::find<std::string>(simulation, "domainType"); //Type of domain
 
     // Position pour laquelle on veut calculer la solution (ici au centre)
