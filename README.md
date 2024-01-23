@@ -22,8 +22,8 @@ Le fichier param.toml rassemble les différents paramètres d'entrée (nombre de
 
 Le code se compile en se plaçant dans le répertoire Boltzmann-Montecarlo/Code/MC et en utilisant la commande "make". 
 
-L'exécution se fait ensuite par l'appel "./main" et donne la solution de $u(x_i, y_j, z_k, t, v)$ en fonction des paramètres choisis dans un fichier "Resultats/solution_t_"n".txt".
-Les 4 premières colonnes correspondent à $t^n$, $x_i$, $y_j$ et $z_k$ et la quatrième et dernière à $u(x_i, y_j, z_k, t^n, v)$.
+L'exécution se fait ensuite par l'appel "./main" et donne la solution de $u(x_i, y_j, z_k, t^n, v)$ en fonction des paramètres choisis dans un fichier "Resultats/solution_t_"n".txt".
+Les 4 premières colonnes correspondent à $t^n$, $x_i$, $y_j$ et $z_k$ et la cinquième et dernière à $u(x_i, y_j, z_k, t^n, v)$.
 
 NB : les fonctions SigmaS et SigmaT sont constantes et retournent pour valeur celle écrite dans le fichier param.toml
 
