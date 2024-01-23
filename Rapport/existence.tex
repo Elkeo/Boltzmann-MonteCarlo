@@ -20,328 +20,330 @@
 \linespread{1.25}
 
 \begin{document}
-
-
-    \begin{center}
-
-
-    \vspace{50pt}
-    %\includegraphics[scale=0.5]{logo_em.jpg}\\
-    \vspace{20pt}
-    
-    \rule{1\textwidth}{2pt}\\
-    \vspace{20pt}
-    \huge Existence des solutions\\
-    \vspace{20pt}
-    \rule{1\textwidth}{2pt}\\ 
-    \vspace{10pt}
-
-    \end{center}
-
-    \noindent
-    \begin{minipage}{0.5\textwidth}
-        \begin{flushleft}
-            \Large Writted by :\\[0.2cm]
-            \textsc{El Maddah} Khaloula\\
-            \textsc{Doyen} Guillaume\\
-            \textsc{Rodiere} Gabriel\\
-            \textsc{Boucher} Antoine\\
-            \textsc{Aumonier} Clément\\
-        \end{flushleft}
-    \end{minipage}%
-    \begin{minipage}{0.5\textwidth}
-        \begin{flushright}
-                \Large Supervised by :\\[0.2cm]
-                \textsc{Poëtte} Gaël\\
-
-        \end{flushright}
-    \end{minipage}
- 
-	\vspace{50 pt}
- 
-
-
- 
-
-\newpage
-\footnotesize
-
-\tableofcontents
-\setcounter{tocdepth}{1}
-\setcounter{tocdepth}{0}
-\def\restriction#1#2{\mathchoice
-	{\setbox1\hbox{${\displaystyle #1}_{\scriptstyle #2}$}
-		\restrictionaux{#1}{#2}}
-	{\setbox1\hbox{${\textstyle #1}_{\scriptstyle #2}$}
-		\restrictionaux{#1}{#2}}
-	{\setbox1\hbox{${\scriptstyle #1}_{\scriptscriptstyle #2}$}
-		\restrictionaux{#1}{#2}}
-	{\setbox1\hbox{${\scriptscriptstyle #1}_{\scriptscriptstyle #2}$}
-		\restrictionaux{#1}{#2}}}
-\def\restrictionaux#1#2{{#1\,\smash{\vrule height .8\ht1 depth .85\dp1}}_{\,#2}} 
-
-
-\newpage
-
-\paragraph{Remarque} Voici un petit résumé des différentes existences et unicités des solutions selon les différents cas d'équation à résoudre. La principale source utilisé est le document transport et diffusion.
-
-\section{\textcolor{blue}{Equation de transport}}
-
-\paragraph{}
-Dans cette section nous allons étudier les solutions de l'équation de transport, un cas particulier de l'équation de Boltzmann, définie ci dessous : 
-
-
-
-Soit $v \in \mathbb{R}^N$
-
-\begin{equation} \label{transport}
-\frac{\partial f}{\partial t}(t,x)+v \cdot \nabla_x f(t,x) + a(t,x)f(t,x) = S(t,x), \quad x \in \mathbb{R}^N, \quad t>0.
-\end{equation}
-
-
-$f$ est la fonction inconnue, $a$ est le taux d'amortissement ou d'amplification donné et $S$ est le terme source donné.
-
-\subsection{Problème de Cauchy}
-\subsubsection{Cas particulier sans absorption ni terme source}
-
-Considérons le problème de Cauchy suivant:
-
-\[
-\begin{cases}
-\frac{\partial f}{\partial t}(t,x)+v \cdot \nabla_x f(t,x)=0, \quad x \in \mathbb{R}^N, \quad t>0.\\
-f(0,x)) = f^{in}(x)
-\end{cases}
-\]
-
-Si $f^{in} \in \mathcal{C}^1(\mathbb{R}^n)$ alors par la méthode des caractéristiques on peut aisément montrer que le problème de Cauchy admet une unique solution $f \in \mathcal{C}^1(\mathbb{R}_+ \times \mathbb{R}^n)$. Cette solution est donnée comme étant: \\
-
-
-
-
-
-$\boxed{f(t,x)=f^{in}(x-tv) \quad \forall (t,x) \in \mathbb{R}_+ \times \mathbb{R}^n }$
-
-
-
-
-\subsubsection{Avec absorption et terme source}
-
-Cette fois-ci nous considérons l'amortissement et le terme source et nous les supposons appartenir à $\mathcal{C}^1(\mathbb{R}_+ \times \mathbb{R}^n)$ Le problème de Cauchy considéré est le suivant:
-
 	
-\[
-\begin{cases}
-\frac{\partial f}{\partial t}(t,x)+v \cdot \nabla_x f(t,x) + a(t,x)f(t,x) = S(t,x), \quad x \in \mathbb{R}^N, \quad t>0.\\
-f(0,x)) = f^{in}(x)
-\end{cases}
-\]
-
-Dans ce cas si $f^{in} \in \mathcal{C}^1(\mathbb{R}^n)$ alors par la méthode des caractéristiques on peut toujours montrer que le problème de Cauchy admet une unique solution $f \in \mathcal{C}^1(\mathbb{R}_+ \times \mathbb{R}^n)$. Cette solution est donnée comme étant:\\
-$\boxed{f(t,x)=f^{in}(x-tv) e^{-\int_0 ^t a(\tau,x+(t-\tau)v)d\tau} + \int_0 ^t  e^{-\int_0 ^t a(\tau,x+(t-\tau)v)d\tau} S(s,x+(s-t)v)ds \quad \forall (t,x) \in \mathbb{R}_+ \times \mathbb{R}^n }$
-
-\subsection{Problèmes aux limites}
-
-
-
-Dans la section précédente nous avons présenter des résultats applicable lorsque l'on considère une liberté totale pour la variable spatial dans $\mathbb{R}^n$. Or pour une majeur partie des problèmes physique ça ne sera pas le cas. C'est pour cela que nous nous intéressons d'avantage a un problème de type problèmes aux limites. Dans cette partie on va donc considérer l'ensemble $\Omega$ qui est un ouvert à bord de classe $\mathcal{C}^1$ de $\mathbb{R}^n$. De plus on prend $v \in \mathbb{R}^n\backslash \{0\}$
-
-\subsubsection{Cas particulier sans absorption ni terme source}
-
-\paragraph{}
-Si de plus $\Omega$ est convexe et soient $f_b^- \in \mathcal{C}^1(\mathbb{R}_+ \times \partial \Omega^-)$ et $f^{in} \in \mathcal{C}^1(\overline{\Omega})$, où $\partial \Omega^- = \{x\in\partial \Omega~ | ~ v\cdot n_x<0\}$alors le problème :
-
-
-\[
-\begin{cases}
-\frac{\partial f}{\partial t}(t,x)+v \cdot \nabla_x f(t,x)=0, \quad x \in \mathbb{R}^N, \quad t>0.\\
-\restriction{f}{\partial \Omega}= f_b^-\\
-\restriction{f}{t=0}= f^{in}(x)
-\end{cases}
-\]
-
-admet une unique solution $f \in \mathcal{C}^1(\mathbb{R}_+ \times \Omega)$ et $f \in \mathcal{C}^0(\mathbb{R}_+ \times \overline{\Omega})$ si et seulement si $\forall y \in \partial \Omega^-,$
-\\$  f_b^- (0,y) = f^{in}(y), \quad \frac{\partial f_b^-}{\partial t}(t,y)+v \cdot \nabla f^{in}(y)=0$.
-
-\paragraph{}
-
-L'expression de la solution est alors donnée par 
-\[
-\boxed{
-f(t,x)= 
-\begin{cases}
-f^{in}(x-tv) \quad si~ t \leq \tau_x ,\\
-f_b^-(t-\tau_x,x-\tau_xv) \quad si~ t > \tau_x ,
-\end{cases}
-}
-\]
-
-Avec $\tau_x= \inf \{t \geq 0~ | ~ x-tv \notin \overline{\Omega}\}$
-
-\subsubsection{Avec absorption et terme source}
-
-\paragraph{}
-On considère toujours $\Omega$ convexe, $f_b^- \in \mathcal{C}^1(\mathbb{R}_+ \times \partial \Omega^-)$, $f^{in} \in \mathcal{C}^1(\overline{\Omega})$, $a$ et $S$ $\in \mathcal{C}^1(\mathbb{R}_+ \times \overline{\Omega})$. Si l'on suppose que $\forall y \in \partial \Omega^-$,
-
-\[
-\begin{aligned}
-f_b^-(0,y) &= f^{in}(y), \\
-\frac{\partial f_b^-}{\partial t}(0,y) + v \cdot \nabla_x f^{in}(y) + a(0,y)f^{in}(y)&=S(0,y)
-\end{aligned}
-\]
-
-
-
-Dans ce cas le problème :
-
-\[
-\begin{cases}
-\frac{\partial f}{\partial t}(t,x)+v \cdot \nabla_x f(t,x)+ a(t,x)f(t,x)=S(t,x), \quad x \in \mathbb{R}^N, \quad t>0.\\
-\restriction{f}{\partial \Omega}= f_b^-\\
-\restriction{f}{t=0}= f^{in}(x)
-\end{cases}
-\]
-
-admet une unique solution $f \in \mathcal{C}^1(\mathbb{R}_+ \times \Omega)$ et $f \in \mathcal{C}^0(\mathbb{R}_+ \times \overline{\Omega})$. L'expresssion de $f$ est alors:
-
-
-
-\[
-\boxed{
-\begin{aligned}
-f(t,x) &= \mathbf{1}_{t \leq \tau_x} f^{in} (x-tv) \exp\left(-\int_0^t a(s,x+(s-t)v)ds\right) \\
-&\quad + \mathbf{1}_{t > \tau_x} f_b^- (t-\tau_x,x-\tau_x v) \exp\left(-\int_{t-\tau_x}^t a(s,x+(s-t)v)ds\right) \\
-&\quad + \int_{t-\tau_x}^t \exp\left(-\int_{s}^{t}a(\tau,x+(\tau-t)v)d\tau\right) S(s,x+(s-t)v)ds
-\end{aligned}}
-\]
-
-
-\subsection{Solutions généralisées}
-Dans cette section $\Omega$ n'est plus forcément convexe. Ceci à pour conséquence que rien n'assure la continuités des éventuelles solutions, pourtant en pratique ces cas doivent être traités. On défini ci-dessous la notion de solution généralisés qui permet de traiter avec ce problème en évitant d'utiliser la théorie des distributions.
-
-
-\paragraph{Définition}
-
-Soient $\Omega$ un ouvert à bord de classe $\mathcal{C}^1$ de $\mathbb{R}^n$, $a$ et $S$ continues sur $\mathbb{R}_+ \times \Omega$. On dit que $f$ est solution généralisé du problème 
-
-$$\frac{\partial f}{\partial t}(t,x)+v \cdot \nabla_x f(t,x)+ a(t,x)f(t,x)=S(t,x), \quad x \in \mathbb{R}^N, \quad t>0.\\$$
-
-si et seulement si la fonction 
-
-$s \mapsto f(t+s,x+sv)$ est de classe $\mathcal{C}^1 ~ p.p.~en~(t,x) \in \mathbb{R}_+ \times \Omega$ et vérifie
-
-$\frac{d}{ds}f(t+s,x+sv) +a(t+s,x+sv)f(t+s,x+sv) = S(t+s,x+sv) \quad (t+s,x+sv) \in \mathbb{R}_+^* \times \Omega$.
-
-
-\paragraph{}
-
-
-
-Soient $\Omega$ un ouvert à bord de classe $\mathcal{C}^1$ de $\mathbb{R}^n$, $a$ et $S$ continues sur $\mathbb{R}_+ \times \Omega$. Soient  $f_b^- \in \mathbf{L}_{loc}^{\infty}(\mathbb{R}_+ \times \partial \Omega^-)$, $f^{in} \in \mathbf{L}_{loc}^{\infty}(\overline{\Omega})$
-
-Dans ce cas le problème :
-
-\[
-\begin{cases}
-\frac{\partial f}{\partial t}(t,x)+v \cdot \nabla_x f(t,x)+ a(t,x)f(t,x)=S(t,x), \quad x \in \mathbb{R}^N, \quad t>0.\\
-\restriction{f}{\partial \Omega}= f_b^-\\
-\restriction{f}{t=0}= f^{in}(x)
-\end{cases}
-\]
-
-admet une unique solution généralisée. La formule de cette solution est la même que dans le cas précédent $i.e.~ p.p.~en~(t,x) \in \mathbb{R}_+ \times \Omega$ on a:
-
-\[
-\boxed{
-\begin{aligned}
-f(t,x) &= \mathbf{1}_{t \leq \tau_x} f^{in} (x-tv) \exp\left(-\int_0^t a(s,x+(s-t)v)ds\right) \\
-&\quad + \mathbf{1}_{t > \tau_x} f_b^- (t-\tau_x,x-\tau_x v) \exp\left(-\int_{t-\tau_x}^t a(s,x+(s-t)v)ds\right) \\
-&\quad + \int_{t-\tau_x}^t \exp\left(-\int_{s}^{t}a(\tau,x+(\tau-t)v)d\tau\right) S(s,x+(s-t)v)ds
-\end{aligned}}
-\]
-
-
-
-
-
-
-
-\section{\textcolor{blue}{Equation de Boltzmann linéaire}}
-
-Dans cette section nous allons nous concentrer sur la véritable équation de Boltzmann. Cette équation intégro-différentielle est décrite en \ref{Boltzmann}.
-
-\begin{equation} \label{Boltzmann}
-\frac{\partial f}{\partial t}(t,x,v)+v \cdot \nabla_x f(t,x,v) + a(t,x)f(t,x,v) = \int_{\mathbb{R}^n}k(t,x,v,w)f(t,x,w)d\mu(w)+Q(t,x,v).
-\end{equation}
-
-Pour simplifier les notations cette équation sera écrite comme : $\frac{\partial f}{\partial t}+v \cdot \nabla_x f +af =   \mathcal{K} f +Q $
-
-Ici $v$ et $k$ sont des fonctions continues données. Le champ des possibles pour la vitesse $v$ est très varié, du fait de la diversité des problèmes physiques qui peuvent être considérés. Par conséquent la notation $d\mu(w)$ englobe toutes ces possibilités en ayant une fonction de poids. La majeur différence avec l'équation de transport est que cette fois-ci nous considérons les phénomènes d'échanges et donc $v$ ne peut plus être vu comme un simple paramètre.
-Dans cette section nous ne pouvons pas mettre en évidence l'expression exacte des solutions car la méthode des caractéristiques donne une autre équaton intégrale faisant intervenir la solution.
-
-
-
-
-\paragraph{Définition}
-
-Soient $Q$ continue sur $]0,T[\times \Omega \times \mathbb{R}^n$. On dit que $f$ continue sur $]0,T[\times \Omega \times \mathbb{R}^n$ est solution généralisé du problème 
-
-
-$$\frac{\partial f}{\partial t}+v \cdot \nabla_x f +af = \mathcal{K} f +Q\\$$
-
-\paragraph{}
-si et seulement si $\forall (t,x,v) \in ]0,T[\times \Omega \times \mathbb{R}^n$ la fonction 
-
-$s \mapsto f(t+s,x+sv,v)$ est de classe $\mathcal{C}^1 ~\forall x+sv \in  \Omega$ et vérifie $\forall s \in \mathbb{R} ~ t.q.~ x +sv \in \Omega$
-
-$\frac{d}{ds}f(t+s,x+sv,v) +a(t+s,x+sv,v)f(t+s,x+sv,v) = (\mathcal{K}f+ Q)(t+s,x+sv,v).$
-
-\subsection{Problème de Cauchy}
-\paragraph{}
-
-
-
-Soient $f^{in} \in \mathbf{C}_b(\mathbb{R}^n \times \mathbb{R}^n)$ et $Q \in \mathbf{C}_b(]0,T[ \times \mathbb{R}^n \times \mathbb{R}^n)$.
-Soient $0 \leq a \in \mathbf{C}_b(]0,T[ \times \mathbb{R}_x^n \times \mathbb{R}_v^n)$ et $0 \leq k \in \mathbf{C}_b(]0,T[ \times \mathbb{R}_x^n \times \mathbb{R}_v^n \times \mathbb{R}_w^n)$. La notation $\mathbf{C}_b(X)$ désigne l'ensemble des fonctions continues bornées sur $X$ à valeurs dans $\mathbb{R}$\\
-
-
-On suppose que :  $\underset{(t,x,v) \in ]0,T[ \times \mathbb{R}^n \times \mathbb{R}^n}{\sup} \int_{\mathbb{R}^n} k(t,x,v,w)d\mu(w) < +\infty$
-
-\paragraph{}
-
-Alors le problème 
-
-\[
-\begin{cases}
-\frac{\partial f}{\partial t}+v \cdot \nabla_x f +af =   \mathcal{K} f +Q \quad (t,x,v) \in ]0,T[ \times \mathbb{R}^n \times \mathbb{R}^n\\
-\restriction{f}{t=0}= f^{in}
-\end{cases}
-\]
-Admet une unique solution généralisée $f \in \mathbf{C}_b(]0,T[ \times \mathbb{R}^n \times \mathbb{R}^n)$.
-
-\subsection{Problème au limite}
-
-On définit l'ensemble $\Gamma_-$ comme étant $\Gamma_-= \{(x,v) \in \partial \Omega \times \mathcal{R}^n ~ | ~ v\cdot n_x<0\}$
-
-Soient $f^{in} \in \mathbf{C}_b(\overline{\Omega} \times \mathbb{R}^n)$, $f_b^- \in \mathbf{C}_b([0,T] \times \Gamma_-)$ telle que $f_b^-(0,y,v)=f^{in}(y,v) \quad \forall (y,v) \in \Gamma_-$
-
-Soit $Q \in \mathbf{C}_b([0,T] \times \overline{\Omega} \times \mathbb{R}^n)$.
-
-Soient $0 \leq a \in \mathbf{C}_b(\mathbb{R}_+ \times \Omega_x \times \mathbb{R}_v^n)$ et $0 \leq k \in \mathbf{C}_b(\mathbb{R}_+ \times \Omega_x^n \times \mathbb{R}_v^n \times \mathbb{R}_w^n)$.
-
-Alors le problème 
-
-\[
-\begin{cases}
-\frac{\partial f}{\partial t}+v \cdot \nabla_x f +af =   \mathcal{K} f +Q \quad (t,x,v) \in ]0,T[ \times \Omega \times \mathbb{R}^n\\
-\restriction{f}{t=0}= f^{in}\\
-\restriction{f}{\Gamma^-}=f_b^-
-\end{cases}
-\]
-
-admet une unique solution généralisée $f \in \mathbf{C}_b([0,T] \times \Omega \times \mathbb{R}^n)$.
-
-
-
-
+	
+	\begin{center}
+		
+		
+		\vspace{50pt}
+		%\includegraphics[scale=0.5]{logo_em.jpg}\\
+		\vspace{20pt}
+		
+		\rule{1\textwidth}{2pt}\\
+		\vspace{20pt}
+		\huge Existence des solutions\\
+		\vspace{20pt}
+		\rule{1\textwidth}{2pt}\\ 
+		\vspace{10pt}
+		
+	\end{center}
+	
+	\noindent
+	\begin{minipage}{0.5\textwidth}
+		\begin{flushleft}
+			\Large Writted by :\\[0.2cm]
+			\textsc{El Maddah} Khaloula\\
+			\textsc{Doyen} Guillaume\\
+			\textsc{Rodiere} Gabriel\\
+			\textsc{Boucher} Antoine\\
+			\textsc{Aumonier} Clément\\
+		\end{flushleft}
+	\end{minipage}%
+	\begin{minipage}{0.5\textwidth}
+		\begin{flushright}
+			\Large Supervised by :\\[0.2cm]
+			\textsc{Poëtte} Gaël\\
+			
+		\end{flushright}
+	\end{minipage}
+	
+	\vspace{50 pt}
+	
+	
+	
+	
+	
+	\newpage
+	\footnotesize
+	
+	\tableofcontents
+	\setcounter{tocdepth}{1}
+	\setcounter{tocdepth}{0}
+	\def\restriction#1#2{\mathchoice
+		{\setbox1\hbox{${\displaystyle #1}_{\scriptstyle #2}$}
+			\restrictionaux{#1}{#2}}
+		{\setbox1\hbox{${\textstyle #1}_{\scriptstyle #2}$}
+			\restrictionaux{#1}{#2}}
+		{\setbox1\hbox{${\scriptstyle #1}_{\scriptscriptstyle #2}$}
+			\restrictionaux{#1}{#2}}
+		{\setbox1\hbox{${\scriptscriptstyle #1}_{\scriptscriptstyle #2}$}
+			\restrictionaux{#1}{#2}}}
+	\def\restrictionaux#1#2{{#1\,\smash{\vrule height .8\ht1 depth .85\dp1}}_{\,#2}} 
+	
+	
+	\newpage
+	
+	\paragraph{Note} Here is a brief summary of the various existences and uniqueness of solutions based on different cases of equations to be solved. The primary source used is the transport and diffusion document.
+	
+	\section{Transport Equation}
+	
+	\paragraph{}
+	In this section, we will examine the solutions of the transport equation, a particular case of the Boltzmann equation, defined below:
+	
+	
+	
+	Let's $v \in \mathbb{R}^N$
+	
+	\begin{equation} \label{transport}
+		\frac{\partial f}{\partial t}(t,x)+v \cdot \nabla_x f(t,x) + a(t,x)f(t,x) = S(t,x), \quad x \in \mathbb{R}^N, \quad t>0.
+	\end{equation}
+	
+	
+	$f$ is the unknown function, $a$ is the given damping or amplification rate, and $S$ is the given source term.
+	
+	\subsection{Cauchy Problem}
+	\subsubsection{Special Case without Absorption or Source Term}
+	
+	Let's consider the following Cauchy problem:
+	
+	\[
+	\begin{cases}
+		\frac{\partial f}{\partial t}(t,x)+v \cdot \nabla_x f(t,x)=0, \quad x \in \mathbb{R}^N, \quad t>0.\\
+		f(0,x)) = f^{in}(x)
+	\end{cases}
+	\]
+	
+	If $f^{in} \in \mathcal{C}^1(\mathbb{R}^n)$, then using the method of characteristics, we can easily demonstrate that the Cauchy problem has a unique solution $f \in \mathcal{C}^1(\mathbb{R}_+ \times \mathbb{R}^n)$. This solution is given as follows:
+	
+	
+	
+	
+	
+	$\boxed{f(t,x)=f^{in}(x-tv) \quad \forall (t,x) \in \mathbb{R}_+ \times \mathbb{R}^n }$
+	
+	
+	
+	
+	\subsubsection{With Absorption and Source Term}
+	
+	This time, we consider damping and the source term, assuming they belong to $\mathcal{C}^1(\mathbb{R}_+ \times \mathbb{R}^n)$. The considered Cauchy problem is as follows:
+	
+	
+	\[
+	\begin{cases}
+		\frac{\partial f}{\partial t}(t,x)+v \cdot \nabla_x f(t,x) + a(t,x)f(t,x) = S(t,x), \quad x \in \mathbb{R}^N, \quad t>0.\\
+		f(0,x)) = f^{in}(x)
+	\end{cases}
+	\]
+	
+	In this case, if $f^{in} \in \mathcal{C}^1(\mathbb{R}^n)$, then using the method of characteristics, we can still demonstrate that the Cauchy problem has a unique solution $f \in \mathcal{C}^1(\mathbb{R}_+ \times \mathbb{R}^n)$. This solution is given as follows:\\
+	$\boxed{f(t,x)=f^{in}(x-tv) e^{-\int_0 ^t a(\tau,x+(t-\tau)v)d\tau} + \int_0 ^t  e^{-\int_0 ^t a(\tau,x+(t-\tau)v)d\tau} S(s,x+(s-t)v)ds \quad \forall (t,x) \in \mathbb{R}_+ \times \mathbb{R}^n }$
+	
+	\subsection{Boundary Value Problems}
+	
+	In the previous section, we presented results applicable when considering complete freedom for the spatial variable in $\mathbb{R}^n$. However, for a significant portion of physical problems, this may not be the case. That is why we are more interested in a problem of the boundary value type. In this section, we will consider the set $\Omega$, which is an open set with a $\mathcal{C}^1$ boundary in $\mathbb{R}^n$. Additionally, we take $v \in \mathbb{R}^n\backslash \{0\}$.
+	
+	\subsubsection{Special Case without Absorption or Source Term}
+	
+	\paragraph{}
+	If, moreover, $\Omega$ is convex, and let $f_b^- \in \mathcal{C}^1(\mathbb{R}_+ \times \partial \Omega^-)$ and $f^{in} \in \mathcal{C}^1(\overline{\Omega})$, where $\partial \Omega^- = \{x\in\partial \Omega~ | ~ v\cdot n_x<0\}$, then the problem:
+	
+	
+	\[
+	\begin{cases}
+		\frac{\partial f}{\partial t}(t,x)+v \cdot \nabla_x f(t,x)=0, \quad x \in \mathbb{R}^N, \quad t>0.\\
+		\restriction{f}{\partial \Omega}= f_b^-\\
+		\restriction{f}{t=0}= f^{in}(x)
+	\end{cases}
+	\]
+	
+	has a unique solution $f \in \mathcal{C}^1(\mathbb{R}_+ \times \Omega)$ and $f \in \mathcal{C}^0(\mathbb{R}_+ \times \overline{\Omega})$ if and only if $\forall y \in \partial \Omega^-,$
+	
+	\[ f_b^-(0,y) = f^{in}(y), \quad \frac{\partial f_b^-}{\partial t}(t,y)+v \cdot \nabla f^{in}(y)=0. \]
+	
+	\paragraph{}
+	
+	The expression of the solution is then given by: 
+	\[
+	\boxed{
+		f(t,x)= 
+		\begin{cases}
+			f^{in}(x-tv) \quad si~ t \leq \tau_x ,\\
+			f_b^-(t-\tau_x,x-\tau_xv) \quad si~ t > \tau_x ,
+		\end{cases}
+	}
+	\]
+	
+	With $\tau_x= \inf \{t \geq 0~ | ~ x-tv \notin \overline{\Omega}\}$
+	
+	\subsubsection{With Absorption and Source Term}
+	
+	\paragraph{}
+	We still consider $\Omega$ to be convex, with $f_b^- \in \mathcal{C}^1(\mathbb{R}_+ \times \partial \Omega^-)$, $f^{in} \in \mathcal{C}^1(\overline{\Omega})$, $a$, and $S$ $\in \mathcal{C}^1(\mathbb{R}_+ \times \overline{\Omega})$. If we assume that $\forall y \in \partial \Omega^-$,
+	
+	\[
+	\begin{aligned}
+		f_b^-(0,y) &= f^{in}(y), \\
+		\frac{\partial f_b^-}{\partial t}(0,y) + v \cdot \nabla_x f^{in}(y) + a(0,y)f^{in}(y)&=S(0,y)
+	\end{aligned}
+	\]
+	
+	
+	
+	In this case, the problem becomes:
+	
+	\[
+	\begin{cases}
+		\frac{\partial f}{\partial t}(t,x)+v \cdot \nabla_x f(t,x)+ a(t,x)f(t,x)=S(t,x), \quad x \in \mathbb{R}^N, \quad t>0.\\
+		\restriction{f}{\partial \Omega}= f_b^-\\
+		\restriction{f}{t=0}= f^{in}(x)
+	\end{cases}
+	\]
+	
+	has a unique solution $f \in \mathcal{C}^1(\mathbb{R}_+ \times \Omega)$ and $f \in \mathcal{C}^0(\mathbb{R}_+ \times \overline{\Omega})$. The expression for $f$ is then:
+	
+	
+	\[
+	\boxed{
+		\begin{aligned}
+			f(t,x) &= \mathbf{1}_{t \leq \tau_x} f^{in} (x-tv) \exp\left(-\int_0^t a(s,x+(s-t)v)ds\right) \\
+			&\quad + \mathbf{1}_{t > \tau_x} f_b^- (t-\tau_x,x-\tau_x v) \exp\left(-\int_{t-\tau_x}^t a(s,x+(s-t)v)ds\right) \\
+			&\quad + \int_{t-\tau_x}^t \exp\left(-\int_{s}^{t}a(\tau,x+(\tau-t)v)d\tau\right) S(s,x+(s-t)v)ds
+	\end{aligned}}
+	\]
+	
+	
+	\subsection{Generalized Solutions}
+	
+	In this section, $\Omega$ is not necessarily convex. This implies that the continuity of potential solutions is not guaranteed. However, in practice, these cases must be addressed. Below, we define the concept of generalized solutions, which allows us to handle this issue without resorting to the theory of distributions.
+	
+	
+	\paragraph{Definition}
+	
+	Let $\Omega$ be an open set with a $\mathcal{C}^1$ boundary in $\mathbb{R}^n$, and let $a$ and $S$ be continuous on $\mathbb{R}_+ \times \Omega$. We say that $f$ is a generalized solution of the problem
+	
+	$$\frac{\partial f}{\partial t}(t,x)+v \cdot \nabla_x f(t,x)+ a(t,x)f(t,x)=S(t,x), \quad x \in \mathbb{R}^N, \quad t>0.\\$$
+	
+	if and only if the function
+	
+	$s \mapsto f(t+s,x+sv)$ is of class $\mathcal{C}^1$ almost everywhere in $(t,x) \in \mathbb{R}_+ \times \Omega$ and satisfies
+	
+	$\frac{d}{ds}f(t+s,x+sv) +a(t+s,x+sv)f(t+s,x+sv) = S(t+s,x+sv) \quad (t+s,x+sv) \in \mathbb{R}_+^* \times \Omega$.
+	
+	
+	\paragraph{}
+	
+	
+	
+	Let $\Omega$ be an open set with a $\mathcal{C}^1$ boundary in $\mathbb{R}^n$, and let $a$ and $S$ be continuous on $\mathbb{R}_+ \times \Omega$. Let $f_b^- \in \mathbf{L}_{loc}^{\infty}(\mathbb{R}_+ \times \partial \Omega^-)$ and $f^{in} \in \mathbf{L}_{loc}^{\infty}(\overline{\Omega})$.
+	
+	In this case, the problem:
+	
+	\[
+	\begin{cases}
+		\frac{\partial f}{\partial t}(t,x)+v \cdot \nabla_x f(t,x)+ a(t,x)f(t,x)=S(t,x), \quad x \in \mathbb{R}^N, \quad t>0.\\
+		\restriction{f}{\partial \Omega}= f_b^-\\
+		\restriction{f}{t=0}= f^{in}(x)
+	\end{cases}
+	\]
+	
+	has a unique generalized solution. The formula for this solution is the same as in the previous case, i.e., almost everywhere in $(t,x) \in \mathbb{R}_+ \times \Omega$, we have:
+	
+	\[
+	\boxed{
+		\begin{aligned}
+			f(t,x) &= \mathbf{1}_{t \leq \tau_x} f^{in} (x-tv) \exp\left(-\int_0^t a(s,x+(s-t)v)ds\right) \\
+			&\quad + \mathbf{1}_{t > \tau_x} f_b^- (t-\tau_x,x-\tau_x v) \exp\left(-\int_{t-\tau_x}^t a(s,x+(s-t)v)ds\right) \\
+			&\quad + \int_{t-\tau_x}^t \exp\left(-\int_{s}^{t}a(\tau,x+(\tau-t)v)d\tau\right) S(s,x+(s-t)v)ds
+	\end{aligned}}
+	\]
+	
+	
+	
+	
+	
+	
+	
+	\section{Linear Boltzmann Equation}
+	
+	In this section, we will focus on the actual Boltzmann equation. This integro-differential equation is described in \ref{Boltzmann}.
+	
+	\begin{equation} \label{Boltzmann}
+		\frac{\partial f}{\partial t}(t,x,v)+v \cdot \nabla_x f(t,x,v) + a(t,x)f(t,x,v) = \int_{\mathbb{R}^n}k(t,x,v,w)f(t,x,w)d\mu(w)+Q(t,x,v).
+	\end{equation}
+	
+	To simplify notations, this equation will be written as: 
+	\[ \frac{\partial f}{\partial t}+v \cdot \nabla_x f +af =   \mathcal{K} f +Q \]
+	
+	Here, $v$ and $k$ are given continuous functions. The range of possibilities for the velocity $v$ is very diverse due to the variety of physical problems that can be considered. Therefore, the notation $d\mu(w)$ encompasses all these possibilities by incorporating a weight function. The major difference from the transport equation is that, this time, we consider exchange phenomena, and thus, $v$ cannot be seen as a simple parameter.
+	
+	In this section, we cannot highlight the exact expression of the solutions because the method of characteristics yields another integral equation involving the solution.
+	
+	
+	
+	
+	\paragraph{Definition}
+	
+	Let $Q$ be continuous on $]0,T[\times \Omega \times \mathbb{R}^n$. We say that $f$ is a generalized solution of the problem, continuous on $]0,T[\times \Omega \times \mathbb{R}^n$,
+	
+	
+	$$\frac{\partial f}{\partial t}+v \cdot \nabla_x f +af = \mathcal{K} f +Q\\$$
+	
+	\paragraph{}
+	if and only if, for all $(t,x,v) \in ]0,T[\times \Omega \times \mathbb{R}^n$, the function 
+	
+	\[ s \mapsto f(t+s,x+sv,v) \]
+	
+	is of class $\mathcal{C}^1$ for all $x+sv \in \Omega$ and satisfies, for all $s \in \mathbb{R}$ such that $x +sv \in \Omega$,
+	
+	$\frac{d}{ds}f(t+s,x+sv,v) +a(t+s,x+sv,v)f(t+s,x+sv,v) = (\mathcal{K}f+ Q)(t+s,x+sv,v).$
+	
+	\subsection{Cauchy Problem}
+	\paragraph{}
+	
+	
+	
+	Let $f^{in} \in \mathbf{C}_b(\mathbb{R}^n \times \mathbb{R}^n)$ and $Q \in \mathbf{C}_b(]0,T[ \times \mathbb{R}^n \times \mathbb{R}^n)$. Also, let $0 \leq a \in \mathbf{C}_b(]0,T[ \times \mathbb{R}_x^n \times \mathbb{R}_v^n)$ and $0 \leq k \in \mathbf{C}_b(]0,T[ \times \mathbb{R}_x^n \times \mathbb{R}_v^n \times \mathbb{R}_w^n)$. The notation $\mathbf{C}_b(X)$ denotes the set of bounded continuous functions on $X$ with values in $\mathbb{R}$.
+	
+	
+	We assume that:  \[ \underset{(t,x,v) \in ]0,T[ \times \mathbb{R}^n \times \mathbb{R}^n}{\sup} \int_{\mathbb{R}^n} k(t,x,v,w) \, d\mu(w) < +\infty \]
+	
+	\paragraph{}
+	
+	Then the problem is:
+	
+	\[
+	\begin{cases}
+		\frac{\partial f}{\partial t}+v \cdot \nabla_x f +af =   \mathcal{K} f +Q \quad (t,x,v) \in ]0,T[ \times \mathbb{R}^n \times \mathbb{R}^n\\
+		\restriction{f}{t=0}= f^{in}
+	\end{cases}
+	\]
+	has a unique generalized solution $f \in \mathbf{C}_b(]0,T[ \times \mathbb{R}^n \times \mathbb{R}^n)$.
+	
+	\subsection{Boundary Value Problem}
+	
+	We define the set $\Gamma_-$ as $\Gamma_-= \{(x,v) \in \partial \Omega \times \mathbb{R}^n ~ | ~ v\cdot n_x<0\}$
+	
+	Let $f^{in} \in \mathbf{C}_b(\overline{\Omega} \times \mathbb{R}^n)$, $f_b^- \in \mathbf{C}_b([0,T] \times \Gamma_-)$ such that $f_b^-(0,y,v)=f^{in}(y,v) \quad \forall (y,v) \in \Gamma_-$
+	
+	Let $Q \in \mathbf{C}_b([0,T] \times \overline{\Omega} \times \mathbb{R}^n)$.
+	
+	Let $0 \leq a \in \mathbf{C}_b(\mathbb{R}_+ \times \Omega_x \times \mathbb{R}_v^n)$ and $0 \leq k \in \mathbf{C}_b(\mathbb{R}_+ \times \Omega_x^n \times \mathbb{R}_v^n \times \mathbb{R}_w^n)$.
+	
+	Then the problem
+	
+	\[
+	\begin{cases}
+		\frac{\partial f}{\partial t}+v \cdot \nabla_x f +af =   \mathcal{K} f +Q \quad (t,x,v) \in ]0,T[ \times \Omega \times \mathbb{R}^n\\
+		\restriction{f}{t=0}= f^{in}\\
+		\restriction{f}{\Gamma^-}=f_b^-
+	\end{cases}
+	\]
+	
+	has a unique generalized solution $f \in \mathbf{C}_b([0,T] \times \Omega \times \mathbb{R}^n)$.
+	
+	
+	
+	
 \end{document}
 

@@ -1,23 +1,23 @@
 \babel@toc {french}{}\relax 
-\contentsline {paragraph}{Remarque}{3}{}%
-\contentsline {section}{\numberline {1}\textcolor {blue}{Equation de transport}}{3}{}%
+\contentsline {paragraph}{Note}{3}{}%
+\contentsline {section}{\numberline {1}Transport Equation}{3}{}%
 \contentsline {paragraph}{}{3}{}%
-\contentsline {subsection}{\numberline {1.1}Problème de Cauchy}{3}{}%
-\contentsline {subsubsection}{\numberline {1.1.1}Cas particulier sans absorption ni terme source}{3}{}%
-\contentsline {subsubsection}{\numberline {1.1.2}Avec absorption et terme source}{3}{}%
-\contentsline {subsection}{\numberline {1.2}Problèmes aux limites}{3}{}%
-\contentsline {subsubsection}{\numberline {1.2.1}Cas particulier sans absorption ni terme source}{3}{}%
+\contentsline {subsection}{\numberline {1.1}Cauchy Problem}{3}{}%
+\contentsline {subsubsection}{\numberline {1.1.1}Special Case without Absorption or Source Term}{3}{}%
+\contentsline {subsubsection}{\numberline {1.1.2}With Absorption and Source Term}{3}{}%
+\contentsline {subsection}{\numberline {1.2}Boundary Value Problems}{3}{}%
+\contentsline {subsubsection}{\numberline {1.2.1}Special Case without Absorption or Source Term}{3}{}%
 \contentsline {paragraph}{}{3}{}%
 \contentsline {paragraph}{}{4}{}%
-\contentsline {subsubsection}{\numberline {1.2.2}Avec absorption et terme source}{4}{}%
+\contentsline {subsubsection}{\numberline {1.2.2}With Absorption and Source Term}{4}{}%
 \contentsline {paragraph}{}{4}{}%
-\contentsline {subsection}{\numberline {1.3}Solutions généralisées}{4}{}%
-\contentsline {paragraph}{Définition}{4}{}%
+\contentsline {subsection}{\numberline {1.3}Generalized Solutions}{4}{}%
+\contentsline {paragraph}{Definition}{4}{}%
 \contentsline {paragraph}{}{5}{}%
-\contentsline {section}{\numberline {2}\textcolor {blue}{Equation de Boltzmann linéaire}}{5}{}%
-\contentsline {paragraph}{Définition}{5}{}%
+\contentsline {section}{\numberline {2}Linear Boltzmann Equation}{5}{}%
+\contentsline {paragraph}{Definition}{5}{}%
 \contentsline {paragraph}{}{5}{}%
-\contentsline {subsection}{\numberline {2.1}Problème de Cauchy}{5}{}%
-\contentsline {paragraph}{}{5}{}%
+\contentsline {subsection}{\numberline {2.1}Cauchy Problem}{6}{}%
 \contentsline {paragraph}{}{6}{}%
-\contentsline {subsection}{\numberline {2.2}Problème au limite}{6}{}%
+\contentsline {paragraph}{}{6}{}%
+\contentsline {subsection}{\numberline {2.2}Boundary Value Problem}{6}{}%
