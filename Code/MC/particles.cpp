@@ -71,6 +71,5 @@ void Particle::move(double& u)
          // Set the life time of particle
          this->_sp -= tau;
       }
-
    }
 }
