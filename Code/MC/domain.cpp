@@ -57,7 +57,15 @@ double GenericDomain::initialCondition(const Vecteur& x, const Vecteur& v) const
 {
    double u_0;
    if (this->_parameters.test_case == 1) u_0 = 5.0;
-   else if (this->_parameters.test_case == 2) u_0 = (0.4 < x[0] and x[0] < 0.6) ? 1.0 : 0.0;
+   else if (this->_parameters.test_case == 2)
+   {
+      if (this->_parameters.nbDims != 1)
+      {
+         exit('Test case 2 is only available for 1D problems.');
+      }
+      u_0 = (0.4 < x[0] and x[0] < 0.6) ? 1.0 : 0.0;
+   }
+
    else std::cout << "Test case not recognized : choose 1 or 2." << std::endl;
    return u_0;
 };
