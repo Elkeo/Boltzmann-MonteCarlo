@@ -1,4 +1,7 @@
 [simulation]
+#Test case : 1 -> u_0 = 5.0, 2 -> heaviside entre 0.4 et 0.6
+test_case = 1
+
 #Number of dimensions
 nbDims = 2
 
@@ -34,4 +37,3 @@ domainType = "periodic"
 sigmaS = 0.0
 sigmaT = 1.0
 modV = 1.0
-

@@ -26,3 +26,5 @@ main.o: main.cpp
 
 clean:
 	rm -f $(OBJS) $(OUT) Resultats/solution*.txt *.png
+clean_res:
+	rm -f Resultats/solution*.txt

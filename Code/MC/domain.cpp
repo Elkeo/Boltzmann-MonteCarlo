@@ -55,7 +55,10 @@ void PeriodicDomain::applyBoundaryConditions(Vecteur& xp, double& sp, Vecteur& v
 
 double GenericDomain::initialCondition(const Vecteur& x, const Vecteur& v) const
 {
-   double u_0(5.0);
+   double u_0;
+   if (this->_parameters.test_case == 1) u_0 = 5.0;
+   else if (this->_parameters.test_case == 2) u_0 = (0.4 < x[0] and x[0] < 0.6) ? 1.0 : 0.0;
+   else std::cout << "Test case not recognized : choose 1 or 2." << std::endl;
    return u_0;
 };
 

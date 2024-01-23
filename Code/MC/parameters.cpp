@@ -13,7 +13,7 @@ void init_parameters(struct_parameters& parameters) {
 
     //Simuation parameters
     const auto& simulation = toml::find(param_file, "simulation");
-
+    parameters.test_case = toml::find<int>(simulation, "test_case"); //Test case
     parameters.nbDims = toml::find<int>(simulation, "nbDims");//Number of dimensions
     parameters.nbMC = toml::find<int>(simulation, "nbMC"); //Number of MC particles 
     parameters.finalTime = toml::find<double>(simulation, "finalTime"); //Final time of the simulation
@@ -40,7 +40,7 @@ void init_parameters(struct_parameters& parameters) {
         }
     }
 
-    //Phisical parameters
+    //Physical parameters
     const auto& physics = toml::find(param_file, "physics");
     parameters.sigmaS = toml::find<double>(physics, "sigmaS");
     parameters.sigmaT = toml::find<double>(physics, "sigmaT");

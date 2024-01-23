@@ -7,6 +7,7 @@ struct struct_parameters {
     //Simulation parameters
     int nbDims = 0; //Number of dimensions
     int nbMC = 0; //Number of MC particles 
+    int test_case = 0; //Test case
     double time = 0; //Current time of the simulation
     double finalTime = 0; //Final time of the simulation
     double dt = 0; //Time step
