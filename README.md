@@ -22,8 +22,8 @@ Le fichier param.toml rassemble les différents paramètres d'entrée (nombre de
 
 Le code se compile en se plaçant dans le répertoire Boltzmann-Montecarlo/Code/MC et en utilisant la commande "make". 
 
-L'exécution se fait ensuite par l'appel "./main" et donne la solution de $u(x_i, y_j, z_k, t, v)$ en fonction des paramètres choisis dans un fichier "solution_t_"t".txt".
-Les 3 premières colonnes correspondent à $x_i$, $y_j$ et $z_k$ et la quatrième et dernière à $u(x_i, y_j, z_k, t, v)$.
+L'exécution se fait ensuite par l'appel "./main" et donne la solution de $u(x_i, y_j, z_k, t^n, v)$ en fonction des paramètres choisis dans un fichier "Resultats/solution_t_"n".txt".
+Les 4 premières colonnes correspondent à $t^n$, $x_i$, $y_j$ et $z_k$ et la cinquième et dernière à $u(x_i, y_j, z_k, t^n, v)$.
 
 NB : les fonctions SigmaS et SigmaT sont constantes et retournent pour valeur celle écrite dans le fichier param.toml
 
@@ -35,8 +35,8 @@ Certains choix de simplification ont été faits sur la solution. En particulier
  - La solution est calculée pour des particules monocinétiques ($|v| = cte$) tirées uniformément sur la sphère unité ;
  - Les opacités sont constantes ;
  - Le temps d'intéraction est tiré selon une loi exponentielle de paramètre $|v| \sigma$.
-Le domaine de résolution peut-être avec plusieurs types de parois : élastiques ou périodiques
+Le domaine de résolution peut-être avec plusieurs types de parois : élastiques ou périodiques.
 
 # Cas tests
 
-Différents cas test ont été réalisés et sont placés dans des sous-répertoires de MC. Dans chaque dossier se trouve un fichier readme pour expliquer comment utiliser le cas test en question.
+Différents cas test ont été réalisés et sont placés dans des sous-répertoires de MC. Dans chaque dossier se trouve un fichier README pour expliquer comment utiliser le cas test en question.
