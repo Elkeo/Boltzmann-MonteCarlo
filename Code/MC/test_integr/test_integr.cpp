@@ -16,6 +16,8 @@ int main(int argc, char const* argv[])
    /* Déclaration - initialisation des variables */
 
    struct struct_parameters parameters;
+   parameters.fileName = argc > 1 ? argv[1] : "param.toml";
+
    init_parameters(parameters);
 
    /* Ouverture d'un fichier pour stocker la solution */
