@@ -103,8 +103,14 @@ int main(int argc, char const* argv[])
       erreur=U-(U0*exp(-parameters.modV*(parameters.sigmaT-parameters.sigmaS)*parameters.finalTime));
       erreur=abs(erreur);
 
-      cout << "erreur = "<< erreur << " U= "<< U <<" U0 =" << U0<< endl;
       delete Domaine;
+      std::cout << "\n"<<std::endl;
+      std::cout << "########################"<<std::endl;
+      std::cout << "Test intégrale" << std::endl;
+      std::cout << "erreur = "<< erreur << " U= "<< U <<" U0 =" << U0<< endl;
+      std::cout << "########################"<<std::endl;
+      std::cout << "\n"<<std::endl;
+
 
    }
 
@@ -150,9 +156,13 @@ int main(int argc, char const* argv[])
       erreur=U-(U0*exp(-parameters.modV*(parameters.sigmaT-parameters.sigmaS)*parameters.time));
       erreur=abs(erreur);
 
-      cout << "erreur = "<< erreur << " U= "<< U <<" U0 =" << U0<< endl;
       delete Domaine;
-
+      std::cout << "\n"<<std::endl;
+      std::cout << "########################"<<std::endl;
+      std::cout << "Test intégrale" << std::endl;
+      std::cout << "erreur = "<< erreur << " U= "<< U <<" U0 =" << U0<< endl;
+      std::cout << "########################"<<std::endl;
+      std::cout << "\n"<<std::endl;
 
    }
 
@@ -194,9 +204,13 @@ int main(int argc, char const* argv[])
       erreur=U-(U0*exp(-parameters.modV*(parameters.sigmaT-parameters.sigmaS)*parameters.time));
       erreur=abs(erreur);
 
-      cout << "erreur = "<< erreur << " U= "<< U <<" U0 =" << U0<< endl;
       delete Domaine;
-
+      std::cout << "\n"<<std::endl;
+      std::cout << "########################"<<std::endl;
+      std::cout << "Test intégrale" << std::endl;
+      std::cout << "erreur = "<< erreur << " U= "<< U <<" U0 =" << U0<< endl;
+      std::cout << "########################"<<std::endl;
+      std::cout << "\n"<<std::endl;
 
    }
 

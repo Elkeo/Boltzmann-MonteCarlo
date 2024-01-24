@@ -5,7 +5,8 @@ import subprocess
 repertoires = [
     # "./Test_echantillonage",
     # "./tests",
-    "./test_integr"
+    "./test_integr",
+    "./repro"
 
 ]
 
@@ -26,7 +27,15 @@ for chemin in repertoires:
     else:
         print(f"Erreur lors de la compilation du projet dans {chemin}:\n{compile_process.stderr}")
 
+
+     # Nettoyage du projet avec 'make clean'
+    clean_process = subprocess.run(["make", "clean"], capture_output=True, text=True)
+    if clean_process.returncode == 0:
+        print("Nettoyage réussi.")
+    else:
+        print(f"Erreur lors du nettoyage du projet dans {chemin}:\n{clean_process.stderr}")
+
     # Retour au répertoire précédent pour la prochaine itération
     os.chdir("..")
 
-print("Tous les tests on été effectués. \n Pour plus de détails veuiillez vous référer aux messages de sortie.")
+print("\nTous les tests on été effectués.\nPour plus de détails veuiillez vous référer aux messages de sortie.")
