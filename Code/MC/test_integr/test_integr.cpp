@@ -6,9 +6,6 @@
 using namespace std;
 
 
-/*
-  code.
-*/
 
 int main(int argc, char const* argv[])
 {
@@ -16,7 +13,7 @@ int main(int argc, char const* argv[])
    /* Déclaration - initialisation des variables */
 
    struct struct_parameters parameters;
-   parameters.fileName = argc > 1 ? argv[1] : "param.toml";
+   parameters.fileName =  "param.toml";
 
    init_parameters(parameters);
 
@@ -77,11 +74,11 @@ int main(int argc, char const* argv[])
 
                /* On en déduit la solution u(x, t, v) */
                u[i][j][k] = packOfParticles.get_u();
-               somme+=u[i][j][k]*dx*dy*dz;
+               somme+=u[i][j][k];
             }
          }
       }
-      Vecteur x(3); 
+      Vecteur x(3,0); 
       Vecteur v(3); 
 
       
@@ -129,7 +126,7 @@ int main(int argc, char const* argv[])
          }
       }
 
-      Vecteur x(2); 
+      Vecteur x(2,0); 
       Vecteur v(2); 
       double U0;
       U0=Domaine->initialCondition(x, v)*parameters.nbPtsX*parameters.nbPtsY;
