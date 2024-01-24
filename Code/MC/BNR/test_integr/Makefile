@@ -8,7 +8,7 @@ CXXFLAGS = -Wall -Wextra -std=c++11
 TARGET = run
 
 # Définir les fichiers source
-SOURCES = test_integr.cpp ../domain.cpp ../particles.cpp ../population.cpp ../parameters.cpp
+SOURCES = test_integr.cpp ../../domain.cpp ../../particles.cpp ../../population.cpp ../../parameters.cpp
 
 # Définir les fichiers objets
 OBJECTS = $(SOURCES:.cpp=.o)
