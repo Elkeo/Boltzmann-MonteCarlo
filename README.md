@@ -1,4 +1,4 @@
-# Cailloux
+# Montecarlo
 
 ## Sujet
 
@@ -20,9 +20,18 @@ Le fichier param.toml rassemble les différents paramètres d'entrée (nombre de
 
 # Exécution du code
 
-Le code se compile en se plaçant dans le répertoire Boltzmann-Montecarlo/Code/MC et en utilisant la commande "make". 
+Le code se compile en se plaçant dans le répertoire Boltzmann-Montecarlo/Code/MC et en utilisant la commande :
+```bash
+make 
+```
 
-L'exécution se fait ensuite par l'appel "./main" et donne la solution de $u(x_i, y_j, z_k, t^n, v)$ en fonction des paramètres choisis dans un fichier "Resultats/solution_t_"n".txt".
+L'exécution se fait ensuite par :
+
+```bash
+./main
+ ```
+
+ et donne la solution de $u(x_i, y_j, z_k, t^n, v)$ en fonction des paramètres choisis dans un fichier __Resultats/solution_t_"n".txt__.
 Les 4 premières colonnes correspondent à $t^n$, $x_i$, $y_j$ et $z_k$ et la cinquième et dernière à $u(x_i, y_j, z_k, t^n, v)$.
 
 NB : les fonctions SigmaS et SigmaT sont constantes et retournent pour valeur celle écrite dans le fichier param.toml
@@ -39,4 +48,4 @@ Le domaine de résolution peut-être avec plusieurs types de parois : élastique
 
 # Cas tests
 
-Différents cas test ont été réalisés et sont placés dans des sous-répertoires de MC. Dans chaque dossier se trouve un fichier README pour expliquer comment utiliser le cas test en question.
+Différents cas test ont été réalisés et sont placés dans le sous-répertoire __BNR__. Un __Readme__ est disponible dans ce répertoire afin d'expliquer le fonctionnement de la base test. Dans chaque dossier test se trouve un fichier __Readme__ pour expliquer ce que fait le test en question.

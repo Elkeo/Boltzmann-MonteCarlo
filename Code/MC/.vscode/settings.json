@@ -79,6 +79,12 @@
       "valarray": "cpp",
       "codecvt": "cpp",
       "fstream": "cpp",
-      "iostream": "cpp"
+      "iostream": "cpp",
+      "forward_list": "cpp",
+      "list": "cpp",
+      "map": "cpp",
+      "set": "cpp",
+      "unordered_set": "cpp",
+      "cinttypes": "cpp"
    }
 }
