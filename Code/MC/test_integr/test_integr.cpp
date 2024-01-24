@@ -1,7 +1,13 @@
-#include "../main.hpp"
 #include "../population.hpp"
 #include <cmath>
-
+#include <vector>
+#include <stdlib.h>
+#include <stdio.h>
+#include <algorithm>
+#include <valarray>
+#include <random>
+#include <iostream>
+#include <fstream>
 
 using namespace std;
 
@@ -45,7 +51,10 @@ int main(int argc, char const* argv[])
       exit(1);
    }
 
+
    double somme=0.0;
+   double U0=0.0;
+
    double dx,dy,dz;
    dx=(parameters.array_x[1]-parameters.array_x[0])/parameters.nbPtsX;
    dy=(parameters.array_y[1]-parameters.array_y[0])/parameters.nbPtsY;
@@ -68,33 +77,35 @@ int main(int argc, char const* argv[])
                /* Création de la population de particules (fictives) */
                
                Population packOfParticles(Domaine, parameters, u[i][j][k], { x, y, z });
+               
 
                /* Les particules (fictives) évoluent */
                packOfParticles.move();
 
+
                /* On en déduit la solution u(x, t, v) */
                u[i][j][k] = packOfParticles.get_u();
+               U0+=Domaine->initialCondition({ x, y, z }, { 0.0, 0.0, 0.0 });
+
                somme+=u[i][j][k];
             }
          }
       }
-      Vecteur x(3,0); 
-      Vecteur v(3); 
+
 
       
-      double U0;
-      U0=Domaine->initialCondition(x, v)*parameters.nbPtsX*parameters.nbPtsY*parameters.nbPtsZ;
       U0=U0*dx*dy*dz/((parameters.array_x[1]-parameters.array_x[0])*(parameters.array_y[1]-parameters.array_y[0])*(parameters.array_z[1]-parameters.array_z[0]));
 
       double U;
       U=somme/((parameters.array_x[1]-parameters.array_x[0])*(parameters.array_y[1]-parameters.array_y[0])*(parameters.array_z[1]-parameters.array_z[0]));
 
       double erreur;
-      erreur=U-(U0*exp(-parameters.modV*(parameters.sigmaT-parameters.sigmaS)*parameters.time));
+      erreur=U-(U0*exp(-parameters.modV*(parameters.sigmaT-parameters.sigmaS)*parameters.finalTime));
       erreur=abs(erreur);
 
       cout << "erreur = "<< erreur << " U= "<< U <<" U0 =" << U0<< endl;
       delete Domaine;
+
    }
 
 
@@ -170,7 +181,7 @@ int main(int argc, char const* argv[])
          
       }
 
-      Vecteur x(1); 
+      Vecteur x(1,0); 
       Vecteur v(1); 
       double U0;
       U0=Domaine->initialCondition(x, v)*parameters.nbPtsX*parameters.nbPtsY*parameters.nbPtsZ;
