@@ -1,6 +1,6 @@
 GTEST_DIR=./googletest/googletest
 USER_DIR = .
-USE = ../MC
+USE = ../../MC
 
 CPPFLAGS += -isystem $(GTEST_DIR)/include
 CXXFLAGS += -g -Wall -Wextra -pthread -std=c++17

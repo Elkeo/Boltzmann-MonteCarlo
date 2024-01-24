@@ -75,7 +75,7 @@ int main(int argc, char const* argv[])
                double z = parameters.array_z[0] + (k + 0.5) * (parameters.array_z[1] - parameters.array_z[0]) / (parameters.nbPtsZ);
 
                /* Création de la population de particules (fictives) */
-               
+
                Population packOfParticles(Domaine, parameters, u[i][j][k], { x, y, z });
                
 
@@ -85,6 +85,8 @@ int main(int argc, char const* argv[])
 
                /* On en déduit la solution u(x, t, v) */
                u[i][j][k] = packOfParticles.get_u();
+               somme+=u[i][j][k];
+
                U0+=Domaine->initialCondition({ x, y, z }, { 0.0, 0.0, 0.0 });
 
                somme+=u[i][j][k];

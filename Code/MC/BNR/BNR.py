@@ -14,7 +14,7 @@ repertoires = [
 for chemin in repertoires:
     print(f"Compilation et éxecution de : {chemin}")
 
-    # Changement du répertoire courant au répertoire du projet
+    # Changement du répertoire courant au répertoire du test
     os.chdir(chemin)
 
     # Compilation du projet avec Makefile

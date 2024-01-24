@@ -59,6 +59,17 @@
 }
 {}
 
+\def\restriction#1#2{\mathchoice
+	{\setbox1\hbox{${\displaystyle #1}_{\scriptstyle #2}$}
+		\restrictionaux{#1}{#2}}
+	{\setbox1\hbox{${\textstyle #1}_{\scriptstyle #2}$}
+		\restrictionaux{#1}{#2}}
+	{\setbox1\hbox{${\scriptstyle #1}_{\scriptscriptstyle #2}$}
+		\restrictionaux{#1}{#2}}
+	{\setbox1\hbox{${\scriptscriptstyle #1}_{\scriptscriptstyle #2}$}
+		\restrictionaux{#1}{#2}}}
+\def\restrictionaux#1#2{{#1\,\smash{\vrule height .8\ht1 depth .85\dp1}}_{\,#2}} 
+
 \begin{document} 
 	
 	%----------------------------------------------------------------------------------------
@@ -166,8 +177,9 @@
 
 
 \paragraph{Note} Here is a brief summary of the various existences and uniqueness of solutions based on different cases of equations to be solved. The primary source used is the transport and diffusion document.
+\section{mathematical analysis}
 
-\section{Transport Equation}
+\subsection{Transport Equation}
 
 \paragraph{}
 In this section, we will examine the solutions of the transport equation, a particular case of the Boltzmann equation, defined below:
@@ -183,8 +195,8 @@ Let's $v \in \mathbb{R}^N$
 
 $f$ is the unknown function, $a$ is the given damping or amplification rate, and $S$ is the given source term.
 
-\subsection{Cauchy Problem}
-\subsubsection{Special Case without Absorption or Source Term}
+\subsubsection{Cauchy Problem}
+\paragraph{Special Case without Absorption or Source Term}
 
 Let's consider the following Cauchy problem:
 
@@ -206,7 +218,7 @@ $\boxed{f(t,x)=f^{in}(x-tv) \quad \forall (t,x) \in \mathbb{R}_+ \times \mathbb{
 
 
 
-\subsubsection{With Absorption and Source Term}
+\paragraph{With Absorption and Source Term}
 
 This time, we consider damping and the source term, assuming they belong to $\mathcal{C}^1(\mathbb{R}_+ \times \mathbb{R}^n)$. The considered Cauchy problem is as follows:
 
@@ -221,11 +233,11 @@ This time, we consider damping and the source term, assuming they belong to $\ma
 In this case, if $f^{in} \in \mathcal{C}^1(\mathbb{R}^n)$, then using the method of characteristics, we can still demonstrate that the Cauchy problem has a unique solution $f \in \mathcal{C}^1(\mathbb{R}_+ \times \mathbb{R}^n)$. This solution is given as follows:\\
 $\boxed{f(t,x)=f^{in}(x-tv) e^{-\int_0 ^t a(\tau,x+(t-\tau)v)d\tau} + \int_0 ^t  e^{-\int_0 ^t a(\tau,x+(t-\tau)v)d\tau} S(s,x+(s-t)v)ds \quad \forall (t,x) \in \mathbb{R}_+ \times \mathbb{R}^n }$
 
-\subsection{Boundary Value Problems}
+\subsubsection{Boundary Value Problems}
 
 In the previous section, we presented results applicable when considering complete freedom for the spatial variable in $\mathbb{R}^n$. However, for a significant portion of physical problems, this may not be the case. That is why we are more interested in a problem of the boundary value type. In this section, we will consider the set $\Omega$, which is an open set with a $\mathcal{C}^1$ boundary in $\mathbb{R}^n$. Additionally, we take $v \in \mathbb{R}^n\backslash \{0\}$.
 
-\subsubsection{Special Case without Absorption or Source Term}
+\paragraph{Special Case without Absorption or Source Term}
 
 \paragraph{}
 If, moreover, $\Omega$ is convex, and let $f_b^- \in \mathcal{C}^1(\mathbb{R}_+ \times \partial \Omega^-)$ and $f^{in} \in \mathcal{C}^1(\overline{\Omega})$, where $\partial \Omega^- = \{x\in\partial \Omega~ | ~ v\cdot n_x<0\}$, then the problem:
@@ -258,7 +270,7 @@ The expression of the solution is then given by:
 
 With $\tau_x= \inf \{t \geq 0~ | ~ x-tv \notin \overline{\Omega}\}$
 
-\subsubsection{With Absorption and Source Term}
+\paragraph{With Absorption and Source Term}
 
 \paragraph{}
 We still consider $\Omega$ to be convex, with $f_b^- \in \mathcal{C}^1(\mathbb{R}_+ \times \partial \Omega^-)$, $f^{in} \in \mathcal{C}^1(\overline{\Omega})$, $a$, and $S$ $\in \mathcal{C}^1(\mathbb{R}_+ \times \overline{\Omega})$. If we assume that $\forall y \in \partial \Omega^-$,
@@ -295,7 +307,7 @@ has a unique solution $f \in \mathcal{C}^1(\mathbb{R}_+ \times \Omega)$ and $f \
 \]
 
 
-\subsection{Generalized Solutions}
+\subsubsection{Generalized Solutions}
 
 In this section, $\Omega$ is not necessarily convex. This implies that the continuity of potential solutions is not guaranteed. However, in practice, these cases must be addressed. Below, we define the concept of generalized solutions, which allows us to handle this issue without resorting to the theory of distributions.
 
@@ -346,7 +358,7 @@ has a unique generalized solution. The formula for this solution is the same as 
 
 
 
-\section{Linear Boltzmann Equation}
+\subsection{Linear Boltzmann Equation}
 
 In this section, we will focus on the actual Boltzmann equation. This integro-differential equation is described in \ref{Boltzmann}.
 
@@ -380,7 +392,7 @@ is of class $\mathcal{C}^1$ for all $x+sv \in \Omega$ and satisfies, for all $s 
 
 $\frac{d}{ds}f(t+s,x+sv,v) +a(t+s,x+sv,v)f(t+s,x+sv,v) = (\mathcal{K}f+ Q)(t+s,x+sv,v).$
 
-\subsection{Cauchy Problem}
+\subsubsection{Cauchy Problem}
 \paragraph{}
 
 
@@ -402,7 +414,7 @@ Then the problem is:
 \]
 has a unique generalized solution $f \in \mathbf{C}_b(]0,T[ \times \mathbb{R}^n \times \mathbb{R}^n)$.
 
-\subsection{Boundary Value Problem}
+\subsubsection{Boundary Value Problem}
 
 We define the set $\Gamma_-$ as $\Gamma_-= \{(x,v) \in \partial \Omega \times \mathbb{R}^n ~ | ~ v\cdot n_x<0\}$
 

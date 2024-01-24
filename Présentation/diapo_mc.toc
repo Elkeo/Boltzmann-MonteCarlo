@@ -1,7 +1,14 @@
-\babel@toc {english}{}\relax 
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\babel@toc {english}{}
+\defcounter {refsection}{0}\relax 
 \beamer@sectionintoc {1}{Introduction}{3}{0}{1}
+\defcounter {refsection}{0}\relax 
 \beamer@sectionintoc {2}{Monte Carlo method}{4}{0}{2}
+\defcounter {refsection}{0}\relax 
 \beamer@sectionintoc {3}{The existence and uniqueness of the solution: Cauchy Problem}{5}{0}{3}
+\defcounter {refsection}{0}\relax 
 \beamer@sectionintoc {4}{Resolution of the equation}{6}{0}{4}
+\defcounter {refsection}{0}\relax 
 \beamer@sectionintoc {5}{The semi-analog MC scheme}{12}{0}{5}
+\defcounter {refsection}{0}\relax 
 \beamer@sectionintoc {6}{Numerical results}{15}{0}{6}
