@@ -16,6 +16,8 @@ int main(int argc, char const* argv[])
    /* Déclaration - initialisation des variables */
 
    struct struct_parameters parameters;
+   parameters.fileName = argc > 1 ? argv[1] : "param.toml";
+
    init_parameters(parameters);
 
    /* Ouverture d'un fichier pour stocker la solution */
@@ -46,7 +48,7 @@ int main(int argc, char const* argv[])
       exit(1);
    }
 
-   double somme=0;
+   double somme=0.0;
    double dx,dy,dz;
    dx=(parameters.array_x[1]-parameters.array_x[0])/parameters.nbPtsX;
    dy=(parameters.array_y[1]-parameters.array_y[0])/parameters.nbPtsY;
