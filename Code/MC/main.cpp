@@ -12,7 +12,7 @@ int main(int argc, char const* argv[])
    struct struct_parameters parameters;
    parameters.fileName = argc > 1 ? argv[1] : "param.toml";
    init_parameters(parameters);
-   double nbIterations = int(parameters.finalTime / parameters.dt);
+   double nbIterations = ceil(parameters.finalTime / parameters.dt);
 
    /* Création du domaine où les particules se meuvent */
    std::valarray<Vecteur> Omega(parameters.nbDims);
@@ -45,13 +45,29 @@ int main(int argc, char const* argv[])
    for (int n = 0; n < nbIterations; n++)
    {
       /* Ouverture d'un fichier pour stocker la solution */
-      std::ofstream file("Resultats/solution_t_" + std::to_string(n) + ".txt");
+      // print to 1 file : std::ofstream file("Resultats/solution_t_" + std::to_string(n) + ".txt", std::ios::app);
+      std::ofstream file;
+      if (parameters.solutionType == "time")
+      {
+         file.open("Resultats/solution_t.txt", std::ios::app);
+      }
+      else if (parameters.solutionType == "space")
+      {
+         file.open("Resultats/solution_t_" + std::to_string(n) + ".txt");
+      }
+      else
+      {
+         std::cout << "Solution type not recognized : choose \"time\" or \"space\"." << std::endl;
+         throw std::exception();
+      }
+
       for (int i = 0; i < parameters.nbPtsX; i++)
       {
          for (int j = 0; j < parameters.nbPtsY; j++)
          {
             for (int k = 0; k < parameters.nbPtsZ; k++)
             {
+               u[i][j][k] = 0.0;
                double x = parameters.array_x[0] + (i + 0.5) * (parameters.array_x[1] - parameters.array_x[0]) / (parameters.nbPtsX);
                double y = parameters.array_y[0] + (j + 0.5) * (parameters.array_y[1] - parameters.array_y[0]) / (parameters.nbPtsY);
                double z = parameters.array_z[0] + (k + 0.5) * (parameters.array_z[1] - parameters.array_z[0]) / (parameters.nbPtsZ);
@@ -64,11 +80,12 @@ int main(int argc, char const* argv[])
 
                /* On en déduit la solution u(x, t, v) */
                u[i][j][k] = packOfParticles.get_u();
-               file << parameters.time << "\t" << x << "\t" << y << "\t" << z << "\t" << u[i][j][k] << std::endl;
+               file << x << "\t" << y << "\t" << z << "\t" << parameters.time << "\t" << u[i][j][k] << std::endl;
             }
          }
       }
       parameters.time += parameters.dt;
+      file.close();
    }
 
 

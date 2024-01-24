@@ -23,6 +23,7 @@ struct struct_parameters {
 
     std::string domainType = "";
     std::string fileName = "";
+    std::string solutionType = "";
 
     //Phisical parameters
     double sigmaS = 0;

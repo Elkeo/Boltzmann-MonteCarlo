@@ -9,7 +9,7 @@ solutionType = "time"
 nbDims = 1
 
 #Number of MC particles 
-nbMC = 10000
+nbMC = 100000
 
 #Final time of the simulation
 finalTime = 1.0 

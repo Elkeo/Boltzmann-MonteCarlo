@@ -3,7 +3,7 @@
 test_case = 1
 
 #Solution Type
-solutionType = "time"
+solutionType = "space"
 
 #Number of dimensions
 nbDims = 1
@@ -25,7 +25,7 @@ v3 = 0.0
 # Sizes of the domain
 xmin = -1.0
 xmax = 1.0
-nbPtsX = 1
+nbPtsX = 100
 ymin = -1.0
 ymax = 1.0
 nbPtsY = 20
@@ -38,5 +38,5 @@ domainType = "periodic"
 
 [physics]
 sigmaS = 0.0
-sigmaT = 1.0
+sigmaT = 0.0
 modV = 0.2

@@ -42,11 +42,11 @@ void PeriodicDomain::applyBoundaryConditions(Vecteur& xp, double& sp, Vecteur& v
 {
    for (int i = 0; i < this->_parameters.nbDims; i++)
    {
-      if (xp[i] < this->_Omega[i][0])
+      if (xp[i] <= this->_Omega[i][0])
       {
          xp[i] += (this->_Omega[i][1] - this->_Omega[i][0]);
       }
-      else if (xp[i] > this->_Omega[i][1])
+      else if (this->_Omega[i][1] <= xp[i])
       {
          xp[i] -= (this->_Omega[i][1] - this->_Omega[i][0]);
       }
