@@ -40,12 +40,12 @@ int main(int argc, char const* argv[])
       exit(1);
    }
 
-   /* Création de la solution u(x, t, v) */
+   /* Création de la solution u(coord_x, t, v) */
    std::valarray<std::valarray<std::valarray<double>>> u(std::valarray<std::valarray<double>>(std::valarray<double>(0.0, parameters.nbPtsZ), parameters.nbPtsY), parameters.nbPtsX);
-   for (int n = 0; n < nbIterations; n++)
+   for (int iter_n = 0; iter_n < nbIterations; iter_n++)
    {
       /* Ouverture d'un fichier pour stocker la solution */
-      // print to 1 file : std::ofstream file("Resultats/solution_t_" + std::to_string(n) + ".txt", std::ios::app);
+      // print to 1 file : std::ofstream file("Resultats/solution_t_" + std::to_string(iter_n) + ".txt", std::ios::app);
       std::ofstream file;
       if (parameters.solutionType == "time")
       {
@@ -53,7 +53,7 @@ int main(int argc, char const* argv[])
       }
       else if (parameters.solutionType == "space")
       {
-         file.open("Resultats/solution_t_" + std::to_string(n) + ".txt");
+         file.open("Resultats/solution_t_" + std::to_string(iter_n) + ".txt");
       }
       else
       {
@@ -61,26 +61,26 @@ int main(int argc, char const* argv[])
          throw std::exception();
       }
 
-      for (int i = 0; i < parameters.nbPtsX; i++)
+      for (int iter_i = 0; iter_i < parameters.nbPtsX; iter_i++)
       {
-         for (int j = 0; j < parameters.nbPtsY; j++)
+         for (int iter_j = 0; iter_j < parameters.nbPtsY; iter_j++)
          {
-            for (int k = 0; k < parameters.nbPtsZ; k++)
+            for (int iter_k = 0; iter_k < parameters.nbPtsZ; iter_k++)
             {
-               u[i][j][k] = 0.0;
-               double x = parameters.array_x[0] + (i + 0.5) * (parameters.array_x[1] - parameters.array_x[0]) / (parameters.nbPtsX);
-               double y = parameters.array_y[0] + (j + 0.5) * (parameters.array_y[1] - parameters.array_y[0]) / (parameters.nbPtsY);
-               double z = parameters.array_z[0] + (k + 0.5) * (parameters.array_z[1] - parameters.array_z[0]) / (parameters.nbPtsZ);
+               u[iter_i][iter_j][iter_k] = 0.0;
+               double coord_x = parameters.array_x[0] + (iter_i + 0.5) * (parameters.array_x[1] - parameters.array_x[0]) / (parameters.nbPtsX);
+               double coord_y = parameters.array_y[0] + (iter_j + 0.5) * (parameters.array_y[1] - parameters.array_y[0]) / (parameters.nbPtsY);
+               double coord_z = parameters.array_z[0] + (iter_k + 0.5) * (parameters.array_z[1] - parameters.array_z[0]) / (parameters.nbPtsZ);
 
                /* Création de la population de particules (fictives) */
-               Population packOfParticles(Domaine, parameters, u[i][j][k], { x, y, z });
+               Population packOfParticles(Domaine, parameters, u[iter_i][iter_j][iter_k], { coord_x, coord_y, coord_z });
 
                /* Les particules (fictives) évoluent */
                packOfParticles.move();
 
-               /* On en déduit la solution u(x, t, v) */
-               u[i][j][k] = packOfParticles.get_u();
-               file << x << "\t" << y << "\t" << z << "\t" << parameters.time << "\t" << u[i][j][k] << std::endl;
+               /* On en déduit la solution u(coord_x, t, v) */
+               u[iter_i][iter_j][iter_k] = packOfParticles.get_u();
+               file << coord_x << "\t" << coord_y << "\t" << coord_z << "\t" << parameters.time << "\t" << u[iter_i][iter_j][iter_k] << std::endl;
             }
          }
       }

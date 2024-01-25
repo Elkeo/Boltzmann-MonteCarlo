@@ -21,9 +21,9 @@ Particle::~Particle()
 
 bool Particle::notInDomain()
 {
-   for (int i = 0; i < this->_parameters.nbDims; i++)
+   for (int iter_i = 0; iter_i < this->_parameters.nbDims; iter_i++)
    {
-      if (not ((_xp[i] <= this->_Domain->get_Omega()[i][0]) or (this->_Domain->get_Omega()[i][1] <= this->_xp[i])))
+      if (not ((_xp[iter_i] <= this->_Domain->get_Omega()[iter_i][0]) or (this->_Domain->get_Omega()[iter_i][1] <= this->_xp[iter_i])))
       {
          return true;
       }
@@ -31,7 +31,7 @@ bool Particle::notInDomain()
    return false;
 };
 
-void Particle::move(double& u)
+void Particle::move(double& vect_u)
 {
    double tau;
    while ((this->_sp > 0) and (this->_wp > 0))
@@ -54,7 +54,7 @@ void Particle::move(double& u)
          // Do not change the velocity of particle
          // Do not change the weight of particle
          // Tally the contribution of particle
-         u += this->_wp * this->_Domain->initialCondition(this->_xp, this->_vp);
+         vect_u += this->_wp * this->_Domain->initialCondition(this->_xp, this->_vp);
       }
       else
       {
