@@ -25,12 +25,12 @@ void ElasticDomain::applyBoundaryConditions(Vecteur& xp, double& sp, Vecteur& vp
    // Choc élastique sur les parois
    for (int i = 0; i < this->_parameters.nbDims; i++)
    {
-      if (xp[i] < this->_Omega[i][0])
+      if (xp[i] <= this->_Omega[i][0])
       {
          xp[i] = this->_Omega[i][0];
          vp[i] *= -1;
       }
-      else if (xp[i] > this->_Omega[i][1])
+      else if (this->_Omega[i][1] <= xp[i])
       {
          xp[i] = this->_Omega[i][1];
          vp[i] *= -1;
@@ -67,21 +67,21 @@ double GenericDomain::initialCondition(const Vecteur& x, const Vecteur& v) const
       u_0 = (0.4 < x[0] and x[0] < 0.6) ? 1.0 : 0.0;
    }
 
-   else if(this->_parameters.test_case == 3){
-      
+   else if (this->_parameters.test_case == 3) {
+
       Vecteur taille(3);
 
-      taille[0]=(this->_parameters.array_x[1]-this->_parameters.array_x[0]);
-      taille[1]=(this->_parameters.array_y[1]-this->_parameters.array_y[0]);
-      taille[2]=(this->_parameters.array_z[1]-this->_parameters.array_z[0]);
+      taille[0] = (this->_parameters.array_x[1] - this->_parameters.array_x[0]);
+      taille[1] = (this->_parameters.array_y[1] - this->_parameters.array_y[0]);
+      taille[2] = (this->_parameters.array_z[1] - this->_parameters.array_z[0]);
 
-      for(int i=0;i<this->_parameters.nbDims;i++){
-         u_0=10*cos(x[i]*taille[i]/(2.1415*2));
+      for (int i = 0;i < this->_parameters.nbDims;i++) {
+         u_0 = 10 * cos(x[i] * taille[i] / (2.1415 * 2));
       }
    }
-   else {std::cout << "Test case not recognized : choose 1 or 2." << std::endl;}
+   else { std::cout << "Test case not recognized : choose 1 or 2." << std::endl; }
 
-   
+
    return u_0;
 };
 
