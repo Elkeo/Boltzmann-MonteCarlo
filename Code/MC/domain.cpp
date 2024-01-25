@@ -23,32 +23,32 @@ PeriodicDomain::~PeriodicDomain()
 void ElasticDomain::applyBoundaryConditions(Vecteur& xp, double& sp, Vecteur& vp) const
 {
    // Choc élastique sur les parois
-   for (int i = 0; i < this->_parameters.nbDims; i++)
+   for (int iter_i = 0; iter_i < this->_parameters.nbDims; iter_i++)
    {
-      if (xp[i] <= this->_Omega[i][0])
+      if (xp[iter_i] <= this->_Omega[iter_i][0])
       {
-         xp[i] = this->_Omega[i][0];
-         vp[i] *= -1;
+         xp[iter_i] = this->_Omega[iter_i][0];
+         vp[iter_i] *= -1;
       }
-      else if (this->_Omega[i][1] <= xp[i])
+      else if (this->_Omega[iter_i][1] <= xp[iter_i])
       {
-         xp[i] = this->_Omega[i][1];
-         vp[i] *= -1;
+         xp[iter_i] = this->_Omega[iter_i][1];
+         vp[iter_i] *= -1;
       }
    }
 };
 
 void PeriodicDomain::applyBoundaryConditions(Vecteur& xp, double& sp, Vecteur& vp) const
 {
-   for (int i = 0; i < this->_parameters.nbDims; i++)
+   for (int iter_i = 0; iter_i < this->_parameters.nbDims; iter_i++)
    {
-      if (xp[i] <= this->_Omega[i][0])
+      if (xp[iter_i] <= this->_Omega[iter_i][0])
       {
-         xp[i] += (this->_Omega[i][1] - this->_Omega[i][0]);
+         xp[iter_i] += (this->_Omega[iter_i][1] - this->_Omega[iter_i][0]);
       }
-      else if (this->_Omega[i][1] <= xp[i])
+      else if (this->_Omega[iter_i][1] <= xp[iter_i])
       {
-         xp[i] -= (this->_Omega[i][1] - this->_Omega[i][0]);
+         xp[iter_i] -= (this->_Omega[iter_i][1] - this->_Omega[iter_i][0]);
       }
    }
 };
@@ -75,8 +75,8 @@ double GenericDomain::initialCondition(const Vecteur& x, const Vecteur& v) const
       taille[1] = (this->_parameters.array_y[1] - this->_parameters.array_y[0]);
       taille[2] = (this->_parameters.array_z[1] - this->_parameters.array_z[0]);
 
-      for (int i = 0;i < this->_parameters.nbDims;i++) {
-         u_0 = 10 * cos(x[i] * taille[i] / (2.1415 * 2));
+      for (int iter_i = 0;iter_i < this->_parameters.nbDims;iter_i++) {
+         u_0 = 10 * cos(x[iter_i] * taille[iter_i] / (2.1415 * 2));
       }
    }
    else { std::cout << "Test case not recognized : choose 1 or 2." << std::endl; }

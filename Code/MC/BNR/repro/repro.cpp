@@ -46,74 +46,72 @@ int main(int argc, char const* argv[])
    for (int n = 0; n < nbIterations; n++)
    {
 
-      for (int i = 0; i < parameters.nbPtsX; i++)
+      for (int iter_i = 0; iter_i < parameters.nbPtsX; iter_i++)
       {
-         for (int j = 0; j < parameters.nbPtsY; j++)
+         for (int iter_j = 0; iter_j < parameters.nbPtsY; iter_j++)
          {
-            for (int k = 0; k < parameters.nbPtsZ; k++)
+            for (int iter_k = 0; iter_k < parameters.nbPtsZ; iter_k++)
             {
-               u1[i][j][k] = 0.0;
-               double x = parameters.array_x[0] + (i + 0.5) * (parameters.array_x[1] - parameters.array_x[0]) / (parameters.nbPtsX);
-               double y = parameters.array_y[0] + (j + 0.5) * (parameters.array_y[1] - parameters.array_y[0]) / (parameters.nbPtsY);
-               double z = parameters.array_z[0] + (k + 0.5) * (parameters.array_z[1] - parameters.array_z[0]) / (parameters.nbPtsZ);
+               u1[iter_i][iter_j][iter_k] = 0.0;
+               double x = parameters.array_x[0] + (iter_i + 0.5) * (parameters.array_x[1] - parameters.array_x[0]) / (parameters.nbPtsX);
+               double y = parameters.array_y[0] + (iter_j + 0.5) * (parameters.array_y[1] - parameters.array_y[0]) / (parameters.nbPtsY);
+               double z = parameters.array_z[0] + (iter_k + 0.5) * (parameters.array_z[1] - parameters.array_z[0]) / (parameters.nbPtsZ);
 
                /* Création de la population de particules (fictives) */
-               Population packOfParticles(Domaine, parameters, u1[i][j][k], { x, y, z });
+               Population packOfParticles(Domaine, parameters, u1[iter_i][iter_j][iter_k], { x, y, z });
 
                /* Les particules (fictives) évoluent */
                packOfParticles.move();
 
                /* On en déduit la solution u(x, t, v) */
-               u1[i][j][k] = packOfParticles.get_u();
+               u1[iter_i][iter_j][iter_k] = packOfParticles.get_u();
             }
          }
       }
       parameters.time += parameters.dt;
    }
 
-      for (int n = 0; n < nbIterations; n++)
+      for (int iter_n = 0; iter_n < nbIterations; iter_n++)
    {
 
-      for (int i = 0; i < parameters.nbPtsX; i++)
+      for (int iter_i = 0; iter_i < parameters.nbPtsX; iter_i++)
       {
-         for (int j = 0; j < parameters.nbPtsY; j++)
+         for (int iter_j = 0; iter_j < parameters.nbPtsY; iter_j++)
          {
-            for (int k = 0; k < parameters.nbPtsZ; k++)
+            for (int iter_k = 0; iter_k < parameters.nbPtsZ; iter_k++)
             {
-               u2[i][j][k] = 0.0;
-               double x = parameters.array_x[0] + (i + 0.5) * (parameters.array_x[1] - parameters.array_x[0]) / (parameters.nbPtsX);
-               double y = parameters.array_y[0] + (j + 0.5) * (parameters.array_y[1] - parameters.array_y[0]) / (parameters.nbPtsY);
-               double z = parameters.array_z[0] + (k + 0.5) * (parameters.array_z[1] - parameters.array_z[0]) / (parameters.nbPtsZ);
+               u2[iter_i][iter_j][iter_k] = 0.0;
+               double x = parameters.array_x[0] + (iter_i + 0.5) * (parameters.array_x[1] - parameters.array_x[0]) / (parameters.nbPtsX);
+               double y = parameters.array_y[0] + (iter_j + 0.5) * (parameters.array_y[1] - parameters.array_y[0]) / (parameters.nbPtsY);
+               double z = parameters.array_z[0] + (iter_k + 0.5) * (parameters.array_z[1] - parameters.array_z[0]) / (parameters.nbPtsZ);
 
                /* Création de la population de particules (fictives) */
-               Population packOfParticles(Domaine, parameters, u2[i][j][k], { x, y, z });
+               Population packOfParticles(Domaine, parameters, u2[iter_i][iter_j][iter_k], { x, y, z });
 
                /* Les particules (fictives) évoluent */
                packOfParticles.move();
 
                /* On en déduit la solution u(x, t, v) */
-               u2[i][j][k] = packOfParticles.get_u();
+               u2[iter_i][iter_j][iter_k] = packOfParticles.get_u();
             }
          }
       }
       parameters.time += parameters.dt;
    }
 
-   int N=0;
    double somme;
-   for (int i = 0; i < parameters.nbPtsX; i++)
+   for (int iter_i = 0; iter_i < parameters.nbPtsX; iter_i++)
    {
-      for (int j = 0; j < parameters.nbPtsY; j++)
+      for (int iter_j = 0; iter_j < parameters.nbPtsY; iter_j++)
       {
-         for (int k = 0; k < parameters.nbPtsZ; k++)
+         for (int iter_k = 0; iter_k < parameters.nbPtsZ; iter_k++)
          {
-            somme+= u1[i][j][k]*u1[i][j][k]+u2[i][j][k]*u2[i][j][k];
-            N+=1;
+            somme+= u1[iter_i][iter_j][iter_k]*u1[iter_i][iter_j][iter_k]+u2[iter_i][iter_j][iter_k]*u2[iter_i][iter_j][iter_k];
          }
       }
    }
    double erreur;
-   erreur=sqrt(somme)/N;
+   erreur=sqrt(somme)/parameters.nbPtsX*std::max(parameters.nbPtsY, 1)*std::max(parameters.nbPtsZ, 1);
 
    delete Domaine;
 

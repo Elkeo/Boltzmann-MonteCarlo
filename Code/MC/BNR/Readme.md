@@ -11,4 +11,4 @@ python3 BNR.py
 ## Structure du code
 
 
-Le script __BNR.py__ fais une boucle sur tout les tests disponibles. Lors de la boucle le système compile en utilisant le __Makefile__ disponible dans chaque répertoire. Ensuite le programme est executé puis les messages relatif sont affiché dans la console. L'utilisateur est invité à les lire et décider de si le test est validé ou non. Enfin un "make clean" est effectué dans le répetoire puis le système passe au test suivant.
+Le script __BNR.py__ fait une boucle sur tous les tests disponibles. Lors de la boucle le système compile en utilisant le __Makefile__ disponible dans chaque répertoire. Ensuite le programme est executé puis les messages relatifs sont affichés dans la console. L'utilisateur est invité à les lire et décider de si le test est validé ou non. Enfin un "make clean" est effectué dans le répetoire puis le système passe au test suivant.
