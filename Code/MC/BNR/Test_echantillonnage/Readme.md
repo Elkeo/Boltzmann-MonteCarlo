@@ -5,7 +5,7 @@ Le fichier sampling_test.cpp fait office de "main". Il s'appuie sur les fichiers
 Le fichier treatment.py lit les fichiers data.json et nMC.json pour connaître le nombre de particules et les coordonnées tirées aléatoirement. Il calcule ensuite la moyenne des coordonnées tirées en x, y et z et effectue un test de Kolmogorov-Smirnov pour s'assurer que le tirage aléatoire est bien effectué uniformément sur la sphère unité.
 
 # Compilation
-g++ -o run sampling_test.cpp ../domain.cpp ../particles.cpp ../population.cpp ../parameters.cpp -I..
+g++ -o run sampling_test.cpp ../../domain.cpp ../../particles.cpp ../../population.cpp ../../parameters.cpp -I..
 
 # Exécution
 ./run

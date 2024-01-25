@@ -3,7 +3,7 @@
 
 ## Execution
 
-Pour éxecuter la base de test il surffier de taper la commande :
+Pour éxecuter la base de test il surffit de taper la commande :
 ```bash
 python3 BNR.py
 ```

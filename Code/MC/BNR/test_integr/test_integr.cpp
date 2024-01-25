@@ -106,12 +106,12 @@ int main(int argc, char const* argv[])
       erreur=abs(erreur);
 
       delete Domaine;
-      std::cout << "\n"<<std::endl;
-      std::cout << "########################"<<std::endl;
+      // std::cout << "\n"<<std::endl;
+      // std::cout << "########################"<<std::endl;
       std::cout << "Test intégrale" << std::endl;
       std::cout << "erreur = "<< erreur << " U= "<< U <<" U0 =" << U0<< endl;
-      std::cout << "########################"<<std::endl;
-      std::cout << "\n"<<std::endl;
+      // std::cout << "########################"<<std::endl;
+      // std::cout << "\n"<<std::endl;
 
 
    }
@@ -159,12 +159,12 @@ int main(int argc, char const* argv[])
       erreur=abs(erreur);
 
       delete Domaine;
-      std::cout << "\n"<<std::endl;
-      std::cout << "########################"<<std::endl;
+      // std::cout << "\n"<<std::endl;
+      // std::cout << "########################"<<std::endl;
       std::cout << "Test intégrale" << std::endl;
       std::cout << "erreur = "<< erreur << " U= "<< U <<" U0 =" << U0<< endl;
-      std::cout << "########################"<<std::endl;
-      std::cout << "\n"<<std::endl;
+      // std::cout << "########################"<<std::endl;
+      // std::cout << "\n"<<std::endl;
 
    }
 
@@ -207,12 +207,12 @@ int main(int argc, char const* argv[])
       erreur=abs(erreur);
 
       delete Domaine;
-      std::cout << "\n"<<std::endl;
-      std::cout << "########################"<<std::endl;
+      // std::cout << "\n"<<std::endl;
+      // std::cout << "########################"<<std::endl;
       std::cout << "Test intégrale" << std::endl;
       std::cout << "erreur = "<< erreur << " U= "<< U <<" U0 =" << U0<< endl;
-      std::cout << "########################"<<std::endl;
-      std::cout << "\n"<<std::endl;
+      // std::cout << "########################"<<std::endl;
+      // std::cout << "\n"<<std::endl;
 
    }
 

@@ -115,13 +115,14 @@ int main(int argc, char const* argv[])
 
    delete Domaine;
 
-   std::cout << "\n"<<std::endl;
+   // std::cout << "\n"<<std::endl;
+   // std::cout << "########################"<<std::endl;
 
-   std::cout << "########################"<<std::endl;
    std::cout << "Test de reproductibilité" << std::endl;
    std::cout << "Erreur entre les 2 solutions = " << erreur << std::endl;
-   std::cout << "########################"<<std::endl;
-   std::cout << "\n"<<std::endl;
+   
+   // std::cout << "########################"<<std::endl;
+   // std::cout << "\n"<<std::endl;
 
 
    return 0;
