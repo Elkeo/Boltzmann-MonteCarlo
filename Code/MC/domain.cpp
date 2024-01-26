@@ -112,8 +112,8 @@ Vecteur GenericDomain::sampleVprime(const Vecteur& xp, const double& sp, const d
    {
       // tirage uniforme sur [-1, 1]
       std::uniform_real_distribution<double> distribution(-1, 1);
-
-      vprime[0] = normV * distribution(generator);
+      auto tirage = distribution(generator);
+      vprime[0] = normV * tirage / abs(tirage);
    }
    else if (this->_parameters.nbDims == 2)
    {
@@ -148,5 +148,5 @@ double GenericDomain::sampleTau(const Vecteur& xp, const double& sp, const Vecte
    std::uniform_real_distribution<double> distribution(0, 1);
 
    double sigma_t = this->sigmaT(xp, sp, vp);
-   return sigma_t > 0 ? -log(distribution(generator)) / sigma_t * sqrt(((vp * vp).sum())) : sp + 1;
+   return sigma_t > 0 ? -log(distribution(generator)) / (sigma_t * sqrt(((vp * vp).sum()))) : sp + 1;
 };
