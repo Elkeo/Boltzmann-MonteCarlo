@@ -3,14 +3,14 @@ import numpy as np
 import scipy
 
 # Chemin vers le fichier output.json
-output_json = '/home/gabriel/Documents/GitHub/Boltzmann-MonteCarlo/Code/MC/Test_echantillonnage/data.json'
+output_json = 'data.json'
 
 # Charger le fichier JSON
 with open(output_json, 'r') as f:
     data_samples = json.load(f)
 
 # Chemin vers le fichier output.json
-output_json1 = '/home/gabriel/Documents/GitHub/Boltzmann-MonteCarlo/Code/MC/Test_echantillonnage/nMC.json'
+output_json1 = 'nMC.json'
 
 # Charger le fichier JSON
 with open(output_json1, 'r') as f1:

@@ -1,9 +1,14 @@
-#include "../main.hpp"
-#include "../population.hpp"
-#include "sampling_test.hpp"
-#include </home/gabriel/Téléchargements/visit3_3_3.linux-x86_64/3.3.3/linux-x86_64/include/vtk/vtk-8.1/vtkjsoncpp/json/json.h>
+#include "../../population.hpp"
+#include <vector>
+#include <stdlib.h>
+#include <stdio.h>
+#include <algorithm>
+#include <valarray>
+#include <random>
+#include <iostream>
 #include <fstream>
-
+// #include </home/gabriel/Téléchargements/visit3_3_3.linux-x86_64/3.3.3/linux-x86_64/include/vtk/vtk-8.1/vtkjsoncpp/json/json.h>
+using Vecteur = std::valarray<double>;
 
 int main(int argc, char const* argv[])
 {

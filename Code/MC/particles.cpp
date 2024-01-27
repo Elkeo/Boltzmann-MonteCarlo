@@ -46,7 +46,7 @@ void Particle::move(double& vect_u)
       {
          // See the treatment in factor of 1[t, ∞[(τ)in (9.24)
          // Move the particle
-         this->_xp += this->_sp * this->_vp;
+         this->_xp -= this->_sp * this->_vp;
 
          // Set the life time of particle p to zero
          this->_sp = 0;
@@ -58,15 +58,15 @@ void Particle::move(double& vect_u)
       }
       else
       {
+         // Move the particle
+         this->_xp -= this->_vp * tau;
+
          // See the recursive treatment in factor of 1[0, t](τ) in (9.24)
          // Change the particle weight
          this->_wp *= this->_Domain->sigmaS(this->_xp, this->_sp - tau, this->_vp) / this->_Domain->sigmaT(this->_xp, this->_sp - tau, this->_vp);
 
          // Sample the velocity V′ of particle p from P_V'^s(xp, sp, τ, vp, v′)dv′
          this->_vp = this->_Domain->sampleVprime(this->_xp, this->_sp, tau, this->_vp);
-
-         // Move the particle
-         this->_xp += this->_vp * tau;
 
          // Set the life time of particle
          this->_sp -= tau;

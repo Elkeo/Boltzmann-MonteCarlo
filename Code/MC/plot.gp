@@ -4,9 +4,9 @@ set output "advection.gif"
 set xr[-1:1]
 set yr[-1:6]
 dt=0.1
-do for [i=1:9] {
+do for [i=0:10] {
 t=i*dt
 set title "t = ".sprintf("%f", t)." s"
-plot "Resultats/solution_t_".i.".txt" u 2:5 with lines lw 10
+plot "Resultats/solution_t_".i.".txt" u 1:5 with lines lw 10
 }
 set output
