@@ -70,6 +70,8 @@ int main(int argc, char const* argv[])
          {
             for (int k = 0; k < parameters.nbPtsZ; k++)
             {
+               u[i][j][k] = 0.0;
+
                double x = parameters.array_x[0] + (i + 0.5) * (parameters.array_x[1] - parameters.array_x[0]) / (parameters.nbPtsX);
                double y = parameters.array_y[0] + (j + 0.5) * (parameters.array_y[1] - parameters.array_y[0]) / (parameters.nbPtsY);
                double z = parameters.array_z[0] + (k + 0.5) * (parameters.array_z[1] - parameters.array_z[0]) / (parameters.nbPtsZ);

@@ -41,7 +41,7 @@ for chemin in repertoires:
 
 
     print(f"{BLUE}{BOLD}\n####################################{RESET}")
-    # Nettoyage du projet avec 'make clean'
+    # Nettoyage du projet avec make clean
     clean_process = subprocess.run(["make", "clean"], capture_output=True, text=True)
     if clean_process.returncode == 0:
         print(f"{GREEN}Nettoyage réussi.{RESET}")
