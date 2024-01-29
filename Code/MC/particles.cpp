@@ -23,7 +23,7 @@ bool Particle::notInDomain()
 {
    for (int iter_i = 0; iter_i < this->_parameters.nbDims; iter_i++)
    {
-      if (not ((_xp[iter_i] <= this->_Domain->get_Omega()[iter_i][0]) or (this->_Domain->get_Omega()[iter_i][1] <= this->_xp[iter_i])))
+      if ((_xp[iter_i] <= this->_Domain->get_Omega()[iter_i][0]) or (this->_Domain->get_Omega()[iter_i][1] <= this->_xp[iter_i]))
       {
          return true;
       }
@@ -36,17 +36,18 @@ void Particle::move(double& vect_u)
    double tau;
    while ((this->_sp > 0) and (this->_wp > 0))
    {
-      if (Particle::notInDomain())
-      {
-         // La condition de test est redondante
-         this->_Domain->applyBoundaryConditions(this->_xp, this->_sp, this->_vp);
-      }
       tau = this->_Domain->sampleTau(this->_xp, this->_sp, this->_vp);
       if (tau > this->_sp)
       {
          // See the treatment in factor of 1[t, ∞[(τ)in (9.24)
          // Move the particle
          this->_xp -= this->_sp * this->_vp;
+
+         // if (Particle::notInDomain())
+         // {
+         //    // La condition de test est redondante
+         //    this->_Domain->applyBoundaryConditions(this->_xp, this->_sp, this->_vp);
+         // }
 
          // Set the life time of particle p to zero
          this->_sp = 0;
@@ -59,7 +60,13 @@ void Particle::move(double& vect_u)
       else
       {
          // Move the particle
-         this->_xp -= this->_vp * tau;
+         this->_xp -= tau * this->_vp;
+
+         if (Particle::notInDomain())
+         {
+            // La condition de test est redondante
+            this->_Domain->applyBoundaryConditions(this->_xp, tau, this->_vp);
+         }
 
          // See the recursive treatment in factor of 1[0, t](τ) in (9.24)
          // Change the particle weight

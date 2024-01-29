@@ -23,19 +23,26 @@ PeriodicDomain::~PeriodicDomain()
 void ElasticDomain::applyBoundaryConditions(Vecteur& xp, double& sp, Vecteur& vp) const
 {
    // Choc élastique sur les parois
+   double distance_avec_bord = 0.0;
+   std::cout << "avant : " << xp[0] << " " << xp[1] << " " << xp[2] << std::endl;
    for (int iter_i = 0; iter_i < this->_parameters.nbDims; iter_i++)
    {
       if (xp[iter_i] <= this->_Omega[iter_i][0])
       {
-         xp[iter_i] = this->_Omega[iter_i][0];
+         //std::cout << "Particle out of domain gauche" << std::endl;
+         distance_avec_bord = abs(xp[iter_i] - this->_Omega[iter_i][0]);
+         xp[iter_i] = this->_Omega[iter_i][0] + distance_avec_bord;
          vp[iter_i] *= -1;
       }
       else if (this->_Omega[iter_i][1] <= xp[iter_i])
       {
-         xp[iter_i] = this->_Omega[iter_i][1];
+         std::cout << "Particle out of domain droit" << std::endl;
+         distance_avec_bord = abs(xp[iter_i] - this->_Omega[iter_i][1]);
+         xp[iter_i] = this->_Omega[iter_i][1] - distance_avec_bord;
          vp[iter_i] *= -1;
       }
    }
+   std::cout << "après :" << xp[0] << " " << xp[1] << " " << xp[2] << std::endl;
 };
 
 void PeriodicDomain::applyBoundaryConditions(Vecteur& xp, double& sp, Vecteur& vp) const
