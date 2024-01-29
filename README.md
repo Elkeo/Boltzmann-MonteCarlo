@@ -1,7 +1,4 @@
-# Montecarlo
-
-
-Résolution de l'équation de Boltzmann linéaire par méthode Monte-Carlo.
+# Résolution de l'équation de Boltzmann linéaire par méthode Monte-Carlo.
 
 ## Dépôt du projet de Calcul Haute Performance
 
@@ -17,7 +14,7 @@ Groupe de :
 
 Le fichier param.toml rassemble les différents paramètres d'entrée (nombre de dimension(s), nombre de particules, dimensions du domaine, nombre de points, vitesses et temps auxquels on cherche la solution u).
 
-# Exécution du code
+## Exécution du code
 
 Le code se compile en se plaçant dans le répertoire Boltzmann-Montecarlo/Code/MC et en utilisant la commande :
 ```bash
@@ -31,7 +28,7 @@ L'exécution se fait ensuite par :
 ```
 
  et donne la solution de $u(x_i, y_j, z_k, t^n, v)$ en fonction des paramètres choisis dans un fichier __Resultats/solution_t_"n".txt__.
-Les 4 premières colonnes correspondent à $t^n$, $x_i$, $y_j$ et $z_k$ et la cinquième et dernière à $u(x_i, y_j, z_k, t^n, v)$.
+Les 4 premières colonnes correspondent à $x_i$, $y_j$, $z_k$, $t^n$ et la cinquième et dernière à $u(x_i, y_j, z_k, t^n, v)$.
 
 NB : les fonctions SigmaS et SigmaT sont constantes et retournent pour valeur celle écrite dans le fichier param.toml
 
