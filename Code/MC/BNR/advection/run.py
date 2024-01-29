@@ -12,8 +12,9 @@ RESET = "\033[0m"
 
 def u_init(x):
     y=0
-    if 0<x<6:
+    if 0.4<x<0.6:
         y=1
+
     return(y)
 
 def u_exact(x,t):

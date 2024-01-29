@@ -12,44 +12,44 @@ RESET = "\033[0m"
 #################################################################
 #C++
 #################################################################
-# repertoires_C = [
-#     "./Test_echantillonnage",
-#     "./repro"
+repertoires_C = [
+    "./Test_echantillonnage",
+    "./repro"
 
-# ]
+]
 
-# # Boucle sur chaque répertoire
-# for chemin in repertoires_C:
-#     print(f"{YELLOW}Compilation et éxecution de : {chemin}")
+# Boucle sur chaque répertoire
+for chemin in repertoires_C:
+    print(f"{YELLOW}Compilation et éxecution de : {chemin}")
 
-#     # Changement du répertoire courant au répertoire du test
-#     os.chdir(chemin)
+    # Changement du répertoire courant au répertoire du test
+    os.chdir(chemin)
 
-#     # Compilation du projet avec Makefile
-#     compile_process = subprocess.run(["make"], capture_output=True, text=True)
+    # Compilation du projet avec Makefile
+    compile_process = subprocess.run(["make"], capture_output=True, text=True)
 
-#     if compile_process.returncode == 0:
-#         print(f"{GREEN}Compilation réussie.")
-#         print(f"{BLUE}{BOLD}####################################{RESET}\n")
+    if compile_process.returncode == 0:
+        print(f"{GREEN}Compilation réussie.")
+        print(f"{BLUE}{BOLD}####################################{RESET}\n")
 
-#         os.system("./run")  
-#     else:
-#         print(f"{RED}Erreur lors de la compilation du projet dans {chemin}:\n{compile_process.stderr}{RESET}")
+        os.system("./run")  
+    else:
+        print(f"{RED}Erreur lors de la compilation du projet dans {chemin}:\n{compile_process.stderr}{RESET}")
     
-#     if chemin=="./Test_echantillonnage":
-#         os.system("python3 treatment.py")  
+    if chemin=="./Test_echantillonnage":
+        os.system("python3 treatment.py")  
 
 
-#     print(f"{BLUE}{BOLD}\n####################################{RESET}")
-#     # Nettoyage du projet avec make clean
-#     clean_process = subprocess.run(["make", "clean"], capture_output=True, text=True)
-#     if clean_process.returncode == 0:
-#         print(f"{GREEN}Nettoyage réussi.{RESET}")
-#     else:
-#         print(f"{RED}Erreur lors du nettoyage du projet dans {chemin}:\n{clean_process.stderr}{RESET}")
+    print(f"{BLUE}{BOLD}\n####################################{RESET}")
+    # Nettoyage du projet avec make clean
+    clean_process = subprocess.run(["make", "clean"], capture_output=True, text=True)
+    if clean_process.returncode == 0:
+        print(f"{GREEN}Nettoyage réussi.{RESET}")
+    else:
+        print(f"{RED}Erreur lors du nettoyage du projet dans {chemin}:\n{clean_process.stderr}{RESET}")
 
-#     # Retour au répertoire précédent pour la prochaine itération
-#     os.chdir("..")
+    # Retour au répertoire précédent pour la prochaine itération
+    os.chdir("..")
 
 
 
