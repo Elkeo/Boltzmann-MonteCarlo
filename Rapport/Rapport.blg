@@ -1,50 +1,50 @@
-This is BibTeX, Version 0.99d (TeX Live 2019/Debian)
+This is BibTeX, Version 0.99d (TeX Live 2023)
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: Rapport.aux
 The style file: unsrt.bst
 Database file #1: biblio.bib
+Warning--I didn't find a database entry for "Boltzmann"
 Warning--empty publisher in allaire:2019
-Warning--empty year in noauthor_transport_2018
 Warning--empty year in lapeyre_methodes_1998
-You've used 4 entries,
+You've used 3 entries,
             1791 wiz_defined-function locations,
-            465 strings with 4227 characters,
-and the built_in function-call counts, 724 in all, are:
-= -- 55
-> -- 40
+            462 strings with 4103 characters,
+and the built_in function-call counts, 537 in all, are:
+= -- 41
+> -- 29
 < -- 1
-+ -- 15
-- -- 11
-* -- 47
-:= -- 126
-add.period$ -- 14
-call.type$ -- 4
++ -- 11
+- -- 8
+* -- 37
+:= -- 96
+add.period$ -- 10
+call.type$ -- 3
 change.case$ -- 1
 chr.to.int$ -- 0
-cite$ -- 7
-duplicate$ -- 37
-empty$ -- 69
-format.name$ -- 11
-if$ -- 156
+cite$ -- 5
+duplicate$ -- 27
+empty$ -- 50
+format.name$ -- 8
+if$ -- 114
 int.to.chr$ -- 0
-int.to.str$ -- 4
-missing$ -- 6
-newline$ -- 24
-num.names$ -- 4
-pop$ -- 24
+int.to.str$ -- 3
+missing$ -- 4
+newline$ -- 18
+num.names$ -- 3
+pop$ -- 17
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 6
+skip$ -- 4
 stack$ -- 0
 substring$ -- 0
-swap$ -- 5
+swap$ -- 4
 text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
-warning$ -- 3
-while$ -- 4
-width$ -- 5
-write$ -- 43
+warning$ -- 2
+while$ -- 3
+width$ -- 4
+write$ -- 32
 (There were 3 warnings)
