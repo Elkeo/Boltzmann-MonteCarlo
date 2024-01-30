@@ -19,6 +19,9 @@
 \usepackage{amssymb}
 \usepackage{xcolor}
 \usepackage{setspace}
+\usepackage{amsmath} % pour les notations mathématiques
+\usepackage{algorithm} % pour l'environnement algorithm
+\usepackage{algpseudocode} % pour l'environnement algpseudocode
 \usepackage{enumitem}
 \setlength{\hoffset}{-18pt}         
 \setlength{\oddsidemargin}{0pt} % Marge gauche sur pages impaires
@@ -536,7 +539,59 @@ Then the integral representation of \ref{ref11} is provided by:
 
 \section{Semi analog MC scheme}
 
-Developing a Monte Carlo scheme involves introducing a group of random variables along with their associated probability measure to express \ref{ref13} as an expectation. The selection of this set of random variables is not unique, resulting in various Monte Carlo schemes with distinct properties.
+Developing a Monte Carlo scheme involves introducing a group of random variables along with their associated probability measure to express \ref{ref13} as an expectation. The selection of this set of random variables is not unique, resulting in various Monte Carlo schemes with distinct properties. In this project we used one of them, the so-called Semi-analog scheme. The algorithm 1 describe this method.
+
+
+\paragraph{}
+This method is described as backward. In fact, we first initialize $S_p$, the remaining lifetime of the particle, to $t$, and it will decrease to zero. Here, we adopt a general form for the boundary conditions. In the program we developed, we have tried various conditions: Periodic boundary conditions (which are not truly significant in a physical problem but can be interpreted as an infinite environment), and Elastic boundary conditions.
+
+At line 11, we sample $\tau$ using the function: $\tau = \frac{-\ln(\mathcal{U}(0,1))}{\sigma_t \sqrt{v^2}}$. If $\tau$ is greater than $s_p$, then the particle is moved, its lifetime is set to zero, and its contribution is updated. Otherwise, the particle is moved, its speed is sampled, its lifetime is updated, and then its weight is changed.
+
+
+
+
+
+
+\begin{algorithm}
+	\caption{Semi analog scheme algorithm}
+	\begin{algorithmic}[1]
+		\State $u(x, t, v) \gets 0$
+		\For{$p = 1$ to $N_{MC}$}
+		\State $s_p \gets t$ 
+		\State $x_p \gets x$
+		\State $v_p \gets v$
+		\State $w_p \gets \frac{1}{N_{MC}}$
+		\While{$s_p > 0$ AND $w_p > 0$}
+		\If{$x_p \notin D$}
+		\State apply\_boundary\_conditions$(x_p, s_p, v_p)$
+		\EndIf
+		\State Sample $\tau$.
+		\If{$\tau > s_p$}
+
+
+
+		\State $x_p \gets - v_p s_p$
+
+		\State $s_p \gets 0$
+
+		\State $u(x, t, v) \gets w_p \times u_0(x_p, v_p)$
+		\Else
+
+		\State $x_p \gets - v_p \tau$
+		\State Sample the velocity of particle p from $P(x_p, s_p, v_p, dv')$
+		\State $v_p \gets v'$
+
+		\State $s_p \gets - \tau$
+
+		\State $w_p \gets \frac{\sigma(x_p, s_p, v')}{\sigma(x_p, s_p, v_p)} \times w_p$
+		\EndIf
+		\EndWhile
+		\EndFor
+	\end{algorithmic}
+\end{algorithm}
+
+
+
 
 \section{Numerical tests/results}
 
