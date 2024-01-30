@@ -220,18 +220,61 @@ $\boxed{f(t,x)=f^{in}(x-tv) \quad \forall (t,x) \in \mathbb{R}_+ \times \mathbb{
 
 \paragraph{With Absorption and Source Term}
 
+
+
 This time, we consider damping and the source term, assuming they belong to $\mathcal{C}^1(\mathbb{R}_+ \times \mathbb{R}^n)$. The considered Cauchy problem is as follows:
 
 
 \[
 \begin{cases}
-	\frac{\partial f}{\partial t}(t,x)+v \cdot \nabla_x f(t,x) + a(t,x)f(t,x) = S(t,x), \quad x \in \mathbb{R}^N, \quad t>0.\\
-	f(0,x)) = f^{in}(x)
+\frac{\partial f}{\partial t}(t,x)+v \cdot \nabla_x f(t,x) + a(t,x)f(t,x) = S(t,x), \quad x \in \mathbb{R}^N, \quad t>0.\\
+f(0,x)) = f^{in}(x)
 \end{cases}
 \]
 
 In this case, if $f^{in} \in \mathcal{C}^1(\mathbb{R}^n)$, then using the method of characteristics, we can still demonstrate that the Cauchy problem has a unique solution $f \in \mathcal{C}^1(\mathbb{R}_+ \times \mathbb{R}^n)$. This solution is given as follows:\\
 $\boxed{f(t,x)=f^{in}(x-tv) e^{-\int_0 ^t a(\tau,x+(t-\tau)v)d\tau} + \int_0 ^t  e^{-\int_0 ^t a(\tau,x+(t-\tau)v)d\tau} S(s,x+(s-t)v)ds \quad \forall (t,x) \in \mathbb{R}_+ \times \mathbb{R}^n }$
+
+We will demonstrate the previous formula using the characteristics method. We will not demonstrate all folowing expression of the exact solution but the idea would be the same.
+
+\paragraph{}
+
+We will demonstrate the previous formula using the method of characteristics. The proof of the following expression for the exact solution will not be elaborated upon, but the underlying idea would be analogous. The interested reader is invited to see \textcolor{red}{Mettre la source allaire!!!!!}.
+
+Let $y \in \mathbb{R}$, and consider the characteristic curve emanating from $y$ at $t=0$, given by :
+
+\[ \{(t,\gamma(t)), | t\geq 0\} , \text{ where } \gamma (t) 	y+tv\]
+
+If $f \in \mathcal{C}^1(\mathbb{R}_+ \times \mathbb{R}^n$ is the solution of the previous Cauchy problem, then $t \mapsto f(t,\gamma(t))$ is of $\mathcal{C}^1$ class on $\mathbb{R}_+$, and 
+
+
+\[
+\begin{aligned}
+\frac{d f}{d t}(t,\gamma(t))&=(\frac{\partial f}{\partial t}
+v \cdot \nabla_x f(t,x))(t,\gamma(t)) \\ &= S(t,\gamma(t))-a(t,\gamma(t))f(t,\gamma(t)), \quad t>0.
+\end{aligned}
+\]
+
+The previous partial differential equation reduces to an ordinary differential equation (ODE) of the form:
+
+
+
+\[
+\begin{cases}
+u'(t)+\alpha(t)u(t)=\Sigma(t), \quad t>0,\\
+u(0)=u^{in}
+\end{cases}
+\]
+
+The well-known solution is calculated using the constant variation method:
+
+\[ u(t) = u^{in} e^{-A(t)} + \int_{0}^{t} e^{-A(t)-A(s)}\Sigma(s)ds, \text{ with } A(t)=\int_{0}^{t} \alpha (\tau) d\tau. \]
+
+Then by applying this to the Cauchy problem along the characteristic curve from $y$ at $t=0$, we obtain:
+
+\[ f(t,y+tv) = f^{in}(y) e^{\int_{0}^{t}a(\tau,y+\tau v)d\tau} + \int_{0}^{t} e^{\int_{0}^{t}a(\tau,y+\tau v)d\tau}S(s,y+sv)ds, \quad y\in \mathbb{R}^n, t \geq 0.\]
+
+By replacing the dummy variable $y$ with $x-tv$ we arrive the expected formula.
 
 \subsubsection{Boundary Value Problems}
 
@@ -437,6 +480,8 @@ Then the problem
 has a unique generalized solution $f \in \mathbf{C}_b([0,T] \times \Omega \times \mathbb{R}^n)$.
 
 \section{The use of Monte Carlo methods to solve the linear Boltzmann equation}
+
+To facilitate the introduction of a numerical Scheme let introduce new
 
 The transport equation in an infinite medium with its corresponding deterministic collisional component can be expressed as:
 \begin{equation}
