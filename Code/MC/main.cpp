@@ -15,6 +15,7 @@ int main(int argc, char const* argv[])
    double nbIterations = int(parameters.finalTime / parameters.dt) + 1;
 
    /* Création du domaine où les particules se meuvent */
+   //Limites du domaine
    std::valarray<Vecteur> Omega(parameters.nbDims);
    Omega[0] = parameters.array_x;
    if (parameters.nbDims >= 2) {
@@ -23,13 +24,13 @@ int main(int argc, char const* argv[])
          Omega[2] = parameters.array_z;
       }
    }
-
+   //Création du domaine
    GenericDomain* Domaine = NULL;
-   if (parameters.domainType == "elastic")
+   if (parameters.domainType == "elastic") //Condition limites élastiques
    {
       Domaine = new ElasticDomain(parameters, Omega);
    }
-   else if (parameters.domainType == "periodic")
+   else if (parameters.domainType == "periodic")//Condition limites périodiques
    {
       Domaine = new PeriodicDomain(parameters, Omega);
    }
@@ -56,7 +57,7 @@ int main(int argc, char const* argv[])
 
    /* Création de la solution u(x, t, v) */
    std::valarray<std::valarray<std::valarray<double>>> u(std::valarray<std::valarray<double>>(std::valarray<double>(0.0, parameters.nbPtsZ), parameters.nbPtsY), parameters.nbPtsX);
-   for (int iter_n = 0; iter_n < nbIterations; iter_n++)
+   for (int iter_n = 0; iter_n < nbIterations; iter_n++)//Boucle sur les pas de temps
    {
       if (parameters.solutionType == "space")
       {
