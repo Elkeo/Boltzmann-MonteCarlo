@@ -39,6 +39,12 @@
 \setlength{\textheight}{708pt} % Hauteur de la zone de texte (25cm)
 %Traits en haut et en bas des pages
 \usepackage{fancyhdr}
+
+
+
+
+
+
 \pagestyle{fancy}
 \fancyhead[L]{}
 \fancyhead[R]{}
@@ -76,6 +82,7 @@
 \def\restrictionaux#1#2{{#1\,\smash{\vrule height .8\ht1 depth .85\dp1}}_{\,#2}} 
 
 \begin{document} 
+	
 	
 	%----------------------------------------------------------------------------------------
 	%	TITLE PAGE
@@ -154,80 +161,73 @@
 \section{Introduction}
 
 
-	
+
 \subsection{Terms and definitions}
+
+The transport equation plays a crucial role in describing the behavior of particles in various physical systems. One of its important derivatives, the linear Boltzmann equation, is governed by the evolution of particle distribution in phase space. In this project, a numerical solution for the linear Boltzmann equation is developed utilizing the Monte Carlo method. The report is structured as follows:
+
+\begin{itemize}
+	\item \textbf{Transport Equation:} The fundamental transport equation is introduced, providing a basis for understanding the derivation of the linear Boltzmann equation.
 	
-	The transport equation plays a crucial role in describing the behavior of particles in various physical systems. One of its important derivatives, the linear Boltzmann equation, is governed by the evolution of particle distribution in phase space. In this project, a numerical solution for the linear Boltzmann equation is developed using the Monte-Carlo method. The report is structured as follows:
+	\item \textbf{Linear Boltzmann Equation:} Building upon the transport equation, the linear Boltzmann equation is explored, emphasizing its significance in characterizing particle transport phenomena.
 	
-	\begin{enumerate}
-		\item \textbf{Transport Equation:} The fundamental transport equation is introduced, providing a basis for understanding the derivation of the linear Boltzmann equation.
-		
-		\item \textbf{Linear Boltzmann Equation:} Building upon the transport equation, the linear Boltzmann equation is explored, emphasizing its significance in characterizing particle transport phenomena.
-		
-		\item \textbf{Monte-Carlo Method for Linear Boltzmann Equation:} The approach to solve the linear Boltzmann equation using the Monte Carlo method is presented, along with a discussion of the advantages and challenges associated with this numerical technique.
-		
-		\item \textbf{Semi-Analog Monte Carlo Scheme:} A semi-analog Monte Carlo scheme is introduced as an innovative strategy to enhance the efficiency and accuracy of simulations.
-	\end{enumerate}
+	\item \textbf{Monte Carlo Method for Linear Boltzmann Equation:} The approach to solving the linear Boltzmann equation using the Monte Carlo method is presented, along with a discussion of the advantages and challenges associated with this numerical technique.
 	
+	\item \textbf{Semi-Analog Monte Carlo Scheme:} A semi-analog Monte Carlo scheme is introduced as an innovative strategy to enhance the efficiency and accuracy of simulations.
+\end{itemize}
+
 \subsection{Context and Applications}
-	
-	The linear Boltzmann equation finds applications in a wide range of industrial and research contexts. Notable examples include its use in nuclear reactor physics, radiation shielding design, medical imaging, and astrophysics. Applications extend to industries such as nuclear energy, healthcare, and aerospace, where accurate simulations of particle transport are crucial for optimizing designs and ensuring safety protocols.
-	
-	In the realm of academic research, the linear Boltzmann equation serves as a cornerstone in the study of rarefied gas dynamics, plasma physics, and neutron transport. Collaborations between universities, research institutions, and companies contribute to advancements in understanding and solving complex problems associated with particle transport phenomena.
-	
-	
-	\medbreak
-	
-	This project aims to contribute to the broader understanding and application of the linear Boltzmann equation, with a focus on developing efficient numerical methods for solving this intricate problem.
+
+\paragraph{}
+The linear Boltzmann equation finds applications in a wide range of industrial and research contexts. Notable examples include its use in nuclear reactor physics, radiation shielding design, medical imaging, and astrophysics. Applications extend to industries such as nuclear energy, healthcare, and aerospace, where accurate simulations of particle transport are crucial for optimizing designs and ensuring safety protocols.
+
+In the realm of academic research, the linear Boltzmann equation serves as a cornerstone in the study of rarefied gas dynamics, plasma physics, and neutron transport. Collaborations between universities, research institutions, and companies contribute to advancements in understanding and solving complex problems associated with particle transport phenomena.
 
 
-\paragraph{Note} Here is a brief summary of the various existences and uniqueness of solutions based on different cases of equations to be solved. The primary source used is the transport and diffusion document.
-\section{mathematical analysis}
+\medbreak
+
+This project aims to contribute to the broader understanding and application of the linear Boltzmann equation, with a focus on developing efficient numerical methods for solving this intricate problem.
+
+
+\section{Mathematical analysis}
+
+\paragraph{} Here is a brief summary of the various existences and uniqueness of solutions based on different cases of equations to be solved. The primary source used is the transport and diffusion document.
 
 \subsection{Transport Equation}
 
 \paragraph{}
-In this section, we will examine the solutions of the transport equation, a particular case of the Boltzmann equation, defined below:
+In this section, the solutions of the transport equation, a particular case of the Boltzmann equation defined below, will be examined.
 
-
-
-Let $v \in \mathbb{R}^N$
 
 \begin{equation} \label{transport}
-	\frac{\partial f}{\partial t}(t,x)+v \cdot \nabla_x f(t,x) + a(t,x)f(t,x) = S(t,x), \quad x \in \mathbb{R}^N, \quad t>0.
+\frac{\partial f}{\partial t}(t,x)+v \cdot \nabla_x f(t,x) + a(t,x)f(t,x) = S(t,x), \quad x \in \mathbb{R}^N, \quad t>0.
 \end{equation}
 
 
-$f$ is the unknown function, $a$ is the given damping or amplification rate, and $S$ is the given source term.
+where $f$ is the unknown function, $a$ is the given damping or amplification rate, and $S$ is the given source term.
 
 \subsubsection{Cauchy Problem}
-\paragraph{Special Case without Absorption or Source Term}
+\paragraph{}
 
-Let's consider the following Cauchy problem:
+Let the following Cauchy problem without absorption or source term be considered :
+
 
 \[
 \begin{cases}
-	\frac{\partial f}{\partial t}(t,x)+v \cdot \nabla_x f(t,x)=0, \quad x \in \mathbb{R}^N, \quad t>0.\\
-	f(0,x)) = f^{in}(x)
+\frac{\partial f}{\partial t}(t,x)+v \cdot \nabla_x f(t,x)=0, \quad x \in \mathbb{R}^N, \quad t>0.\\
+f(0,x)) = f^{in}(x)
 \end{cases}
 \]
 
-If $f^{in} \in \mathcal{C}^1(\mathbb{R}^n)$, then using the characteristics method, we can easily demonstrate that this problem has a unique solution $f \in \mathcal{C}^1(\mathbb{R}_+ \times \mathbb{R}^n)$. It is given as follows:
+where $f^{in}(x)$ is the seeked initial value of $f$'s density. If $f^{in} \in \mathcal{C}^1(\mathbb{R}^n)$, then using the method of characteristics, the uniqueness of the solution $f \in \mathcal{C}^1(\mathbb{R}_+ \times \mathbb{R}^n)$ for the Cauchy problem can easily be demonstrated. This solution is given as follows :
 
+\begin{equation}
+f(t,x)=f^{in}(x-tv) \quad \forall (t,x) \in \mathbb{R}_+ \times \mathbb{R}^n 
+\end{equation}
 
+\paragraph{}
 
-
-
-$\boxed{f(t,x)=f^{in}(x-tv) \quad \forall (t,x) \in \mathbb{R}_+ \times \mathbb{R}^n }$
-
-
-
-
-\paragraph{With Absorption and Source Term}
-
-
-
-This time, we consider damping and the source term, assuming they belong to $\mathcal{C}^1(\mathbb{R}_+ \times \mathbb{R}^n)$. The considered Cauchy problem is as follows:
+This time, a damping and a source term are considered, assuming they belong to $\mathcal{C}^1(\mathbb{R}_+ \times \mathbb{R}^n)$. The considered Cauchy problem is given as follows:
 
 
 \[
@@ -237,18 +237,23 @@ f(0,x)) = f^{in}(x)
 \end{cases}
 \]
 
-In this case, if $f^{in} \in \mathcal{C}^1(\mathbb{R}^n)$, then using the characteristics method, we can still demonstrate that the Cauchy problem has a unique solution $f \in \mathcal{C}^1(\mathbb{R}_+ \times \mathbb{R}^n)$. This solution is given as follows:\\
-$\boxed{f(t,x)=f^{in}(x-tv) e^{-\int_0 ^t a(\tau,x+(t-\tau)v)d\tau} + \int_0 ^t  e^{-\int_0 ^t a(\tau,x+(t-\tau)v)d\tau} S(s,x+(s-t)v)ds \quad \forall (t,x) \in \mathbb{R}_+ \times \mathbb{R}^n }$
+\bigbreak
 
-We will now demonstrate the previous formula using the characteristics method. We will not demonstrate all folowing expression of the exact solution but the process would be the same.
+Here the uniqueness of the solution remains unchanged so by the same method, the solution is given by :
 
-\paragraph{}
+\begin{equation}
+f(t,x)=f^{in}(x-tv) e^{-\int_0 ^t a(\tau,x+(t-\tau)v)d\tau} + \int_0 ^t  e^{-\int_0 ^t a(\tau,x+(t-\tau)v)d\tau} S(s,x+(s-t)v)ds \quad \forall (t,x) \in \mathbb{R}_+ \times \mathbb{R}^n
+\end{equation}
 
-We will now demonstrate the previous formula using the method of characteristics. The proof of the following expression for the exact solution will not be elaborated upon, but the underlying idea would be analogous. The interested reader is invited to see \textcolor{red}{Mettre la source allaire!!!!!}.
+\medbreak
+
+Next, a partial demonstration of the previous formula is suggested, using the method of characteristics. For more details, the reader is refered to \cite{allaire:2019}.
 
 Let $y \in \mathbb{R}$, and consider the characteristic curve emanating from $y$ at $t=0$, given by :
 
-\[ \{(t,\gamma(t)), | t\geq 0\} , \text{ where } \gamma (t) 	y+tv\]
+\begin{equation}
+\{(t,\gamma(t)),  t\geq 0\} , \text{ where } \gamma (t)=y+tv
+\end{equation}
 
 If $f \in \mathcal{C}^1(\mathbb{R}_+ \times \mathbb{R}^n$ is the solution of the previous Cauchy problem, then $t \mapsto f(t,\gamma(t))$ is of $\mathcal{C}^1$ class on $\mathbb{R}_+$, and 
 
@@ -260,9 +265,7 @@ v \cdot \nabla_x f(t,x))(t,\gamma(t)) \\ &= S(t,\gamma(t))-a(t,\gamma(t))f(t,\ga
 \end{aligned}
 \]
 
-The previous partial differential equation reduces to an ordinary differential equation (ODE) of the form:
-
-
+The previous partial differential equation is now reduced to an ordinary differential equation (ODE) of the form:
 
 \[
 \begin{cases}
@@ -275,27 +278,30 @@ The well-known solution is calculated using the constant variation method:
 
 \[ u(t) = u^{in} e^{-A(t)} + \int_{0}^{t} e^{-A(t)-A(s)}\Sigma(s)ds, \text{ with } A(t)=\int_{0}^{t} \alpha (\tau) d\tau. \]
 
-Then by applying this to the Cauchy problem along the characteristic curve from $y$ at $t=0$, we obtain:
+The following expression is then obteined by applying this to the Cauchy problem along the characteristic curve from $y$ at $t=0$ :
 
-\[ f(t,y+tv) = f^{in}(y) e^{\int_{0}^{t}a(\tau,y+\tau v)d\tau} + \int_{0}^{t} e^{\int_{0}^{t}a(\tau,y+\tau v)d\tau}S(s,y+sv)ds, \quad y\in \mathbb{R}^n, t \geq 0.\]
+\begin{equation}
+f(t,y+tv) = f^{in}(y) e^{\int_{0}^{t}a(\tau,y+\tau v)d\tau} + \int_{0}^{t} e^{\int_{0}^{t}a(\tau,y+\tau v)d\tau}S(s,y+sv)ds, \quad y\in \mathbb{R}^n, t \geq 0.
+\end{equation}
 
-By replacing the dummy variable $y$ with $x-tv$ we arrive the expected formula.
+Finally, the expected expression is deduced replacing the dummy variable $y$ with $x-tv$.
 
 \subsubsection{Boundary Value Problems}
 
-In the previous section, we presented results applicable when considering complete freedom for the spatial variable in $\mathbb{R}^n$. However, for a significant portion of physical problems, this may not be the case. That is why we are more interested in a problem of the boundary value type. In this section, we will consider the set $\Omega$, which is an open set with a $\mathcal{C}^1$ boundary in $\mathbb{R}^n$. Additionally, we take $v \in \mathbb{R}^n\backslash \{0\}$.
+\paragraph{}
+In the preceding section, outcomes relevant to the exploration of unrestricted spatial variables in $\mathbb{R}^n$ were provided. However, for the majority of physical problems, this spatial unrestriction has no sens. That is why a problem of the boundary value type is more interesting. In this section, the set $\Omega$, which is an open set with a $\mathcal{C}^1$ boundary in $\mathbb{R}^n$ is considered. Additionally, $v \in \mathbb{R}^n\backslash \{0\}$ is considered.
 
 \paragraph{Special Case without Absorption or Source Term}
 
 \paragraph{}
-If, moreover, $\Omega$ is convex, and let $f_b^- \in \mathcal{C}^1(\mathbb{R}_+ \times \partial \Omega^-)$ and $f^{in} \in \mathcal{C}^1(\overline{\Omega})$, where $\partial \Omega^- = \{x\in\partial \Omega~ | ~ v\cdot n_x<0\}$, then the problem:
+Let $\Omega$ be convex, $f_b^- \in \mathcal{C}^1(\mathbb{R}_+ \times \partial \Omega^-)$ and $f^{in} \in \mathcal{C}^1(\overline{\Omega})$, where $\partial \Omega^- = \{x\in\partial \Omega~ | ~ v\cdot n_x<0\}$, then the problem:
 
 
 \[
 \begin{cases}
-	\frac{\partial f}{\partial t}(t,x)+v \cdot \nabla_x f(t,x)=0, \quad x \in \mathbb{R}^N, \quad t>0.\\
-	\restriction{f}{\partial \Omega}= f_b^-\\
-	\restriction{f}{t=0}= f^{in}(x)
+\frac{\partial f}{\partial t}(t,x)+v \cdot \nabla_x f(t,x)=0, \quad x \in \mathbb{R}^N, \quad t>0.\\
+\restriction{f}{\partial \Omega}= f_b^-\\
+\restriction{f}{t=0}= f^{in}(x)
 \end{cases}
 \]
 
@@ -306,139 +312,119 @@ has a unique solution $f \in \mathcal{C}^1(\mathbb{R}_+ \times \Omega)$ and $f \
 \paragraph{}
 
 The expression of the solution is then given by: 
+
 \[
-\boxed{
-	f(t,x)= 
-	\begin{cases}
-		f^{in}(x-tv) \quad si~ t \leq \tau_x ,\\
-		f_b^-(t-\tau_x,x-\tau_xv) \quad si~ t > \tau_x ,
-	\end{cases}
-}
+f(t,x)= 
+\begin{cases}
+f^{in}(x-tv) \quad si~ t \leq \tau_x ,\\
+f_b^-(t-\tau_x,x-\tau_xv) \quad si~ t > \tau_x ,
+\end{cases}
 \]
 
-With $\tau_x= \inf \{t \geq 0~ | ~ x-tv \notin \overline{\Omega}\}$
+with $\tau_x= \inf \{t \geq 0~ | ~ x-tv \notin \overline{\Omega}\}$
 
 \paragraph{With Absorption and Source Term}
 
 \paragraph{}
-We still consider $\Omega$ to be convex, with $f_b^- \in \mathcal{C}^1(\mathbb{R}_+ \times \partial \Omega^-)$, $f^{in} \in \mathcal{C}^1(\overline{\Omega})$, $a$, and $S$ $\in \mathcal{C}^1(\mathbb{R}_+ \times \overline{\Omega})$. If we assume that $\forall y \in \partial \Omega^-$,
+Let still $\Omega$ be convex, with $f_b^- \in \mathcal{C}^1(\mathbb{R}_+ \times \partial \Omega^-)$, $f^{in} \in \mathcal{C}^1(\overline{\Omega})$, $a$, and $S$ $\in \mathcal{C}^1(\mathbb{R}_+ \times \overline{\Omega})$. 
+\medbreak
+$\forall y \in \partial \Omega^-$ :
 
 \[
 \begin{aligned}
-	f_b^-(0,y) &= f^{in}(y), \\
-	\frac{\partial f_b^-}{\partial t}(0,y) + v \cdot \nabla_x f^{in}(y) + a(0,y)f^{in}(y)&=S(0,y)
+f_b^-(0,y) &= f^{in}(y), \\
+S(0,y) &= \frac{\partial f_b^-}{\partial t}(0,y) + v \cdot \nabla_x f^{in}(y) + a(0,y)f^{in}(y)
 \end{aligned}
 \]
 
 
 
-In this case, the problem becomes:
+In this case, the problem becomes :
 
 \[
 \begin{cases}
-	\frac{\partial f}{\partial t}(t,x)+v \cdot \nabla_x f(t,x)+ a(t,x)f(t,x)=S(t,x), \quad x \in \mathbb{R}^N, \quad t>0.\\
-	\restriction{f}{\partial \Omega}= f_b^-\\
-	\restriction{f}{t=0}= f^{in}(x)
+\frac{\partial f}{\partial t}(t,x)+v \cdot \nabla_x f(t,x)+ a(t,x)f(t,x)=S(t,x), \quad x \in \mathbb{R}^N, \quad t>0.\\
+\restriction{f}{\partial \Omega}= f_b^-\\
+\restriction{f}{t=0}= f^{in}(x)
 \end{cases}
 \]
 
-has a unique solution $f \in \mathcal{C}^1(\mathbb{R}_+ \times \Omega)$ and $f \in \mathcal{C}^0(\mathbb{R}_+ \times \overline{\Omega})$. The expression for $f$ is then:
+and has a unique solution $f \in \mathcal{C}^1(\mathbb{R}_+ \times \Omega)$ and $f \in \mathcal{C}^0(\mathbb{R}_+ \times \overline{\Omega})$. The expression for $f$ is then:
 
 
 \[
 \boxed{
 	\begin{aligned}
-		f(t,x) &= \mathbf{1}_{t \leq \tau_x} f^{in} (x-tv) \exp\left(-\int_0^t a(s,x+(s-t)v)ds\right) \\
-		&\quad + \mathbf{1}_{t > \tau_x} f_b^- (t-\tau_x,x-\tau_x v) \exp\left(-\int_{t-\tau_x}^t a(s,x+(s-t)v)ds\right) \\
-		&\quad + \int_{t-\tau_x}^t \exp\left(-\int_{s}^{t}a(\tau,x+(\tau-t)v)d\tau\right) S(s,x+(s-t)v)ds
-\end{aligned}}
+	f(t,x) &= \mathbf{1}_{t \leq \tau_x} f^{in} (x-tv) \exp\left(-\int_0^t a(s,x+(s-t)v)ds\right) \\
+	&\quad + \mathbf{1}_{t > \tau_x} f_b^- (t-\tau_x,x-\tau_x v) \exp\left(-\int_{t-\tau_x}^t a(s,x+(s-t)v)ds\right) \\
+	&\quad + \int_{t-\tau_x}^t \exp\left(-\int_{s}^{t}a(\tau,x+(\tau-t)v)d\tau\right) S(s,x+(s-t)v)ds
+	\end{aligned}}
 \]
 
 
 \subsubsection{Generalized Solutions}
 
-In this section, $\Omega$ is not necessarily convex. This implies that the continuity of potential solutions is not guaranteed. However, in practice, these cases must be addressed. Below, we define the concept of generalized solutions, which allows us to handle this issue without resorting to the theory of distributions.
+\paragraph{}
+In this section, $\Omega$ is not necessarily convex. This implies that the continuity of potential solutions is not guaranteed. However, in practice, these cases must be addressed. Below, the concept of generalized solutions is defined, which allows to handle this issue without resorting to the theory of distributions.
 
 
 \paragraph{Definition}
 
-Let $\Omega$ be an open set with a $\mathcal{C}^1$ boundary in $\mathbb{R}^n$, and let $a$ and $S$ be continuous on $\mathbb{R}_+ \times \Omega$. We say that $f$ is a generalized solution of the problem
+Let $\Omega$ be an open set with a $\mathcal{C}^1$ boundary in $\mathbb{R}^n$, and let $a$ and $S$ be continuous on $\mathbb{R}_+ \times \Omega$. $f$ is a generalized solution of the problem $(1)$ if and only if the function $s \mapsto f(t+s,x+sv)$ is of class $\mathcal{C}^1$ almost everywhere in $(t,x) \in \mathbb{R}_+ \times \Omega$ and satisfies :
 
-$$\frac{\partial f}{\partial t}(t,x)+v \cdot \nabla_x f(t,x)+ a(t,x)f(t,x)=S(t,x), \quad x \in \mathbb{R}^N, \quad t>0.\\$$
-
-if and only if the function
-
-$s \mapsto f(t+s,x+sv)$ is of class $\mathcal{C}^1$ almost everywhere in $(t,x) \in \mathbb{R}_+ \times \Omega$ and satisfies
-
-$\frac{d}{ds}f(t+s,x+sv) +a(t+s,x+sv)f(t+s,x+sv) = S(t+s,x+sv) \quad (t+s,x+sv) \in \mathbb{R}_+^* \times \Omega$.
-
+\begin{equation}
+\frac{d}{ds}f(t+s,x+sv) +a(t+s,x+sv)f(t+s,x+sv) = S(t+s,x+sv) \quad (t+s,x+sv) \in \mathbb{R}_+^* \times \Omega.
+\end{equation}
 
 \paragraph{}
-
-
-
-Let $\Omega$ be an open set with a $\mathcal{C}^1$ boundary in $\mathbb{R}^n$, and let $a$ and $S$ be continuous on $\mathbb{R}_+ \times \Omega$. Let $f_b^- \in \mathbf{L}_{loc}^{\infty}(\mathbb{R}_+ \times \partial \Omega^-)$ and $f^{in} \in \mathbf{L}_{loc}^{\infty}(\overline{\Omega})$.
-
+Now let $\Omega$ be an open set with a $\mathcal{C}^1$ boundary in $\mathbb{R}^n$, and let $a$ and $S$ be continuous on $\mathbb{R}_+ \times \Omega$. Let $f_b^- \in \mathbf{L}_{loc}^{\infty}(\mathbb{R}_+ \times \partial \Omega^-)$ and $f^{in} \in \mathbf{L}_{loc}^{\infty}(\overline{\Omega})$.
+\medbreak
 In this case, the problem:
 
 \[
 \begin{cases}
-	\frac{\partial f}{\partial t}(t,x)+v \cdot \nabla_x f(t,x)+ a(t,x)f(t,x)=S(t,x), \quad x \in \mathbb{R}^N, \quad t>0.\\
-	\restriction{f}{\partial \Omega}= f_b^-\\
-	\restriction{f}{t=0}= f^{in}(x)
+\frac{\partial f}{\partial t}(t,x)+v \cdot \nabla_x f(t,x)+ a(t,x)f(t,x)=S(t,x), \quad x \in \mathbb{R}^N, \quad t>0.\\
+\restriction{f}{\partial \Omega}= f_b^-\\
+\restriction{f}{t=0}= f^{in}(x)
 \end{cases}
 \]
 
-has a unique generalized solution. The formula for this solution is the same as in the previous case, i.e., almost everywhere in $(t,x) \in \mathbb{R}_+ \times \Omega$, we have:
+has a unique generalized solution. The formula for this solution is the same as in the previous case, i.e., almost everywhere in $(t,x) \in \mathbb{R}_+ \times \Omega$ :
 
 \[
 \boxed{
 	\begin{aligned}
-		f(t,x) &= \mathbf{1}_{t \leq \tau_x} f^{in} (x-tv) \exp\left(-\int_0^t a(s,x+(s-t)v)ds\right) \\
-		&\quad + \mathbf{1}_{t > \tau_x} f_b^- (t-\tau_x,x-\tau_x v) \exp\left(-\int_{t-\tau_x}^t a(s,x+(s-t)v)ds\right) \\
-		&\quad + \int_{t-\tau_x}^t \exp\left(-\int_{s}^{t}a(\tau,x+(\tau-t)v)d\tau\right) S(s,x+(s-t)v)ds
-\end{aligned}}
+	f(t,x) &= \mathbf{1}_{t \leq \tau_x} f^{in} (x-tv) \exp\left(-\int_0^t a(s,x+(s-t)v)ds\right) \\
+	&\quad + \mathbf{1}_{t > \tau_x} f_b^- (t-\tau_x,x-\tau_x v) \exp\left(-\int_{t-\tau_x}^t a(s,x+(s-t)v)ds\right) \\
+	&\quad + \int_{t-\tau_x}^t \exp\left(-\int_{s}^{t}a(\tau,x+(\tau-t)v)d\tau\right) S(s,x+(s-t)v)ds
+	\end{aligned}}
 \]
-
-
-
-
-
 
 
 \subsection{Linear Boltzmann Equation}
 
-In this section, we will focus on the actual Boltzmann equation. This integro-differential equation is described in \ref{Boltzmann}.
+In this section, a particular attention is paid on the actual Boltzmann equation. This integro-differential equation is described hereafter.
 
 \begin{equation} \label{Boltzmann}
-	\frac{\partial f}{\partial t}(t,x,v)+v \cdot \nabla_x f(t,x,v) + a(t,x)f(t,x,v) = \int_{\mathbb{R}^n}k(t,x,v,w)f(t,x,w)d\mu(w)+Q(t,x,v).
+\frac{\partial f}{\partial t}(t,x,v)+v \cdot \nabla_x f(t,x,v) + a(t,x)f(t,x,v) = \int_{\mathbb{R}^n}k(t,x,v,w)f(t,x,w)d\mu(w)+Q(t,x,v).
 \end{equation}
 
 To simplify notations, this equation will be written as: 
-\[ \frac{\partial f}{\partial t}+v \cdot \nabla_x f +af =   \mathcal{K} f +Q \]
+\[ \frac{\partial f}{\partial t}+v \cdot \nabla_x f +af =   \mathcal{K} f +Q  \]
 
-Here, $v$ and $k$ are given continuous functions. The range of possibilities for the velocity $v$ is very diverse due to the variety of physical problems that can be considered. Therefore, the notation $d\mu(w)$ encompasses all these possibilities by incorporating a weight function. The major difference from the transport equation is that, this time, we consider exchange phenomena, and thus, $v$ cannot be seen as a simple parameter.
+Here, $v$ and $k$ are given continuous functions. The range of possibilities for the velocity $v$ is very diverse due to the variety of physical problems that can be considered. Therefore, the notation $d\mu(w)$ encompasses all these possibilities by incorporating a weight function. The major difference from the transport equation is that, this time, exchange phenomena are considered, and thus, $v$ can not be seen as a simple parameter.
 
-In this section, we cannot highlight the exact expression of the solutions because the method of characteristics yields another integral equation involving the solution.
-
-
+In this section, the exact expression of the solutions can not be highlighted because the method of characteristics yields another integral equation involving the solution.
 
 
 \paragraph{Definition}
 
-Let $Q$ be continuous on $]0,T[\times \Omega \times \mathbb{R}^n$. We say that $f$ is a generalized solution of the problem, continuous on $]0,T[\times \Omega \times \mathbb{R}^n$,
+Let $Q$ be continuous on $]0,T[\times \Omega \times \mathbb{R}^n$. $f$ is a generalized solution of the problem \cite{Boltzmann} if and only if, $\forall (t,x,v) \in ]0,T[\times \Omega \times \mathbb{R}^n$, the function $ s \mapsto f(t+s,x+sv,v) $	is of class $\mathcal{C}^1$ for all $x+sv \in \Omega$ and satisfies :
+\[\frac{d}{ds}f(t+s,x+sv,v) +a(t+s,x+sv,v)f(t+s,x+sv,v) = (\mathcal{K}f+ Q)(t+s,x+sv,v). 
+\]
 
-
-$$\frac{\partial f}{\partial t}+v \cdot \nabla_x f +af = \mathcal{K} f +Q\\$$
-
-\paragraph{}
-if and only if, for all $(t,x,v) \in ]0,T[\times \Omega \times \mathbb{R}^n$, the function 
-
-\[ s \mapsto f(t+s,x+sv,v) \]
-
-is of class $\mathcal{C}^1$ for all $x+sv \in \Omega$ and satisfies, for all $s \in \mathbb{R}$ such that $x +sv \in \Omega$,
-
-$\frac{d}{ds}f(t+s,x+sv,v) +a(t+s,x+sv,v)f(t+s,x+sv,v) = (\mathcal{K}f+ Q)(t+s,x+sv,v).$
+\begin{flushleft} $\forall s \in \mathbb{R}$ such that $x +sv \in \Omega$.
+\end{flushleft}
 
 \subsubsection{Cauchy Problem}
 \paragraph{}
@@ -446,39 +432,39 @@ $\frac{d}{ds}f(t+s,x+sv,v) +a(t+s,x+sv,v)f(t+s,x+sv,v) = (\mathcal{K}f+ Q)(t+s,x
 
 
 Let $f^{in} \in \mathbf{C}_b(\mathbb{R}^n \times \mathbb{R}^n)$ and $Q \in \mathbf{C}_b(]0,T[ \times \mathbb{R}^n \times \mathbb{R}^n)$. Also, let $0 \leq a \in \mathbf{C}_b(]0,T[ \times \mathbb{R}_x^n \times \mathbb{R}_v^n)$ and $0 \leq k \in \mathbf{C}_b(]0,T[ \times \mathbb{R}_x^n \times \mathbb{R}_v^n \times \mathbb{R}_w^n)$. The notation $\mathbf{C}_b(X)$ denotes the set of bounded continuous functions on $X$ with values in $\mathbb{R}$.
+\medbreak
+Now assume that :  
 
+\[ \underset{(t,x,v) \in ]0,T[ \times \mathbb{R}^n \times \mathbb{R}^n}{\sup} \int_{\mathbb{R}^n} k(t,x,v,w) \, d\mu(w) < +\infty \]
 
-We assume that:  \[ \underset{(t,x,v) \in ]0,T[ \times \mathbb{R}^n \times \mathbb{R}^n}{\sup} \int_{\mathbb{R}^n} k(t,x,v,w) \, d\mu(w) < +\infty \]
-
-\paragraph{}
-
-Then the problem is:
+Then the problem :
 
 \[
 \begin{cases}
-	\frac{\partial f}{\partial t}+v \cdot \nabla_x f +af =   \mathcal{K} f +Q \quad (t,x,v) \in ]0,T[ \times \mathbb{R}^n \times \mathbb{R}^n\\
-	\restriction{f}{t=0}= f^{in}
+\frac{\partial f}{\partial t}+v \cdot \nabla_x f +af =   \mathcal{K} f +Q \quad (t,x,v) \in ]0,T[ \times \mathbb{R}^n \times \mathbb{R}^n\\
+\restriction{f}{t=0}= f^{in}
 \end{cases}
 \]
+
 has a unique generalized solution $f \in \mathbf{C}_b(]0,T[ \times \mathbb{R}^n \times \mathbb{R}^n)$.
 
 \subsubsection{Boundary Value Problem}
 
-We define the set $\Gamma_-$ as $\Gamma_-= \{(x,v) \in \partial \Omega \times \mathbb{R}^n ~ | ~ v\cdot n_x<0\}$
-
-Let $f^{in} \in \mathbf{C}_b(\overline{\Omega} \times \mathbb{R}^n)$, $f_b^- \in \mathbf{C}_b([0,T] \times \Gamma_-)$ such that $f_b^-(0,y,v)=f^{in}(y,v) \quad \forall (y,v) \in \Gamma_-$
-
-Let $Q \in \mathbf{C}_b([0,T] \times \overline{\Omega} \times \mathbb{R}^n)$.
-
-Let $0 \leq a \in \mathbf{C}_b(\mathbb{R}_+ \times \Omega_x \times \mathbb{R}_v^n)$ and $0 \leq k \in \mathbf{C}_b(\mathbb{R}_+ \times \Omega_x^n \times \mathbb{R}_v^n \times \mathbb{R}_w^n)$.
+\paragraph{}
+The set $\Gamma_-$ is defined as $\Gamma_-= \{(x,v) \in \partial \Omega \times \mathbb{R}^n ~ | ~ v\cdot n_x<0\}$. Let :
+\begin{itemize}
+	\item $f^{in} \in \mathbf{C}_b(\overline{\Omega} \times \mathbb{R}^n)$, $f_b^- \in \mathbf{C}_b([0,T] \times \Gamma_-)$ such that $f_b^-(0,y,v)=f^{in}(y,v) \quad \forall (y,v) \in \Gamma_-$
+	\item $Q \in \mathbf{C}_b([0,T] \times \overline{\Omega} \times \mathbb{R}^n)$
+	\item $0 \leq a \in \mathbf{C}_b(\mathbb{R}_+ \times \Omega_x \times \mathbb{R}_v^n)$ and $0 \leq k \in \mathbf{C}_b(\mathbb{R}_+ \times \Omega_x^n \times \mathbb{R}_v^n \times \mathbb{R}_w^n)$
+\end{itemize}
 
 Then the problem
 
 \[
 \begin{cases}
-	\frac{\partial f}{\partial t}+v \cdot \nabla_x f +af =   \mathcal{K} f +Q \quad (t,x,v) \in ]0,T[ \times \Omega \times \mathbb{R}^n\\
-	\restriction{f}{t=0}= f^{in}\\
-	\restriction{f}{\Gamma^-}=f_b^-
+\frac{\partial f}{\partial t}+v \cdot \nabla_x f +af =   \mathcal{K} f +Q \quad (t,x,v) \in ]0,T[ \times \Omega \times \mathbb{R}^n\\
+\restriction{f}{t=0}= f^{in}\\
+\restriction{f}{\Gamma^-}=f_b^-
 \end{cases}
 \]
 
@@ -486,56 +472,51 @@ has a unique generalized solution $f \in \mathbf{C}_b([0,T] \times \Omega \times
 
 \section{The use of Monte Carlo methods to solve the linear Boltzmann equation}
 
-To facilitate the introduction of a numerical Scheme let introduce new notation.
-The transport equation in an infinite medium with its corresponding deterministic collisional component can be expressed as:
+\paragraph{}
+To facilitate the introduction of a numerical scheme, the equation is modified into an integral form. The different steps are detailed in this section.
+
+The transport equation in an infinite medium with its corresponding deterministic collisional component\cite{lapeyre_methodes_1998} can be expressed as :
 \begin{equation}
-	\partial _t u(x,t,\textbf{v}) + \textbf{v} \cdot \nabla u(x,t,\textbf{v}) + v\sigma_t (x,t,\textbf{v})u(x,t,\textbf{v})= v\sigma_s(x,t,\textbf{v})\int P (x,t,\textbf{v},\textbf{v}')u(x,t,\textbf{v}')d\textbf{v}' \label{ref11}
+\partial _t u(x,t,\textbf{v}) + \textbf{v} \cdot \nabla u(x,t,\textbf{v}) + v\sigma_t (x,t,\textbf{v})u(x,t,\textbf{v})= v\sigma_s(x,t,\textbf{v})\int P (x,t,\textbf{v},\textbf{v}')u(x,t,\textbf{v}')d\textbf{v}' \label{ref11}
 \end{equation}
 
 Where 
 \begin{equation*}
-	\sigma_s (x,t,\textbf{v})= \int \sigma_s (x,t,\textbf{v},\textbf{v}')d\textbf{v}', \quad  P (x,t,\textbf{v},\textbf{v}')=
-	\frac{\sigma_s (x,t,\textbf{v},\textbf{v}')}{\sigma_s (x,t,\textbf{v})}
+\sigma_s (x,t,\textbf{v})= \int \sigma_s (x,t,\textbf{v},\textbf{v}')d\textbf{v}', \quad  P (x,t,\textbf{v},\textbf{v}')=
+\frac{\sigma_s (x,t,\textbf{v},\textbf{v}')}{\sigma_s (x,t,\textbf{v})}
 \end{equation*}
 
-The approach involves a series of variable changes. The initial step involves re-expressing the transport equation \ref{ref11} with respect to a characteristic $x + vt$. As a result, it transforms into:
+This approach involves a series of variable changes. The initial step involves re-expressing the transport equation \ref{ref11} with respect to a characteristic $x + vt$. As a result, it transforms into :
 
 \begin{equation}
-	\partial _s u(x+\textbf{v}s,s,\textbf{v}) = -v\sigma_t (x+\textbf{v}s,s,\textbf{v})u(x+\textbf{v}s,s,\textbf{v}) + v\sigma_s(x+\textbf{v}s,s,\textbf{v})\int P (x+\textbf{v}s,s,\textbf{v},\textbf{v}')u(x+\textbf{v}s,s,\textbf{v}')d\textbf{v}'
+\partial _s u(x+\textbf{v}s,s,\textbf{v}) = -v\sigma_t (x+\textbf{v}s,s,\textbf{v})u(x+\textbf{v}s,s,\textbf{v}) + v\sigma_s(x+\textbf{v}s,s,\textbf{v})\int P (x+\textbf{v}s,s,\textbf{v},\textbf{v}')u(x+\textbf{v}s,s,\textbf{v}')d\textbf{v}'
 \end{equation}
-
-Let's multiply both sides of the equation by:
-\begin{equation*}
-	e^{\int _0^s v\sigma_t (x + \textbf{v}\alpha,\alpha, v) d\alpha}
-\end{equation*}
-Following that, we obtain
-\begin{equation*}
-	\partial _s [u(x+\textbf{v}s,s,\textbf{v})e^{\int _0^s v\sigma_t (x + \textbf{v}\alpha,\alpha, v) d\alpha}] = e^{\int _0^s v\sigma_t (x + \textbf{v}\alpha,\alpha, v) d\alpha} v\sigma_s(x+\textbf{v}s,s,\textbf{v})\int P (x+\textbf{v}s,s,\textbf{v},\textbf{v}')u(x+\textbf{v}s,s,\textbf{v}')d\textbf{v}' \label{ref12}
-\end{equation*}
-We get after integrating the equation \ref{ref12} between [0, t]:
-
+By multiplying both sides of the equation by $e^{\int _0^s v\sigma_t (x + \textbf{v}\alpha,\alpha, v) d\alpha}$, the equation becomes :
+\begin{equation}
+\partial _s [u(x+\textbf{v}s,s,\textbf{v})e^{\int _0^s v\sigma_t (x + \textbf{v}\alpha,\alpha, v) d\alpha}] = e^{\int _0^s v\sigma_t (x + \textbf{v}\alpha,\alpha, v) d\alpha} v\sigma_s(x+\textbf{v}s,s,\textbf{v})\int P (x+\textbf{v}s,s,\textbf{v},\textbf{v}')u(x+\textbf{v}s,s,\textbf{v}')d\textbf{v}' \label{ref12}
+\end{equation}
+After an integration on $[0, t]$, the equation now yields :
 \begin{multline}
-	u(x+\textbf{v}t,t,\textbf{v}) = u_0(x, \textbf{v}) \exp\left(- \int_{0}^{t} v\sigma_t\left(x + \textbf{v} \alpha, \alpha, \textbf{v}\right) d\alpha\right) \\
-	+ \int_{0}^{t} \int v\sigma_s\left(x + \textbf{v}s, s, \textbf{v}\right) u\left(x + \textbf{v}s, s, \textbf{v}'\right) e^{- \int_s^t v\sigma_t\left(x + \textbf{v} \alpha, \textbf{v}\right) d\alpha} P\left(x + \textbf{v} s, s, \textbf{v}, \textbf{v}'\right) d\textbf{v}'ds 
+u(x+\textbf{v}t,t,\textbf{v}) = u_0(x, \textbf{v}) \exp\left(- \int_{0}^{t} v\sigma_t\left(x + \textbf{v} \alpha, \alpha, \textbf{v}\right) d\alpha\right) \\
++ \int_{0}^{t} \int v\sigma_s\left(x + \textbf{v}s, s, \textbf{v}\right) u\left(x + \textbf{v}s, s, \textbf{v}'\right) e^{- \int_s^t v\sigma_t\left(x + \textbf{v} \alpha, \textbf{v}\right) d\alpha} P\left(x + \textbf{v} s, s, \textbf{v}, \textbf{v}'\right) d\textbf{v}'ds 
 \end{multline}
-
-We obtain:
+And then :
 
 \begin{multline}
-	u(x,t,\textbf{v}) = u_0(x - \textbf{v}t, \textbf{v}) \exp\left(- \int_{0}^{t} v\sigma_t\left(x - \textbf{v}(t - \alpha), \alpha, \textbf{v}\right) d\alpha\right) \\
-	+ \int_{0}^{t} \int v\sigma_s\left(x - \textbf{v}(t - s), s, \textbf{v}\right) u\left(x - \textbf{v}(t - s), s, \textbf{v}'\right) e^{- \int_s^t v\sigma_t\left(x - \textbf{v}(t - \alpha), \textbf{v}\right) d\alpha} P\left(x - \textbf{v}(t - s), s, \textbf{v}, \textbf{v}'\right) d\textbf{v}'ds \label{ref1}
+u(x,t,\textbf{v}) = u_0(x - \textbf{v}t, \textbf{v}) \exp\left(- \int_{0}^{t} v\sigma_t\left(x - \textbf{v}(t - \alpha), \alpha, \textbf{v}\right) d\alpha\right) \\
++ \int_{0}^{t} \int v\sigma_s\left(x - \textbf{v}(t - s), s, \textbf{v}\right) u\left(x - \textbf{v}(t - s), s, \textbf{v}'\right) e^{- \int_s^t v\sigma_t\left(x - \textbf{v}(t - \alpha), \textbf{v}\right) d\alpha} P\left(x - \textbf{v}(t - s), s, \textbf{v}, \textbf{v}'\right) d\textbf{v}'ds \label{ref1}
 \end{multline}
-We also have:
+But also :
 \begin{multline}
-	\exp\left(- \int_{0}^{t} v\sigma_t\left(x - \textbf{v}(t - \alpha), \alpha, \textbf{v}\right) d\alpha\right) = \exp\left(- \int_{0}^{t} v\sigma_t\left(x - \textbf{v} \alpha,t- \alpha, \textbf{v}\right) d\alpha\right) \\ = \int _t^\infty  v\sigma_t\left(x - \textbf{v} s,t- s, \textbf{v}\right)
-	\exp\left(- \int_{0}^{s} v\sigma_t\left(x - \textbf{v} \alpha,t- \alpha, \textbf{v}\right) d\alpha\right) ds
+\exp\left(- \int_{0}^{t} v\sigma_t\left(x - \textbf{v}(t - \alpha), \alpha, \textbf{v}\right) d\alpha\right) = \exp\left(- \int_{0}^{t} v\sigma_t\left(x - \textbf{v} \alpha,t- \alpha, \textbf{v}\right) d\alpha\right) \\ = \int _t^\infty  v\sigma_t\left(x - \textbf{v} s,t- s, \textbf{v}\right)
+\exp\left(- \int_{0}^{s} v\sigma_t\left(x - \textbf{v} \alpha,t- \alpha, \textbf{v}\right) d\alpha\right) ds
 \end{multline}
 Then the integral representation of \ref{ref11} is provided by:
 
 \begin{multline}
-	u(x,t,\textbf{v}) =  \int _t^\infty  u_0(x - \textbf{v}t, \textbf{v}) v\sigma_t\left(x - \textbf{v} s,t- s, \textbf{v}\right)
-	\exp\left(- \int_{0}^{s} v\sigma_t\left(x - \textbf{v} \alpha,t- \alpha, \textbf{v}\right) d\alpha\right) ds\\
-	+ \int_{0}^{t} \int v\sigma_s\left(x - \textbf{v}(t - s), s, \textbf{v}\right) u\left(x - \textbf{v}(t - s), s, \textbf{v}'\right) e^{- \int_s^t v\sigma_t\left(x - \textbf{v}(t - \alpha), \textbf{v}\right) d\alpha} P\left(x - \textbf{v}(t - s), s, \textbf{v}, \textbf{v}'\right) d\textbf{v}'ds \label{ref13}
+u(x,t,\textbf{v}) =  \int _t^\infty  u_0(x - \textbf{v}t, \textbf{v}) v\sigma_t\left(x - \textbf{v} s,t- s, \textbf{v}\right)
+\exp\left(- \int_{0}^{s} v\sigma_t\left(x - \textbf{v} \alpha,t- \alpha, \textbf{v}\right) d\alpha\right) ds\\
++ \int_{0}^{t} \int v\sigma_s\left(x - \textbf{v}(t - s), s, \textbf{v}\right) u\left(x - \textbf{v}(t - s), s, \textbf{v}'\right) e^{- \int_s^t v\sigma_t\left(x - \textbf{v}(t - \alpha), \textbf{v}\right) d\alpha} P\left(x - \textbf{v}(t - s), s, \textbf{v}, \textbf{v}'\right) d\textbf{v}'ds \label{ref13}
 \end{multline}
 
 
@@ -547,7 +528,7 @@ Developing a Monte Carlo scheme involves introducing a group of random variables
 \paragraph{}
 This method is described as backward. In fact, we first initialize $S_p$, the remaining lifetime of the particle, to $t$, and it will decrease to zero. Here, we adopt a general form for the boundary conditions. In the program we developed, we have tried various conditions: Periodic boundary conditions (which are not truly significant in a physical problem but can be interpreted as an infinite environment), and Elastic boundary conditions.
 
-At line 11, we sample $\tau$ using the function: $\tau = \frac{-\ln(\mathcal{U}(0,1))}{\sigma_t \sqrt{v^2}}$. If $\tau$ is greater than $s_p$, then the particle is moved, its lifetime is set to zero, and its contribution is updated. Otherwise, the particle is moved, its speed is sampled, its lifetime is updated, and then its weight is changed.
+At line 11, we sample $\tau$ using the function: $\tau = \frac{-\ln(\mathcal{U}(0,1))}{\sigma_t \sqrt{v^2}}$. If $\tau$ is greater than $s_p$, then the particle is moved, its lifetime is set to zero, and its contribution is updated. Otherwise, the particle is moved, its speed is sampled on the unit sphere, its lifetime is updated, and then its weight is changed.
 
 
 
@@ -595,9 +576,9 @@ At line 11, we sample $\tau$ using the function: $\tau = \frac{-\ln(\mathcal{U}(
 
 
 
-\section{Numerical tests/results}
 
-\subsection{Code architecture}
+
+\section{Code architecture}
 
 
 \begin{figure}[H]
@@ -609,6 +590,30 @@ At line 11, we sample $\tau$ using the function: $\tau = \frac{-\ln(\mathcal{U}(
 
 The figure \ref{fig:code} represent the structure of our implementation. The \textbf{Main program} is used for several computation, \textbf{Domain} set up the boundary condition, initial condition and the sampling of $v$ and $\tau$. \textbf{Particles} set up the semi analog scheme,\textbf{Population} Move all the particles and \textbf{parameters} initialize the parameters.
 
+\paragraph{Regression suite}
+
+In order to facilitate the implementation and the improvement of the code, a regression suite has been established. The script \textbf{BNR.py} execute all the test sequentially and relative message to each test are print in the console. The coder can then decide if the test are passed or not.
+
+\paragraph{}
+
+The reproducibility test compute 2 times the solution for one $t$ fixed and look if the both results are similar or not.
+
+\paragraph{}
+
+The sampling test a high number of speed $V_p$ looking if this speed is on the unit sphere by using the Kolmogorov-Smirnov law.
+
+\paragraph{}
+The advection test used a computation of the main program with $sigma_t=0$ and $\sigma_s=0$. We are in the case of the advection described previsously and we compare the result computed with the known exact-solution.
+
+
+\paragraph{}
+The exponential test used a computation of the main program with $sigma_t$ and $\sigma_s$ constant. With this configuration we can calculate the integrale of the exact solution as :
+
+$$\int_{\Omega} U(t)d_{x}=\int_{\Omega} U_0 d_{x} ~ e^{-v(\sigma_t-\sigma_s)t} $$
+
+and compare to the computed solution.
+
+
 \section{Conclusion}
 
 First and foremost, we would like to express our sincere appreciation to our supervisor, Gael Poette, whose exceptional support was evident through his constant presence and responsiveness throughout our research.
@@ -617,5 +622,12 @@ This project provided a unique opportunity to work on Monte Carlo methods. Accus
 
 The work we accomplished enabled us to gain a deeper understanding of high-dimensional equation solving, a skill set that will undoubtedly prove invaluable in our future professional lifes.
 	
+	
+	
+\newpage
+
+\nocite{*}
+\bibliography{biblio}
+\bibliographystyle{unsrt}
 	
 \end{document}
