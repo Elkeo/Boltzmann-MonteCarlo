@@ -43,11 +43,11 @@ void Particle::move(double& vect_u)
          // Move the particle
          this->_xp -= this->_sp * this->_vp;
 
-         // if (Particle::notInDomain())
-         // {
-         //    // La condition de test est redondante
-         //    this->_Domain->applyBoundaryConditions(this->_xp, this->_sp, this->_vp);
-         // }
+         if (Particle::notInDomain())
+         {
+            // La condition de test est redondante
+            this->_Domain->applyBoundaryConditions(this->_xp, this->_sp, this->_vp);
+         }
 
          // Set the life time of particle p to zero
          this->_sp = 0;
