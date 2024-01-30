@@ -157,14 +157,14 @@
 	
 \subsection{Terms and definitions}
 	
-	The transport equation plays a crucial role in describing the behavior of particles in various physical systems. One of its important derivatives, the linear Boltzmann equation, is governed by the evolution of particle distribution in phase space. In this project, a numerical solution for the linear Boltzmann equation is developed utilizing the Monte Carlo method. The report is structured as follows:
+	The transport equation plays a crucial role in describing the behavior of particles in various physical systems. One of its important derivatives, the linear Boltzmann equation, is governed by the evolution of particle distribution in phase space. In this project, a numerical solution for the linear Boltzmann equation is developed using the Monte-Carlo method. The report is structured as follows:
 	
 	\begin{enumerate}
 		\item \textbf{Transport Equation:} The fundamental transport equation is introduced, providing a basis for understanding the derivation of the linear Boltzmann equation.
 		
 		\item \textbf{Linear Boltzmann Equation:} Building upon the transport equation, the linear Boltzmann equation is explored, emphasizing its significance in characterizing particle transport phenomena.
 		
-		\item \textbf{Monte Carlo Method for Linear Boltzmann Equation:} The approach to solving the linear Boltzmann equation using the Monte Carlo method is presented, along with a discussion of the advantages and challenges associated with this numerical technique.
+		\item \textbf{Monte-Carlo Method for Linear Boltzmann Equation:} The approach to solve the linear Boltzmann equation using the Monte Carlo method is presented, along with a discussion of the advantages and challenges associated with this numerical technique.
 		
 		\item \textbf{Semi-Analog Monte Carlo Scheme:} A semi-analog Monte Carlo scheme is introduced as an innovative strategy to enhance the efficiency and accuracy of simulations.
 	\end{enumerate}
@@ -191,7 +191,7 @@ In this section, we will examine the solutions of the transport equation, a part
 
 
 
-Let's $v \in \mathbb{R}^N$
+Let $v \in \mathbb{R}^N$
 
 \begin{equation} \label{transport}
 	\frac{\partial f}{\partial t}(t,x)+v \cdot \nabla_x f(t,x) + a(t,x)f(t,x) = S(t,x), \quad x \in \mathbb{R}^N, \quad t>0.
@@ -212,7 +212,7 @@ Let's consider the following Cauchy problem:
 \end{cases}
 \]
 
-If $f^{in} \in \mathcal{C}^1(\mathbb{R}^n)$, then using the method of characteristics, we can easily demonstrate that the Cauchy problem has a unique solution $f \in \mathcal{C}^1(\mathbb{R}_+ \times \mathbb{R}^n)$. This solution is given as follows:
+If $f^{in} \in \mathcal{C}^1(\mathbb{R}^n)$, then using the characteristics method, we can easily demonstrate that this problem has a unique solution $f \in \mathcal{C}^1(\mathbb{R}_+ \times \mathbb{R}^n)$. It is given as follows:
 
 
 
@@ -237,14 +237,14 @@ f(0,x)) = f^{in}(x)
 \end{cases}
 \]
 
-In this case, if $f^{in} \in \mathcal{C}^1(\mathbb{R}^n)$, then using the method of characteristics, we can still demonstrate that the Cauchy problem has a unique solution $f \in \mathcal{C}^1(\mathbb{R}_+ \times \mathbb{R}^n)$. This solution is given as follows:\\
+In this case, if $f^{in} \in \mathcal{C}^1(\mathbb{R}^n)$, then using the characteristics method, we can still demonstrate that the Cauchy problem has a unique solution $f \in \mathcal{C}^1(\mathbb{R}_+ \times \mathbb{R}^n)$. This solution is given as follows:\\
 $\boxed{f(t,x)=f^{in}(x-tv) e^{-\int_0 ^t a(\tau,x+(t-\tau)v)d\tau} + \int_0 ^t  e^{-\int_0 ^t a(\tau,x+(t-\tau)v)d\tau} S(s,x+(s-t)v)ds \quad \forall (t,x) \in \mathbb{R}_+ \times \mathbb{R}^n }$
 
-We will demonstrate the previous formula using the characteristics method. We will not demonstrate all folowing expression of the exact solution but the idea would be the same.
+We will now demonstrate the previous formula using the characteristics method. We will not demonstrate all folowing expression of the exact solution but the process would be the same.
 
 \paragraph{}
 
-We will demonstrate the previous formula using the method of characteristics. The proof of the following expression for the exact solution will not be elaborated upon, but the underlying idea would be analogous. The interested reader is invited to see \textcolor{red}{Mettre la source allaire!!!!!}.
+We will now demonstrate the previous formula using the method of characteristics. The proof of the following expression for the exact solution will not be elaborated upon, but the underlying idea would be analogous. The interested reader is invited to see \textcolor{red}{Mettre la source allaire!!!!!}.
 
 Let $y \in \mathbb{R}$, and consider the characteristic curve emanating from $y$ at $t=0$, given by :
 
