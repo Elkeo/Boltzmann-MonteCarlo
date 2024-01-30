@@ -59,15 +59,28 @@ void PeriodicDomain::applyBoundaryConditions(Vecteur& xp, double& sp, Vecteur& v
 double GenericDomain::initialCondition(const Vecteur& x, const Vecteur& v) const
 {
    double u_0;
-   if (this->_parameters.test_case == 1) u_0 = 5.0;
+
+ if (this->_parameters.test_case == 1) u_0 = 5.0;
    else if (this->_parameters.test_case == 2)
    {
-      if (this->_parameters.nbDims != 1)
+      if (this->_parameters.nbDims == 3)
       {
-         std::cout << "Test case 2 is only available for 1D problems." << std::endl;
-         throw std::exception();
+         std::cout << "Test case 2 is only available for 2D and1D problems." << std::endl;
       }
-      u_0 = (0.4 < x[0] and x[0] < 0.6) ? 1.0 : 0.0;
+      if (this->_parameters.nbDims == 1)
+      {
+         u_0 = (0.4 < x[0] and x[0] < 0.6) ? 1.0 : 0.0;
+      }
+      if (this->_parameters.nbDims == 2)
+      {
+         double x1,y1;
+         double beta=5;
+         x1=x[0];
+         y1=x[1];
+         double r = sqrt((x1)*(x1) + (y1)*(y1));
+         u_0=(1+exp(-beta*0.25))/(1+exp(beta*(r-0.25)));
+
+      }
    }
 
    else if (this->_parameters.test_case == 3) {
