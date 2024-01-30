@@ -6,7 +6,7 @@ test_case = 2
 solutionType = "space"
 
 #Number of dimensions
-nbDims = 1
+nbDims = 2
 
 #Number of MC particles 
 nbMC = 10000
@@ -18,8 +18,8 @@ finalTime = 1.0
 dt = 0.1
 
 #Speed of the wanted result
-v1 = 1.0
-v2 = 0.0
+v1 = 0.5
+v2 = 0.5
 v3 = 0.0
 
 # Sizes of the domain
