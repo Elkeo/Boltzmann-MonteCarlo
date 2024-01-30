@@ -3,7 +3,7 @@ SOURCE	= parameters.cpp particles.cpp population.cpp domain.cpp main.cpp
 HEADER	= parameters.hpp particles.hpp population.hpp domain.hpp main.hpp
 OUT	= main
 CXX	 = g++
-FLAGS	 = -g -c -Wall -std=c++11
+FLAGS	 = -c -O3 -std=c++11
 
 all: $(OBJS)
 	$(CXX) -g $(OBJS) -o $(OUT) $(LFLAGS)

@@ -78,7 +78,12 @@ double GenericDomain::initialCondition(const Vecteur& x, const Vecteur& v) const
          x1=x[0];
          y1=x[1];
          double r = sqrt((x1)*(x1) + (y1)*(y1));
-         u_0=(1+exp(-beta*0.25))/(1+exp(beta*(r-0.25)));
+         if(r<0.25){
+            u_0=1.0;
+         }
+         else{
+            u_0=0.0;
+         }
 
       }
    }
