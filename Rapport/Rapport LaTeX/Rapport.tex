@@ -17,6 +17,8 @@
 \usepackage{fancyhdr}
 \usepackage{booktabs}
 \usepackage{amssymb}
+\usepackage{tikz, xifthen}
+
 \usepackage{xcolor}
 \usepackage{setspace}
 \usepackage{amsmath} % pour les notations mathématiques
@@ -595,17 +597,25 @@ At line 11, we sample $\tau$ using the function: $\tau = \frac{-\ln(\mathcal{U}(
 
 \section{Numerical tests/results}
 
-à voir
+\subsection{Code architecture}
 
-strucutre code
-mise en place bnr
-differents test dispo cf les prties récédentes
 
-resultats
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=1.0\linewidth]{codestruct.png}
+	\caption {Code architecture}
+	\label{fig:code}
+\end{figure}
+
+The figure \ref{fig:code} represent the structure of our implementation. The \textbf{Main program} is used for several computation, \textbf{Domain} set up the boundary condition, initial condition and the sampling of $v$ and $\tau$. \textbf{Particles} set up the semi analog scheme,\textbf{Population} Move all the particles and \textbf{parameters} initialize the parameters.
 
 \section{Conclusion}
 
+First and foremost, we would like to express our sincere appreciation to our supervisor, Gael Poette, whose exceptional support was evident through his constant presence and responsiveness throughout our research.
 
+This project provided a unique opportunity to work on Monte Carlo methods. Accustomed to working with partial differential equations, the adoption of this new method for solving equations presented a stimulating challenge over the course of these four months. Collaborating in a group of five within such a limited timeframe posed its own set of challenges, but we successfully brought the project to completion.
+
+The work we accomplished enabled us to gain a deeper understanding of high-dimensional equation solving, a skill set that will undoubtedly prove invaluable in our future professional lifes.
 	
 	
 \end{document}
