@@ -191,7 +191,7 @@ This project aims to contribute to the broader understanding and application of 
 
 \section{Mathematical analysis}
 
-\paragraph{} Here is a brief summary of the various existences and uniqueness of solutions based on different cases of equations to be solved. The primary source used is the transport and diffusion document.
+\paragraph{} Here is a brief summary of the various existences and uniqueness of solutions based on different cases of equations to be solved. The primary source used is the Transport and Diffusion \cite{allaire:2019} document.
 
 \subsection{Transport Equation}
 
@@ -204,7 +204,7 @@ In this section, the solutions of the transport equation, a particular case of t
 \end{equation}
 
 
-where $f$ is the unknown function, $a$ is the given damping or amplification rate, and $S$ is the given source term.
+Where $f$ is solution of the equation, $a$ is a given damping or amplification rate, and $S$ is a given source term.
 
 \subsubsection{Cauchy Problem}
 \paragraph{}
@@ -219,7 +219,7 @@ f(0,x)) = f^{in}(x)
 \end{cases}
 \]
 
-where $f^{in}(x)$ is the seeked initial value of $f$'s density. If $f^{in} \in \mathcal{C}^1(\mathbb{R}^n)$, then using the method of characteristics, the uniqueness of the solution $f \in \mathcal{C}^1(\mathbb{R}_+ \times \mathbb{R}^n)$ for the Cauchy problem can easily be demonstrated. This solution is given as follows :
+where $f^{in}(x)$ is the seeked initial value of $f$'s density. If $f^{in} \in \mathcal{C}^1(\mathbb{R}^n)$, then using the characteristics method, the uniqueness of the solution $f \in \mathcal{C}^1(\mathbb{R}_+ \times \mathbb{R}^n)$ for the Cauchy problem can easily be demonstrated. This solution is given as follows :
 
 \begin{equation}
 f(t,x)=f^{in}(x-tv) \quad \forall (t,x) \in \mathbb{R}_+ \times \mathbb{R}^n 
@@ -239,7 +239,7 @@ f(0,x)) = f^{in}(x)
 
 \bigbreak
 
-Here the uniqueness of the solution remains unchanged so by the same method, the solution is given by :
+Here the uniqueness of the solution remains unchanged so according to the same method, the solution is given by : 
 
 \begin{equation}
 f(t,x)=f^{in}(x-tv) e^{-\int_0 ^t a(\tau,x+(t-\tau)v)d\tau} + \int_0 ^t  e^{-\int_0 ^t a(\tau,x+(t-\tau)v)d\tau} S(s,x+(s-t)v)ds \quad \forall (t,x) \in \mathbb{R}_+ \times \mathbb{R}^n
@@ -247,7 +247,7 @@ f(t,x)=f^{in}(x-tv) e^{-\int_0 ^t a(\tau,x+(t-\tau)v)d\tau} + \int_0 ^t  e^{-\in
 
 \medbreak
 
-Next, a partial demonstration of the previous formula is suggested, using the method of characteristics. For more details, the reader is refered to \cite{allaire:2019}.
+Next, a partial demonstration of the previous formula is suggested, using the characteristics method. For more details, the reader is refered to \cite{allaire:2019}.
 
 Let $y \in \mathbb{R}$, and consider the characteristic curve emanating from $y$ at $t=0$, given by :
 
@@ -265,7 +265,7 @@ v \cdot \nabla_x f(t,x))(t,\gamma(t)) \\ &= S(t,\gamma(t))-a(t,\gamma(t))f(t,\ga
 \end{aligned}
 \]
 
-The previous partial differential equation is now reduced to an ordinary differential equation (ODE) of the form:
+The previous partial differential equation is now reduced the following ordinary differential equation (ODE):
 
 \[
 \begin{cases}
@@ -274,22 +274,22 @@ u(0)=u^{in}
 \end{cases}
 \]
 
-The well-known solution is calculated using the constant variation method:
+The solution is calculated using the constant variation method:
 
 \[ u(t) = u^{in} e^{-A(t)} + \int_{0}^{t} e^{-A(t)-A(s)}\Sigma(s)ds, \text{ with } A(t)=\int_{0}^{t} \alpha (\tau) d\tau. \]
 
-The following expression is then obteined by applying this to the Cauchy problem along the characteristic curve from $y$ at $t=0$ :
+The following expression is then obtained by applying the previously introduced method to the Cauchy problem along the characteristic curve from $y$ at $t=0$:
 
 \begin{equation}
 f(t,y+tv) = f^{in}(y) e^{\int_{0}^{t}a(\tau,y+\tau v)d\tau} + \int_{0}^{t} e^{\int_{0}^{t}a(\tau,y+\tau v)d\tau}S(s,y+sv)ds, \quad y\in \mathbb{R}^n, t \geq 0.
 \end{equation}
 
-Finally, the expected expression is deduced replacing the dummy variable $y$ with $x-tv$.
+Finally, the expected expression is deduced by replacing the dummy variable $y$ with $x-tv$.
 
 \subsubsection{Boundary Value Problems}
 
 \paragraph{}
-In the preceding section, outcomes relevant to the exploration of unrestricted spatial variables in $\mathbb{R}^n$ were provided. However, for the majority of physical problems, this spatial unrestriction has no sens. That is why a problem of the boundary value type is more interesting. In this section, the set $\Omega$, which is an open set with a $\mathcal{C}^1$ boundary in $\mathbb{R}^n$ is considered. Additionally, $v \in \mathbb{R}^n\backslash \{0\}$ is considered.
+In the previous section, outcomes relevant to the exploration of unrestricted spatial variables in $\mathbb{R}^n$ were provided. However, for the majority of physical problems, this spatial unrestriction has no sens. That is why a problem of the boundary value type is more interesting. In this section, the set $\Omega$, which is an open set with a $\mathcal{C}^1$ boundary in $\mathbb{R}^n$ is considered. Additionally, $v \in \mathbb{R}^n\backslash \{0\}$ is considered.
 
 \paragraph{Special Case without Absorption or Source Term}
 
@@ -414,7 +414,7 @@ To simplify notations, this equation will be written as:
 
 Here, $v$ and $k$ are given continuous functions. The range of possibilities for the velocity $v$ is very diverse due to the variety of physical problems that can be considered. Therefore, the notation $d\mu(w)$ encompasses all these possibilities by incorporating a weight function. The major difference from the transport equation is that, this time, exchange phenomena are considered, and thus, $v$ can not be seen as a simple parameter.
 
-In this section, the exact expression of the solutions can not be highlighted because the method of characteristics yields another integral equation involving the solution.
+In this section, the exact expression of the solutions can not be highlighted because the characteristics method yields another integral equation involving the solution.
 
 
 \paragraph{Definition}
@@ -433,11 +433,11 @@ Let $Q$ be continuous on $]0,T[\times \Omega \times \mathbb{R}^n$. $f$ is a gene
 
 Let $f^{in} \in \mathbf{C}_b(\mathbb{R}^n \times \mathbb{R}^n)$ and $Q \in \mathbf{C}_b(]0,T[ \times \mathbb{R}^n \times \mathbb{R}^n)$. Also, let $0 \leq a \in \mathbf{C}_b(]0,T[ \times \mathbb{R}_x^n \times \mathbb{R}_v^n)$ and $0 \leq k \in \mathbf{C}_b(]0,T[ \times \mathbb{R}_x^n \times \mathbb{R}_v^n \times \mathbb{R}_w^n)$. The notation $\mathbf{C}_b(X)$ denotes the set of bounded continuous functions on $X$ with values in $\mathbb{R}$.
 \medbreak
-Now assume that :  
+Now assuming that :  
 
 \[ \underset{(t,x,v) \in ]0,T[ \times \mathbb{R}^n \times \mathbb{R}^n}{\sup} \int_{\mathbb{R}^n} k(t,x,v,w) \, d\mu(w) < +\infty \]
 
-Then the problem :
+, the problem :
 
 \[
 \begin{cases}
@@ -495,7 +495,7 @@ By multiplying both sides of the equation by $e^{\int _0^s v\sigma_t (x + \textb
 \begin{equation}
 \partial _s [u(x+\textbf{v}s,s,\textbf{v})e^{\int _0^s v\sigma_t (x + \textbf{v}\alpha,\alpha, v) d\alpha}] = e^{\int _0^s v\sigma_t (x + \textbf{v}\alpha,\alpha, v) d\alpha} v\sigma_s(x+\textbf{v}s,s,\textbf{v})\int P (x+\textbf{v}s,s,\textbf{v},\textbf{v}')u(x+\textbf{v}s,s,\textbf{v}')d\textbf{v}' \label{ref12}
 \end{equation}
-After an integration on $[0, t]$, the equation now yields :
+After integrating on $[0, t]$, the equation now yields :
 \begin{multline}
 u(x+\textbf{v}t,t,\textbf{v}) = u_0(x, \textbf{v}) \exp\left(- \int_{0}^{t} v\sigma_t\left(x + \textbf{v} \alpha, \alpha, \textbf{v}\right) d\alpha\right) \\
 + \int_{0}^{t} \int v\sigma_s\left(x + \textbf{v}s, s, \textbf{v}\right) u\left(x + \textbf{v}s, s, \textbf{v}'\right) e^{- \int_s^t v\sigma_t\left(x + \textbf{v} \alpha, \textbf{v}\right) d\alpha} P\left(x + \textbf{v} s, s, \textbf{v}, \textbf{v}'\right) d\textbf{v}'ds 
@@ -528,7 +528,7 @@ Developing a Monte Carlo scheme involves introducing a group of random variables
 \paragraph{}
 This method is described as backward. In fact, we first initialize $S_p$, the remaining lifetime of the particle, to $t$, and it will decrease to zero. Here, we adopt a general form for the boundary conditions. In the program we developed, we have tried various conditions: Periodic boundary conditions (which are not truly significant in a physical problem but can be interpreted as an infinite environment), and Elastic boundary conditions.
 
-At line 11, we sample $\tau$ using the function: $\tau = \frac{-\ln(\mathcal{U}(0,1))}{\sigma_t \sqrt{v^2}}$. If $\tau$ is greater than $s_p$, then the particle is moved, its lifetime is set to zero, and its contribution is updated. Otherwise, the particle is moved, its speed is sampled on the unit sphere, its lifetime is updated, and then its weight is changed.
+At line 11, we sample $\tau$ using the function: $\tau = \frac{-\ln(\mathcal{U}(0,1))}{\sigma_t \sqrt{v^2}}$. If $\tau$ is greater than $s_p$, then the particle is moved, its lifetime is set to zero, and its contribution is updated. Otherwise, the particle is moved, its speed is sampled on the unit sphere, its lifetime is updated, and finnaly its weight is changed.
 
 
 
@@ -592,22 +592,22 @@ The figure \ref{fig:code} represent the structure of our implementation. The \te
 
 \paragraph{Regression suite}
 
-In order to facilitate the implementation and the improvement of the code, a regression suite has been established. The script \textbf{BNR.py} execute all the test sequentially and relative message to each test are print in the console. The coder can then decide if the test are passed or not.
+In order to facilitate the implementation and the improvement of the code, a regression suite has been established. The script \textbf{BNR.py} execute all the test sequentially and relative messages to each test are print in the console. The user can then decide if the test are passed or not.
 
 \paragraph{}
 
-The reproducibility test compute 2 times the solution for one $t$ fixed and look if the both results are similar or not.
+The reproducibility test compute 2 times the solution for one $t$ fixed and checks if the both results are similar or not.
 
 \paragraph{}
 
-The sampling test a high number of speed $V_p$ looking if this speed is on the unit sphere by using the Kolmogorov-Smirnov law.
+The sampling test a high number of speed $V_p$ checking if this speed is really on the unit sphere by using the Kolmogorov-Smirnov law.
 
 \paragraph{}
-The advection test used a computation of the main program with $\sigma_t=0$ and $\sigma_s=0$. We are in the case of the advection described previsously and we compare the result computed with the known exact-solution.
+The advection test used a computation of the main program with $sigma_t=0$ and $\sigma_s=0$. We are in the case of the advection described previsously and we compare the result computed with the known exact-solution.
 
 
 \paragraph{}
-The exponential test used a computation of the main program with $\sigma_t$ and $\sigma_s$ constant. With this configuration we can calculate the integrale of the exact solution as :
+The exponential test used a computation of the main program with $sigma_t$ and $\sigma_s$ constant. With this configuration we can calculate the integrale of the exact solution as :
 
 $$\int_{\Omega} U(t)d_{x}=\int_{\Omega} U_0 d_{x} ~ e^{-v(\sigma_t-\sigma_s)t} $$
 
