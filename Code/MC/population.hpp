@@ -18,6 +18,6 @@ public:
    Population(const GenericDomain*, const struct_parameters& parameters, double& u, const Vecteur& x);
    ~Population();
 
-   void move();
+   void move(); //Fait se déplacer le groupe de particules
    const double& get_u() const { return this->_vect_u; };
 };

@@ -60,6 +60,7 @@ void PeriodicDomain::applyBoundaryConditions(Vecteur& xp, double& sp, Vecteur& v
    }
 };
 
+//initialisation du domaine
 double GenericDomain::initialCondition(const Vecteur& x, const Vecteur& v) const
 {
    double u_0;
@@ -73,7 +74,7 @@ double GenericDomain::initialCondition(const Vecteur& x, const Vecteur& v) const
       }
       u_0 = (0.4 < x[0] and x[0] < 0.6) ? 1.0 : 0.0;
    }
-
+   
    else if (this->_parameters.test_case == 3) {
 
       Vecteur taille(3);

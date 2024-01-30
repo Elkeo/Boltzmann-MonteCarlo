@@ -6,6 +6,7 @@
 #include <valarray>
 
 
+//Création et initialisation de la structure paramètres en se basant sur le fichier param.toml
 void init_parameters(struct_parameters& parameters) {
 
     //Opening file

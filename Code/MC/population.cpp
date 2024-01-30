@@ -21,7 +21,7 @@ void Population::move()
 {
    for (int iter_i = 0; iter_i < this->_parameters.nbMC; iter_i++)
    {
-      /* On créé une particule */
+      /* On crée une particule */
       Particle particle(this->_Domain, this->_parameters, this->_vect_x);
       /* La particule est "envoyée" évoluer */
       particle.move(_vect_u);
