@@ -24,25 +24,21 @@ void ElasticDomain::applyBoundaryConditions(Vecteur& xp, double& sp, Vecteur& vp
 {
    // Choc élastique sur les parois
    double distance_avec_bord = 0.0;
-   std::cout << "avant : " << xp[0] << " " << xp[1] << " " << xp[2] << std::endl;
    for (int iter_i = 0; iter_i < this->_parameters.nbDims; iter_i++)
    {
       if (xp[iter_i] <= this->_Omega[iter_i][0])
       {
-         //std::cout << "Particle out of domain gauche" << std::endl;
          distance_avec_bord = abs(xp[iter_i] - this->_Omega[iter_i][0]);
          xp[iter_i] = this->_Omega[iter_i][0] + distance_avec_bord;
          vp[iter_i] *= -1;
       }
       else if (this->_Omega[iter_i][1] <= xp[iter_i])
       {
-         std::cout << "Particle out of domain droit" << std::endl;
          distance_avec_bord = abs(xp[iter_i] - this->_Omega[iter_i][1]);
          xp[iter_i] = this->_Omega[iter_i][1] - distance_avec_bord;
          vp[iter_i] *= -1;
       }
    }
-   std::cout << "après :" << xp[0] << " " << xp[1] << " " << xp[2] << std::endl;
 };
 
 void PeriodicDomain::applyBoundaryConditions(Vecteur& xp, double& sp, Vecteur& vp) const
@@ -60,34 +56,20 @@ void PeriodicDomain::applyBoundaryConditions(Vecteur& xp, double& sp, Vecteur& v
    }
 };
 
-//initialisation du domaine
 double GenericDomain::initialCondition(const Vecteur& x, const Vecteur& v) const
 {
    double u_0;
    if (this->_parameters.test_case == 1) u_0 = 5.0;
    else if (this->_parameters.test_case == 2)
    {
-      if (this->_parameters.nbDims == 3)
+      if (this->_parameters.nbDims != 1)
       {
-         std::cout << "Test case 2 is only available for 2D and1D problems." << std::endl;
+         std::cout << "Test case 2 is only available for 1D problems." << std::endl;
          throw std::exception();
       }
-      if (this->_parameters.nbDims == 1)
-      {
-         u_0 = (0.4 < x[0] and x[0] < 0.6) ? 1.0 : 0.0;
-      }
-      if (this->_parameters.nbDims == 2)
-      {
-         double x1,y1;
-         double beta=5;
-         x1=x[0];
-         y1=x[1];
-         double r = sqrt((x1)*(x1) + (y1)*(y1));
-         u_0=(1+exp(-beta*0.25))/(1+exp(beta*(r-0.25)));
-
-      }
+      u_0 = (0.4 < x[0] and x[0] < 0.6) ? 1.0 : 0.0;
    }
-   
+
    else if (this->_parameters.test_case == 3) {
 
       Vecteur taille(3);
