@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <vector>
 #include <valarray>
+#include <cmath>
 
 
 //Création et initialisation de la structure paramètres en se basant sur le fichier param.toml
@@ -46,5 +47,10 @@ void init_parameters(struct_parameters& parameters) {
     const auto& physics = toml::find(param_file, "physics");
     parameters.sigmaS = toml::find<double>(physics, "sigmaS");
     parameters.sigmaT = toml::find<double>(physics, "sigmaT");
-    parameters.modV = toml::find<double>(physics, "modV");
+
+    parameters.modV = 0;
+    for(int iter=1 ; iter <= parameters.nbDims ; iter++){
+        parameters.modV += std::abs(parameters.array_v[iter]);
+    }
+
 }

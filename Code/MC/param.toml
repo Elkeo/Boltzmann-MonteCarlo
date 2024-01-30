@@ -39,4 +39,3 @@ domainType = "periodic"
 [physics]
 sigmaS = 0.0
 sigmaT = 0.0
-modV = 0.5
