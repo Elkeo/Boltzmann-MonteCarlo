@@ -151,12 +151,12 @@
 
 \hypersetup{%
 	pdfauthor={Antoine BOUCHER},%
-	pdftitle={Rapport TP3 : Classification},%
-	pdfsubject={Classification},%
+	pdftitle={Resolution of the linear Boltzmann equation by Monte Carlo method},%
+	pdfsubject={MC schemes},%
 	pdfcreator={Antoine BOUCHER},%
 	pdfproducer={LaTeX},%
 	breaklinks=true,
-	pdfkeywords={Classification, TP3},%
+	pdfkeywords={Boltzmann, MC scheme},%
 }%
 \setbeamercolor{framesource}{fg=gray}
 \setbeamerfont{framesource}{size=\tiny}
@@ -183,8 +183,8 @@
 	Clément Aumonier\\
 	Guillaume Doyen\\
 	Khaoula El Maddah\\
-	%\vspace{1em}
-	%\textbf{Supervisor:} Gael Poette
+	\vspace{1em}
+	\textbf{Supervisor:} Gael Poette
 } 
 \institute{}
 \date{Wednesday, 31\up{st} January 2024}
@@ -292,12 +292,12 @@
 \begin{frame}{Boltzmann equation}
     The transport equation can be expressed as:
 	\begin{equation*}
-		\partial_t u(x,t,\bm{v}) + \bm{v} \cdot \nabla u(x,t,\bm{v}) + v\sigma_t (x,t,\bm{v})u(x,t,\bm{v})= v\sigma_s(x,t,\bm{v}) \! \int P(x,t,\bm{v},\bm{v}')u(x,t,\bm{v}') \di\bm{v}' \label{ref11}
+		\partial_t u(\bm{x},t,\bm{v}) + \bm{v} \cdot \nabla u(\bm{x},t,\bm{v}) + v\sigma_t (\bm{x},t,\bm{v})u(\bm{x},t,\bm{v})= v\sigma_s(\bm{x},t,\bm{v}) \! \int P(\bm{x},t,\bm{v},\bm{v}')u(\bm{x},t,\bm{v}') \di\bm{v}' \label{ref11}
 	\end{equation*}
 	\vspace{0.5cm}
 	Where 
 	\begin{equation*}
-		\sigma_s (x,t,\bm{v})= \int \sigma_s (x,t,\bm{v},\bm{v}') \di \bm{v}', \quad  P (x,t,\bm{v},\bm{v}')= \frac{\sigma_s (x,t,\bm{v},\bm{v}')}{\sigma_s (x,t,\bm{v})}
+		\sigma_s (\bm{x},t,\bm{v})= \int \sigma_s (\bm{x},t,\bm{v},\bm{v}') \di \bm{v}', \quad  P (\bm{x},t,\bm{v},\bm{v}')= \frac{\sigma_s (\bm{x},t,\bm{v},\bm{v}')}{\sigma_s (\bm{x},t,\bm{v})}
 	\end{equation*}
 	$\sigma_t$: the total cross-section \\
 	$\sigma_s$: the scattering cross-section \\
@@ -310,38 +310,40 @@
      The initial step is re-expressing the transport equation with respect to a characteristic $\bm{x} + \bm{v}s$. It transforms into:
     \begin{equation*}
         \begin{split}
-            \partial _s u(x+\bm{v}s,s,\bm{v}) &= -v\sigma_t (x+\bm{v}s,s,\bm{v})u(x+\bm{v}s,s,\bm{v}) \\
-            &\quad + v\sigma_s(x+\bm{v}s,s,\bm{v})\int P (x+\bm{v}s,s,\bm{v},\bm{v}')u(x+\bm{v}s,s,\bm{v}')\di\bm{v}'
+            \partial _s u(\bm{x}+\bm{v}s,s,\bm{v}) &= -v\sigma_t (\bm{x}+\bm{v}s,s,\bm{v})u(\bm{x}+\bm{v}s,s,\bm{v}) \\
+            &\quad + v\sigma_s(\bm{x}+\bm{v}s,s,\bm{v})\int P (\bm{x}+\bm{v}s,s,\bm{v},\bm{v}')u(\bm{x}+\bm{v}s,s,\bm{v}')\di\bm{v}'
         \end{split}
     \end{equation*}
     
     After multiplying both sides of the equation by:
     \begin{equation*}
-    	\e^{\int _0^s v\sigma_t (x + \bm{v}\alpha,\alpha, v) \di \alpha}
+    	\e^{\int _0^s v\sigma_t (\bm{x} + \bm{v}\alpha,\alpha, v) \di \alpha}
     \end{equation*}
     
 
     Following that, we obtain:
     \begin{equation*}
     	\begin{split}
-    		&\partial _s [u(x+\bm{v}s,s,\bm{v})\e^{\int _0^s v\sigma_t (x + \bm{v}\alpha,\alpha, v) \di \alpha}] \\
-    		&= \e^{\int _0^s v\sigma_t (x + \bm{v}\alpha,\alpha, v) \di\alpha} v\sigma_s(x+\bm{v}s,s,\bm{v})\int P (x+\bm{v}s,s,\bm{v},\bm{v}')u(x+\bm{v}s,s,\bm{v}') \di \bm{v}'
+    		&\partial _s [u(\bm{x}+\bm{v}s,s,\bm{v})\e^{\int _0^s v\sigma_t (\bm{x} + \bm{v}\alpha,\alpha, v) \di \alpha}] \\
+    		&= \e^{\int _0^s v\sigma_t (\bm{x} + \bm{v}\alpha,\alpha, v) \di\alpha} v\sigma_s(\bm{x}+\bm{v}s,s,\bm{v})\int P (\bm{x}+\bm{v}s,s,\bm{v},\bm{v}')u(\bm{x}+\bm{v}s,s,\bm{v}') \di \bm{v}'
     	\end{split}
     \end{equation*}
 \end{frame}
 
 \begin{frame}{Integration of the equation}
     We get after integrating the equation between $(0, t)$:
+    \vspace{-1em}
     \begin{multline*}
-        u(x+\bm{v}t,t,\bm{v}) = u_0(x, \bm{v}) \exp\left(- \int_{0}^{t} v\sigma_t\left(x + \bm{v} \alpha, \alpha, \bm{v}\right) \di\alpha\right) \\
-        + \int_{0}^{t} \int v\sigma_s\left(x + \bm{v}s, s, \bm{v}\right) u\left(x + \bm{v}s, s, \bm{v}'\right) \e^{- \int_s^t v\sigma_t\left(x + \bm{v} \alpha, \bm{v}\right) \di\alpha} P\left(x + \bm{v} s, s, \bm{v}, \bm{v}'\right) \di\bm{v}' \di s
+        u(\bm{x}+\bm{v}t,t,\bm{v}) = u_0(\bm{x}, \bm{v}) \exp\left(- \int_{0}^{t} v\sigma_t\left(\bm{x} + \bm{v} \alpha, \alpha, \bm{v}\right) \di\alpha\right) \\
+        + \int_{0}^{t} \int v\sigma_s\left(\bm{x} + \bm{v}s, s, \bm{v}\right) u\left(\bm{x} + \bm{v}s, s, \bm{v}'\right) \e^{- \int_s^t v\sigma_t\left(\bm{x} + \bm{v} \alpha, \bm{v}\right) \di\alpha} P\left(\bm{x} + \bm{v} s, s, \bm{v}, \bm{v}'\right) \di\bm{v}' \di s
     \end{multline*}
-
+	
      After a variable change, we obtain:
+     \vspace{-1em}
     \begin{multline*}
-        u(x,t,\bm{v}) = u_0(x - \bm{v}t, \bm{v}) \exp\left(- \int_{0}^{t} v\sigma_t\left(x - \bm{v}(t - \alpha), \alpha, \bm{v}\right) \do\alpha\right) \\
-        + \int_{0}^{t} \int v\sigma_s\left(x - \bm{v}(t - s), s, \bm{v}\right) u\left(x - \bm{v}(t - s), s, \bm{v}'\right) \\
-        \e^{- \int_s^t v\sigma_t\left(x - \bm{v}(t - \alpha), \bm{v}\right) \di\alpha} P\left(x - \bm{v}(t - s), s, \bm{v}, \bm{v}'\right) \di\bm{v}' \di s
+        u(\bm{x},t,\bm{v}) = u_0(\bm{x} - \bm{v}t, \bm{v}) \exp\left(- \int_{0}^{t} v\sigma_t\left(\bm{x} - \bm{v}(t - \alpha), \alpha, \bm{v}\right) \do\alpha\right) \\
+        + \int_{0}^{t} \int v\sigma_s\left(\bm{x} - \bm{v}(t - s), s, \bm{v}\right) u\left(\bm{x} - \bm{v}(t - s), s, \bm{v}'\right) \\
+        \e^{- \int_s^t v\sigma_t\left(x - \bm{v}(t - \alpha), \bm{v}\right) \di\alpha} P\left(\bm{x} - \bm{v}(t - s), s, \bm{v}, \bm{v}'\right) \di\bm{v}' \di s
     \end{multline*}
 \end{frame}
 
@@ -357,22 +359,20 @@
 \begin{frame}{The integral form of the Boltzmann equation}
     The integral representation of the transport equation is then provided by:
     \begin{multline*}
-        u(x,t,\bm{v}) =  \int _t^\infty  u_0(x - \bm{v}t, \bm{v}) v\sigma_t\left(x - \bm{v} s,t- s, \bm{v}\right) \exp\left(- \int_{0}^{s} v\sigma_t\left(x - \bm{v} \alpha,t- \alpha, \bm{v}\right) d\alpha\right) \di s\\
-        + \int_{0}^{t} \int v\sigma_s\left(x - \bm{v}(t - s), s, \bm{v}\right) u\left(x - \bm{v}(t - s), s, \bm{v}'\right) \\
-        \e^{- \int_s^t v\sigma_t\left(x - \bm{v}(t - \alpha), \bm{v}\right) d\alpha} P\left(x - \bm{v}(t - s), s, \bm{v}, \bm{v}'\right) \di \bm{v}' \di s \label{ref13}
+        u(x,t,\bm{v}) =  \int _t^\infty  u_0(\bm{x} - \bm{v}t, \bm{v}) v\sigma_t\left(\bm{x} - \bm{v} s,t- s, \bm{v}\right) \exp\left(- \int_{0}^{s} v\sigma_t\left(\bm{x} - \bm{v} \alpha,t- \alpha, \bm{v}\right) \di\alpha\right) \di s\\
+        + \int_{0}^{t} \int v\sigma_s\left(\bm{x} - \bm{v}(t - s), s, \bm{v}\right) u\left(\bm{x} - \bm{v}(t - s), s, \bm{v}'\right) \\
+        \e^{- \int_s^t v\sigma_t\left(\bm{x} - \bm{v}(t - \alpha), \bm{v}\right) \di\alpha} P\left(\bm{x} - \bm{v}(t - s), s, \bm{v}, \bm{v}'\right) \di \bm{v}' \di s \label{ref13}
     \end{multline*}
 
     \vspace{1em}
     \centering
     \fbox{\parbox{0.7\textwidth}{\centering\textbf{Problem: the solution depends on its own integral!} \\
-   	$\Rdsh$ Let's introduce a numerical recursive MC scheme!}}
+   	\raisebox{2.5pt}{$\Rdsh$} Let's introduce a recursive numerical MC scheme!}}
 \end{frame}
 
 \section{The semi-analog MC scheme}
-
 \begin{frame}{Semi-analog scheme}
-    For the semi-analog scheme, we introduce the probability measure of the interaction time: 
-    \vspace{0.5cm}
+    For the semi-analog scheme, well used in Neutronics, we introduce the probability measure of the interaction time: 
     \begin{equation*}
     f_{\tau}(\bm{x}, t, \bm{v}, s) \di s = 1_{[0,\infty[}(s) \, v\sigma_t(\bm{x} - \bm{v}s, t - s, v) \e^{-\int_{0}^s v\sigma_t(\bm{x} - \bm{v}\alpha, t - \alpha, v) \, \di \alpha} \di s
     \end{equation*}
@@ -393,7 +393,7 @@
 \begin{frame}{Expression of the solution}
 	We found the following \textbf{expectation} value:
 	    \begin{equation*}
-	            u(\bm{x}, t, \bm{v}) = \mathbb{E} \left[1_{[t, \infty[}(\tau) \: u_0(\bm{x} - \bm{v}t, \bm{v}) + 1_{[0, t[}(\tau) \: \frac{\sigma_s(\bm{x} - \bm{v}\tau, t - \tau, v)}{\sigma_t(\bm{x} - \bm{v}\tau, t - \tau, v)}u(\bm{x} - \bm{v}\tau, t - \tau, \bm{V}')\right]
+	            u(\bm{x}, t, \bm{v}) = \mathbb{E} \left[1_{[t, \infty[}(\tau) \: u_0(\bm{x} - \bm{v}t, \bm{v}) + 1_{[0, t[}(\tau) \: \frac{\sigma_s(\bm{x} - \bm{v}\tau, t - \tau, \bm{v})}{\sigma_t(\bm{x} - \bm{v}\tau, t - \tau, \bm{v})}u(\bm{x} - \bm{v}\tau, t - \tau, \bm{V}')\right]
 	    \end{equation*}
 	We seek solutions that possess this specific structure:
 	\begin{equation*}
@@ -401,9 +401,10 @@
 	\end{equation*}
 	Replacing \(u_p\) in the equation yields:
 	\begin{empheq}[left=\empheqbiglbrace]{align*}
-	w_p(t) &= 1_{[0,\infty[}(\tau)w_p(0) + 1_{[0,t[}(\tau) \frac{\sigma_s}{\sigma_t} \left( x_p(t-\tau),t-\tau,\bm{v}_p(t-\tau) \right) w_p(t-\tau),\\
-	x_p(t) &= 1_{[0,\infty[}(\tau)(\bm{x}_0-\bm{v}t) + 1_{[0,t[}(\tau)(x_{t-\tau}-\bm{v}\tau),\\
-	v_p(t) &= 1_{[0,\infty[}(\tau)\bm{v} + 1_{[0,t[}(\tau)\bm{V}'. 
+	w_p(t) &= 1_{[0,\infty[}(\tau)w_p(0) + 1_{[0,t[}(\tau) \frac{\sigma_s}{\sigma_t} \left(
+	\bm{x}_p(t-\tau),t-\tau,\bm{v}_p(t-\tau) \right) w_p(t-\tau),\\
+	\bm{x}_p(t) &= 1_{[0,\infty[}(\tau)(\bm{x}_0-\bm{v}t) + 1_{[0,t[}(\tau)(\bm{x}_{t-\tau}-\bm{v}\tau),\\
+	\bm{v}_p(t) &= 1_{[0,\infty[}(\tau)\bm{v} + 1_{[0,t[}(\tau)\bm{V}'. 
 	\end{empheq}
 \end{frame}
 
@@ -424,17 +425,18 @@
                         \EndIf
                         \State Sample $\tau \leadsto f_\tau(\bm{x}_p, s_p, \bm{v}_p, s) \di s$
                         \newcolumn
-                        \If{$\tau > s_p$}
+                        \If{$\tau < s_p$}
+	                        \Comment{{\scriptsize \leftarrow Scattering/Collision}}
+	                        \State $w_p \gets \frac{\sigma_s(\bm{x}_p, s_p - \tau, \bm{v}_p)}{\sigma_t(\bm{x}_p, s_p - \tau, \bm{v}_p)} w_p$
+	                        \State Sample $\bm{v}_p \leadsto P_{\bm{V}'}^s(\bm{x}_p, s_p, \tau, \bm{v}_p, \bm{v}') \di \bm{v}'$
+	                        \State $\bm{x}_p \gets \bm{x}_p + \bm{v}_p \tau$
+	                        \State $s_p \gets s_p - \tau > 0$
+                        
+                        \Else
                        		\Comment{{\scriptsize \leftarrow Census/Contribution}}
                             \State $\bm{x}_p \gets \bm{x}_p + s_p \bm{v}_p$
                             \State $s_p \gets 0$
                             \State $u(\bm{x}, t, \bm{v}) += w_p u_0(\bm{x}_p, \bm{v}_p)$
-                        \Else
-                        	\Comment{{\scriptsize \leftarrow Scattering/Collision}}
-                            \State $w_p \gets \frac{\sigma_s(\bm{x}_p, s_p - \tau, \bm{v}_p)}{\sigma_t(\bm{x}_p, s_p - \tau, \bm{v}_p)} w_p$
-                            \State Sample $\bm{v}_p \leadsto P_{\bm{V}'}^s(\bm{x}_p, s_p, \tau, \bm{v}_p, \bm{v}') \di \bm{v}'$
-                            \State $\bm{x}_p \gets \bm{x}_p + \bm{v}_p \tau$
-                            \State $s_p \gets s_p - \tau > 0$
                         \EndIf
                     \EndWhile
                 \EndFor
@@ -560,7 +562,7 @@
 
         \legend{$N_{MC} = 10$,%
         $N_{MC} = 100$,
-        $N_{MC} = 100000$,};
+        $N_{MC} = 10000$,};
 		\end{axis}
 	\end{tikzpicture}
   \label{fig:visualisation1D}
@@ -642,7 +644,7 @@
 \end{frame}
 
 \begin{frame}{2D Transparent medium}
-	When $\sigma_t = \sigma_s = 0$, the explicit solution is given by: 
+	When $\sigma_t = \sigma_s = 0$, the explicit solution is given, with a \textbf{gaussian} initial solution by: 
 	\begin{equation*}
 		u(\bm{x},t,\bm{v}) = u_0(\bm{x}-\bm{v}t, \bm{v})
 	\end{equation*}
@@ -739,7 +741,7 @@
 \end{frame}
 
 \begin{frame}{2D Absorption-scattering medium}
-	With $\sigma_s = 0.5$ and $\sigma_t = 1$: no exact solution is known.
+	With $\sigma_s = 0.5$ and $\sigma_t = 1$: \textbf{no exact solution} is known.
 	\begin{figure}[H]
 		\centering
 		\begin{animateinline}[autoplay,loop,controls=none]{3} 
@@ -791,15 +793,15 @@
 	\begin{itemize}
 		\item uses recursive formulation,
 		\item 2D/3D w/o extra cost,
-		\item multiple schemes (backward here for radiation/forward, analog/semi-analog/non-analog) depending on the application,
-		\item immediate parallelization.
+		\item multiple schemes (\textbf{backward here for shields in radioprotection}/forward, analog/semi-analog/non-analog) depending on the application,
+		\item immediate parallelization thanks to independent particles.
 	\end{itemize}
 	\vspace{1em}
 	
 	\textbf{Possible improvements:}
 	\begin{itemize}
 		\item elaborate more tests,
-		\item implement more boundary conditions,
+		\item implement the forward scheme for more boundary conditions.
 	\end{itemize}
 	\label{LastPage}
 \end{frame}
@@ -813,7 +815,7 @@
 	
 	For further resources, only one adress:
 	\centering
-	\fbox{\color{IBMblue}\bfseries\href{https://clement16a.github.io/website2/index.html}{Resolution of the linear Boltzmann equation by Monte Carlo method}}
+	\fbox{\color{IBMblue}\bfseries\href{https://clement16a.github.io/Boltzmann-Monte-Carlo-website/index.html}{Resolution of the linear Boltzmann equation by Monte Carlo method}}
 \end{frame}
 
 \begin{frame}[plain]{References}

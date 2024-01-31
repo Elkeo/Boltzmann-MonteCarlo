@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.17.0 (TeX Live 2023)  (format=lualatex 2024.1.30)  31 JAN 2024 01:14
+This is LuaHBTeX, Version 1.17.0 (TeX Live 2023)  (format=lualatex 2024.1.30)  31 JAN 2024 11:47
  system commands enabled.
 **main.tex
 (./main.tex
@@ -2000,11 +2000,16 @@ LaTeX Font Info:    Trying to load font information for U+stmry on input line 7
 
 (/usr/local/texlive/2023/texmf-dist/tex/latex/stmaryrd/Ustmry.fd)
 Package hyperref Info: Option `breaklinks' set `true' on input line 160.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\new@ifnextchar' on input line 188.
+
 Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... found 'babel' package.
 Package csquotes Info: Adjusting default style.
 Package csquotes Info: Redefining alias 'default' -> 'english'.
- (./main.aux)
+(./main.aux)
 \openout1 = main.aux
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 196.
@@ -2242,14 +2247,14 @@ Package luatex.def Info: img/logo-embxinp.png  used on input line 331.
 ]
 File: img/logo-embxinp.png Graphic file (type png)
 <use img/logo-embxinp.png>
-Package luatex.def Info: img/logo-embxinp.png  used on input line 346.
+Package luatex.def Info: img/logo-embxinp.png  used on input line 348.
 (luatex.def)             Requested size: 51.71594pt x 14.22636pt.
  [9
 
 ]
 File: img/logo-embxinp.png Graphic file (type png)
 <use img/logo-embxinp.png>
-Package luatex.def Info: img/logo-embxinp.png  used on input line 369.
+Package luatex.def Info: img/logo-embxinp.png  used on input line 371.
 (luatex.def)             Requested size: 51.71594pt x 14.22636pt.
 
 [10
@@ -2264,7 +2269,7 @@ Package luatex.def Info: img/logo-embxinp.png  used on input line 391.
 ]
 File: img/logo-embxinp.png Graphic file (type png)
 <use img/logo-embxinp.png>
-Package luatex.def Info: img/logo-embxinp.png  used on input line 408.
+Package luatex.def Info: img/logo-embxinp.png  used on input line 409.
 (luatex.def)             Requested size: 51.71594pt x 14.22636pt.
  [12
 
@@ -2278,7 +2283,7 @@ th;language=dflt;mathfontdimen=xetex;!
 )
 File: img/logo-embxinp.png Graphic file (type png)
 <use img/logo-embxinp.png>
-Package luatex.def Info: img/logo-embxinp.png  used on input line 443.
+Package luatex.def Info: img/logo-embxinp.png  used on input line 445.
 (luatex.def)             Requested size: 51.71594pt x 14.22636pt.
  [13
 
@@ -2286,11 +2291,11 @@ Package luatex.def Info: img/logo-embxinp.png  used on input line 443.
 <img/codestruct.pdf, id=517, 606.75647pt x 277.08452pt>
 File: img/codestruct.pdf Graphic file (type pdf)
 <use img/codestruct.pdf>
-Package luatex.def Info: img/codestruct.pdf  used on input line 453.
+Package luatex.def Info: img/codestruct.pdf  used on input line 455.
 (luatex.def)             Requested size: 380.8143pt x 173.90253pt.
 File: img/logo-embxinp.png Graphic file (type png)
 <use img/logo-embxinp.png>
-Package luatex.def Info: img/logo-embxinp.png  used on input line 453.
+Package luatex.def Info: img/logo-embxinp.png  used on input line 455.
 (luatex.def)             Requested size: 51.71594pt x 14.22636pt.
  [14
 
@@ -2376,7 +2381,7 @@ Overfull \hbox (38.99545pt too wide) in paragraph at lines 34--77
 )
 File: img/logo-embxinp.png Graphic file (type png)
 <use img/logo-embxinp.png>
-Package luatex.def Info: img/logo-embxinp.png  used on input line 533.
+Package luatex.def Info: img/logo-embxinp.png  used on input line 535.
 (luatex.def)             Requested size: 51.71594pt x 14.22636pt.
  [15
 
@@ -2384,7 +2389,7 @@ Package luatex.def Info: img/logo-embxinp.png  used on input line 533.
 ===== Image 'tikzexternal/main-figure36' is up-to-date. ======
 File: img/logo-embxinp.png Graphic file (type png)
 <use img/logo-embxinp.png>
-Package luatex.def Info: img/logo-embxinp.png  used on input line 569.
+Package luatex.def Info: img/logo-embxinp.png  used on input line 571.
 (luatex.def)             Requested size: 51.71594pt x 14.22636pt.
 [16
 
@@ -2392,7 +2397,7 @@ Package luatex.def Info: img/logo-embxinp.png  used on input line 569.
 ===== Image 'tikzexternal/main-figure37' is up-to-date. ======
 File: img/logo-embxinp.png Graphic file (type png)
 <use img/logo-embxinp.png>
-Package luatex.def Info: img/logo-embxinp.png  used on input line 608.
+Package luatex.def Info: img/logo-embxinp.png  used on input line 610.
 (luatex.def)             Requested size: 51.71594pt x 14.22636pt.
 [17
 
@@ -2421,7 +2426,7 @@ Package luatex.def Info: img/logo-embxinp.png  used on input line 608.
 <./tikzexternal/main-figure48.pdf> <a1,fr10>
 File: img/logo-embxinp.png Graphic file (type png)
 <use img/logo-embxinp.png>
-Package luatex.def Info: img/logo-embxinp.png  used on input line 642.
+Package luatex.def Info: img/logo-embxinp.png  used on input line 644.
 (luatex.def)             Requested size: 51.71594pt x 14.22636pt.
  [18
 
@@ -2450,7 +2455,7 @@ Package luatex.def Info: img/logo-embxinp.png  used on input line 642.
 <./tikzexternal/main-figure59.pdf> <a2,fr10>
 File: img/logo-embxinp.png Graphic file (type png)
 <use img/logo-embxinp.png>
-Package luatex.def Info: img/logo-embxinp.png  used on input line 691.
+Package luatex.def Info: img/logo-embxinp.png  used on input line 693.
 (luatex.def)             Requested size: 51.71594pt x 14.22636pt.
  [19
 
@@ -2479,7 +2484,7 @@ Package luatex.def Info: img/logo-embxinp.png  used on input line 691.
 <./tikzexternal/main-figure70.pdf> <a3,fr10>
 File: img/logo-embxinp.png Graphic file (type png)
 <use img/logo-embxinp.png>
-Package luatex.def Info: img/logo-embxinp.png  used on input line 739.
+Package luatex.def Info: img/logo-embxinp.png  used on input line 741.
 (luatex.def)             Requested size: 51.71594pt x 14.22636pt.
  [20
 
@@ -2508,14 +2513,14 @@ Package luatex.def Info: img/logo-embxinp.png  used on input line 739.
 <./tikzexternal/main-figure81.pdf> <a4,fr10>
 File: img/logo-embxinp.png Graphic file (type png)
 <use img/logo-embxinp.png>
-Package luatex.def Info: img/logo-embxinp.png  used on input line 784.
+Package luatex.def Info: img/logo-embxinp.png  used on input line 786.
 (luatex.def)             Requested size: 51.71594pt x 14.22636pt.
  [21
 
 ]
 File: img/logo-embxinp.png Graphic file (type png)
 <use img/logo-embxinp.png>
-Package luatex.def Info: img/logo-embxinp.png  used on input line 805.
+Package luatex.def Info: img/logo-embxinp.png  used on input line 807.
 (luatex.def)             Requested size: 51.71594pt x 14.22636pt.
  [22
 
@@ -2523,7 +2528,7 @@ Package luatex.def Info: img/logo-embxinp.png  used on input line 805.
 <img/website.png, id=4223, 1734.48pt x 930.47626pt>
 File: img/website.png Graphic file (type png)
 <use img/website.png>
-Package luatex.def Info: img/website.png  used on input line 817.
+Package luatex.def Info: img/website.png  used on input line 819.
 (luatex.def)             Requested size: 324.15556pt x 173.90253pt.
  [23
 
@@ -2553,7 +2558,7 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 )
 
 Here is how much of LuaTeX's memory you used:
- 61220 strings out of 476553
+ 61221 strings out of 476553
  100000,2848258 words of node,token memory allocated
  10792 words of node memory still in use:
    58 hlist, 12 vlist, 14 rule, 65 disc, 7 local_par, 2 math, 202 glue, 155 kern
@@ -2561,8 +2566,8 @@ Here is how much of LuaTeX's memory you used:
 te, 24 pdf_literal, 2 pdf_start_link, 2 pdf_end_link, 4 pdf_dest, 2 pdf_action, 
 56 pdf_colorstack nodes
    avail lists: 2:1636,3:511,4:326,5:420,6:105,7:2387,8:82,9:782,10:15,11:126
- 80523 multiletter control sequences out of 65536+600000
- 137 fonts using 34474187 bytes
+ 80524 multiletter control sequences out of 65536+600000
+ 137 fonts using 34474071 bytes
  128i,17n,116p,725b,2067s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2023/texmf-dist/fonts/opentype/public/lm/lmmono10-regular.ot
 f></usr/local/texlive/2023/texmf-dist/fonts/opentype/public/fira/FiraSans-Italic
@@ -2575,7 +2580,7 @@ ype/public/fira/FiraSans-Regular.otf></usr/local/texlive/2023/texmf-dist/fonts/o
 pentype/public/fira/FiraSans-Bold.otf></usr/local/texlive/2023/texmf-dist/fonts/
 type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2023/texmf-dist/fon
 ts/type1/public/stmaryrd/stmary10.pfb>
-Output written on main.pdf (24 pages, 11772412 bytes).
+Output written on main.pdf (24 pages, 11772791 bytes).
 
 PDF statistics: 4355 PDF objects out of 5155 (max. 8388607)
  2709 compressed objects within 28 object streams

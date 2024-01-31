@@ -2,39 +2,20 @@
 \contentsline {section}{\numberline {1}Introduction}{2}{section.1}%
 \contentsline {subsection}{\numberline {1.1}Terms and definitions}{2}{subsection.1.1}%
 \contentsline {subsection}{\numberline {1.2}Context and Applications}{2}{subsection.1.2}%
-\contentsline {paragraph}{}{2}{section*.3}%
 \contentsline {section}{\numberline {2}Mathematical analysis}{2}{section.2}%
-\contentsline {paragraph}{}{2}{section*.4}%
 \contentsline {subsection}{\numberline {2.1}Transport Equation}{2}{subsection.2.1}%
-\contentsline {paragraph}{}{2}{section*.5}%
 \contentsline {subsubsection}{\numberline {2.1.1}Cauchy Problem}{3}{subsubsection.2.1.1}%
-\contentsline {paragraph}{}{3}{section*.6}%
-\contentsline {paragraph}{}{3}{section*.7}%
 \contentsline {subsubsection}{\numberline {2.1.2}Boundary Value Problems}{4}{subsubsection.2.1.2}%
-\contentsline {paragraph}{}{4}{section*.8}%
-\contentsline {paragraph}{Special Case without Absorption or Source Term}{4}{section*.9}%
-\contentsline {paragraph}{}{4}{section*.10}%
-\contentsline {paragraph}{}{4}{section*.11}%
-\contentsline {paragraph}{With Absorption and Source Term}{4}{section*.12}%
-\contentsline {paragraph}{}{4}{section*.13}%
-\contentsline {subsubsection}{\numberline {2.1.3}Generalized Solutions}{5}{subsubsection.2.1.3}%
-\contentsline {paragraph}{}{5}{section*.14}%
-\contentsline {paragraph}{Definition}{5}{section*.15}%
-\contentsline {paragraph}{}{5}{section*.16}%
+\contentsline {paragraph}{Special Case without Absorption or Source Term}{4}{section*.3}%
+\contentsline {paragraph}{With Absorption and Source Term}{4}{section*.4}%
+\contentsline {subsubsection}{\numberline {2.1.3}Generalized Solutions}{4}{subsubsection.2.1.3}%
+\contentsline {paragraph}{Definition}{5}{section*.5}%
 \contentsline {subsection}{\numberline {2.2}Linear Boltzmann Equation}{5}{subsection.2.2}%
-\contentsline {paragraph}{Definition}{6}{section*.17}%
+\contentsline {paragraph}{Definition}{5}{section*.6}%
 \contentsline {subsubsection}{\numberline {2.2.1}Cauchy Problem}{6}{subsubsection.2.2.1}%
-\contentsline {paragraph}{}{6}{section*.18}%
 \contentsline {subsubsection}{\numberline {2.2.2}Boundary Value Problem}{6}{subsubsection.2.2.2}%
-\contentsline {paragraph}{}{6}{section*.19}%
-\contentsline {section}{\numberline {3}The use of Monte Carlo methods to solve the linear Boltzmann equation}{6}{section.3}%
-\contentsline {paragraph}{}{6}{section*.20}%
-\contentsline {section}{\numberline {4}Semi analog MC scheme}{7}{section.4}%
-\contentsline {paragraph}{}{8}{section*.21}%
-\contentsline {section}{\numberline {5}Code architecture}{9}{section.5}%
-\contentsline {paragraph}{Regression suite}{9}{section*.23}%
-\contentsline {paragraph}{}{9}{section*.24}%
-\contentsline {paragraph}{}{9}{section*.25}%
-\contentsline {paragraph}{}{9}{section*.26}%
-\contentsline {paragraph}{}{9}{section*.27}%
-\contentsline {section}{\numberline {6}Conclusion}{10}{section.6}%
+\contentsline {section}{\numberline {3}The use of Monte-Carlo methods to solve the linear Boltzmann equation}{6}{section.3}%
+\contentsline {section}{\numberline {4}Semi analog Monte-Carlo scheme}{7}{section.4}%
+\contentsline {section}{\numberline {5}Code architecture}{8}{section.5}%
+\contentsline {paragraph}{Regression suite}{9}{section*.8}%
+\contentsline {section}{\numberline {6}Conclusion}{9}{section.6}%
