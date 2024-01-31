@@ -1,0 +1,78 @@
+\frametitle{Samplings of $\tau $ and $\bm {v}_p$}
+\setlength{\columnsep}{-2cm}
+	\begin{multicols}{2}
+		\vspace*{4em}
+		The variables are sampled as follows:
+		\vspace{1em}
+		
+		 $\tau = - \frac{\log U}{\sigma_t(\bm{x}_p, s_p, \bm{v}_p) |\bm{v}_p|}$ where $U \leadsto U[0;1]$.
+		
+		\vspace{1em}
+		
+		$\bm{v}_p$ is sampled uniformly on the 3D \\ unit sphere.
+		\newcolumn
+		\vspace*{-5em}
+		
+		\begin{figure}[H]
+			% fix axes to these ranges (depending on the data to be plotted, of course)
+			\def\xmin{-1.5}
+			\def\xmax{1.5}
+			\def\ymin{-1.5}
+			\def\ymax{1.5}
+			\def\zmin{-1.5}
+			\def\zmax{1.5}
+			% bounding cylinder based on axes ranges with some scaling and z-offsets to also
+			% include tick labels
+			\def\scaleCylRadius{1.5}
+			\pgfmathsetmacro\cylCentreX{0.5*(\xmin+\xmax)}
+			\pgfmathsetmacro\cylCentreY{0.5*(\ymin+\ymax)}
+			\pgfmathsetmacro\cylRadius{\scaleCylRadius*sqrt((\xmax-\xmin)^2+(\ymax-\ymin)^2))/2}
+			\pgfmathsetmacro\cylZMin{\zmin - 0.02}
+			\pgfmathsetmacro\cylZMax{\zmax + 0.0}
+			
+			\centering
+			\begin{animateinline}[autoplay,loop,controls=none]{12}
+				\multiframe{36}{i=45+10}{
+					\begin{tikzpicture}
+						%\useasboundingbox (-5,-5) rectangle (5, 5);
+						\begin{axis}[%
+							grid = both,
+							major grid style = {lightgray},
+							minor grid style = {lightgray!25},
+							height = 0.8\textheight,
+							xlabel = {x},
+							ylabel = {y},
+							zlabel = {z},
+							title = {},
+							legend style={at={(0.5,1)},anchor=north},
+							xmin=\xmin,xmax=\xmax,
+							ymin=\ymin,ymax=\ymax,
+							zmin=\zmin,zmax=\zmax,
+							view={\i}{30},
+							clip=false,
+							trig format plots=rad,
+							%unit vector ratio = 1 1 1
+							]
+							
+							% lower circle
+							\addplot3[
+							draw=none, % comment out to see cylinder circles
+							domain=0:2*pi,samples=60]({\cylCentreX+\cylRadius*sin(x)},{\cylCentreY+\cylRadius*cos(x)},\cylZMin);
+							
+							\addplot3 [color=IBMblue, only marks, mark size = 1pt] table [col sep=space, x index=0, y index=1, z index=2] {plot/data1500.txt};
+							
+							\draw[-stealth, color=IBMviolet, ultra thick] (0.0,0.0,0.0) -- (1.3, 0.0, 0.0) {};
+							\draw[-stealth, color=IBMviolet, ultra thick] (0.0,0.0,0.0) -- (0.0, 1.3, 0.0) {};
+							\draw[-stealth, color=IBMviolet, ultra thick] (0.0,0.0,0.0) -- (0.0, 0.0, 1.3) {};
+							
+							% upper circle
+							\addplot3[
+							draw=none,
+							domain=0:2*pi,samples=60]({\cylCentreX+\cylRadius*sin(x)},{\cylCentreY+\cylRadius*cos(x)},\cylZMax);
+							\legend{};
+						\end{axis}
+					\end{tikzpicture}
+				}
+			\end{animateinline}
+		\end{figure}
+	\end{multicols}
